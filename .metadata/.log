@@ -1,0 +1,797 @@
+!SESSION 2016-09-01 21:39:07.697 -----------------------------------------------
+eclipse.buildId=debbuild
+java.version=1.8.0_91
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Command-line arguments:  -os linux -ws gtk -arch x86_64
+
+!ENTRY org.eclipse.core.resources 2 10035 2016-09-01 21:39:17.826
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY org.eclipse.osgi 2 1 2016-09-07 09:06:53.544
+!MESSAGE NLS unused message: CacheManager_CannotLoadNonUrlLocation in: org.eclipse.equinox.internal.p2.repository.messages
+
+!ENTRY org.eclipse.equinox.p2.core 4 0 2016-09-07 09:06:53.548
+!MESSAGE Provisioning exception
+!STACK 1
+org.eclipse.equinox.p2.core.ProvisionException: Unable to read repository at http://download.eclipse.org/technology/epp/packages/indigo/content.xml.
+	at org.eclipse.equinox.internal.p2.repository.CacheManager.createCache(CacheManager.java:192)
+	at org.eclipse.equinox.internal.p2.metadata.repository.SimpleMetadataRepositoryFactory.getLocalFile(SimpleMetadataRepositoryFactory.java:66)
+	at org.eclipse.equinox.internal.p2.metadata.repository.SimpleMetadataRepositoryFactory.load(SimpleMetadataRepositoryFactory.java:88)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.factoryLoad(MetadataRepositoryManager.java:57)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:758)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:651)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:96)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:92)
+	at org.eclipse.equinox.internal.p2.metadata.repository.CompositeMetadataRepository.addChild(CompositeMetadataRepository.java:165)
+	at org.eclipse.equinox.internal.p2.metadata.repository.CompositeMetadataRepository.<init>(CompositeMetadataRepository.java:105)
+	at org.eclipse.equinox.internal.p2.metadata.repository.CompositeMetadataRepositoryFactory.load(CompositeMetadataRepositoryFactory.java:122)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.factoryLoad(MetadataRepositoryManager.java:57)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:758)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:651)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:96)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:92)
+	at org.eclipse.equinox.p2.ui.LoadMetadataRepositoryJob.doLoad(LoadMetadataRepositoryJob.java:117)
+	at org.eclipse.equinox.p2.ui.LoadMetadataRepositoryJob.runModal(LoadMetadataRepositoryJob.java:102)
+	at org.eclipse.equinox.internal.p2.ui.sdk.PreloadingRepositoryHandler$2.runModal(PreloadingRepositoryHandler.java:83)
+	at org.eclipse.equinox.p2.operations.ProvisioningJob.run(ProvisioningJob.java:177)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+Caused by: java.net.SocketException: Socket closed
+	at java.net.SocketInputStream.read(SocketInputStream.java:203)
+	at java.net.SocketInputStream.read(SocketInputStream.java:141)
+	at java.io.BufferedInputStream.fill(BufferedInputStream.java:246)
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:265)
+	at org.apache.commons.httpclient.HttpParser.readRawLine(HttpParser.java:78)
+	at org.apache.commons.httpclient.HttpParser.readLine(HttpParser.java:106)
+	at org.apache.commons.httpclient.HttpConnection.readLine(HttpConnection.java:1116)
+	at org.apache.commons.httpclient.MultiThreadedHttpConnectionManager$HttpConnectionAdapter.readLine(MultiThreadedHttpConnectionManager.java:1413)
+	at org.apache.commons.httpclient.HttpMethodBase.readStatusLine(HttpMethodBase.java:1973)
+	at org.apache.commons.httpclient.HttpMethodBase.readResponse(HttpMethodBase.java:1735)
+	at org.apache.commons.httpclient.HttpMethodBase.execute(HttpMethodBase.java:1098)
+	at org.apache.commons.httpclient.HttpMethodDirector.executeWithRetry(HttpMethodDirector.java:398)
+	at org.apache.commons.httpclient.HttpMethodDirector.executeMethod(HttpMethodDirector.java:171)
+	at org.apache.commons.httpclient.HttpClient.executeMethod(HttpClient.java:397)
+	at org.apache.commons.httpclient.HttpClient.executeMethod(HttpClient.java:346)
+	at org.eclipse.ecf.provider.filetransfer.httpclient.HttpClientFileSystemBrowser.runRequest(HttpClientFileSystemBrowser.java:232)
+	at org.eclipse.ecf.provider.filetransfer.browse.AbstractFileSystemBrowser$DirectoryJob.run(AbstractFileSystemBrowser.java:69)
+	... 1 more
+!SUBENTRY 1 org.eclipse.equinox.p2.transport.ecf 4 1002 2016-09-07 09:06:53.550
+!MESSAGE Unable to read repository at http://download.eclipse.org/technology/epp/packages/indigo/content.xml.
+!STACK 0
+java.net.SocketException: Socket closed
+	at java.net.SocketInputStream.read(SocketInputStream.java:203)
+	at java.net.SocketInputStream.read(SocketInputStream.java:141)
+	at java.io.BufferedInputStream.fill(BufferedInputStream.java:246)
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:265)
+	at org.apache.commons.httpclient.HttpParser.readRawLine(HttpParser.java:78)
+	at org.apache.commons.httpclient.HttpParser.readLine(HttpParser.java:106)
+	at org.apache.commons.httpclient.HttpConnection.readLine(HttpConnection.java:1116)
+	at org.apache.commons.httpclient.MultiThreadedHttpConnectionManager$HttpConnectionAdapter.readLine(MultiThreadedHttpConnectionManager.java:1413)
+	at org.apache.commons.httpclient.HttpMethodBase.readStatusLine(HttpMethodBase.java:1973)
+	at org.apache.commons.httpclient.HttpMethodBase.readResponse(HttpMethodBase.java:1735)
+	at org.apache.commons.httpclient.HttpMethodBase.execute(HttpMethodBase.java:1098)
+	at org.apache.commons.httpclient.HttpMethodDirector.executeWithRetry(HttpMethodDirector.java:398)
+	at org.apache.commons.httpclient.HttpMethodDirector.executeMethod(HttpMethodDirector.java:171)
+	at org.apache.commons.httpclient.HttpClient.executeMethod(HttpClient.java:397)
+	at org.apache.commons.httpclient.HttpClient.executeMethod(HttpClient.java:346)
+	at org.eclipse.ecf.provider.filetransfer.httpclient.HttpClientFileSystemBrowser.runRequest(HttpClientFileSystemBrowser.java:232)
+	at org.eclipse.ecf.provider.filetransfer.browse.AbstractFileSystemBrowser$DirectoryJob.run(AbstractFileSystemBrowser.java:69)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.eclipse.core.jobs 4 2 2016-09-07 09:32:34.040
+!MESSAGE An internal error occurred during: "Install download1".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.equinox.internal.p2.artifact.repository.simple.SimpleArtifactRepository.downloadArtifact(SimpleArtifactRepository.java:668)
+	at org.eclipse.equinox.internal.p2.artifact.repository.simple.SimpleArtifactRepository.downloadArtifact(SimpleArtifactRepository.java:590)
+	at org.eclipse.equinox.internal.p2.artifact.repository.simple.SimpleArtifactRepository.getArtifact(SimpleArtifactRepository.java:723)
+	at org.eclipse.equinox.internal.p2.artifact.repository.MirrorRequest.getArtifact(MirrorRequest.java:287)
+	at org.eclipse.equinox.internal.p2.artifact.repository.MirrorRequest.transferSingle(MirrorRequest.java:267)
+	at org.eclipse.equinox.internal.p2.artifact.repository.MirrorRequest.transfer(MirrorRequest.java:208)
+	at org.eclipse.equinox.internal.p2.artifact.repository.MirrorRequest.perform(MirrorRequest.java:138)
+	at org.eclipse.equinox.internal.p2.artifact.repository.simple.SimpleArtifactRepository.getArtifact(SimpleArtifactRepository.java:707)
+	at org.eclipse.equinox.internal.p2.artifact.repository.simple.DownloadJob.run(DownloadJob.java:63)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.eclipse.equinox.p2.engine 4 4 2016-09-07 09:32:34.047
+!MESSAGE An error occurred while committing the engine session for profile: PlatformProfile.
+!SUBENTRY 1 org.eclipse.equinox.p2.engine 4 0 2016-09-07 09:32:34.047
+!MESSAGE An error occurred while undoing the org.eclipse.equinox.internal.p2.engine.phases.Collect phase.
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.equinox.internal.p2.engine.EngineSession.getProfileDataDirectory(EngineSession.java:78)
+	at org.eclipse.equinox.internal.p2.engine.Phase.prePerform(Phase.java:110)
+	at org.eclipse.equinox.internal.p2.engine.EngineSession.rollBackPhase(EngineSession.java:221)
+	at org.eclipse.equinox.internal.p2.engine.EngineSession.rollback(EngineSession.java:178)
+	at org.eclipse.equinox.internal.p2.engine.Engine.perform(Engine.java:84)
+	at org.eclipse.equinox.internal.p2.engine.Engine.perform(Engine.java:44)
+	at org.eclipse.equinox.p2.operations.ProvisioningSession.performProvisioningPlan(ProvisioningSession.java:174)
+	at org.eclipse.equinox.p2.operations.ProfileModificationJob.runModal(ProfileModificationJob.java:79)
+	at org.eclipse.equinox.p2.operations.ProvisioningJob.run(ProvisioningJob.java:177)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.eclipse.equinox.p2.engine 4 4 2016-09-07 09:32:34.049
+!MESSAGE An error occurred while collecting items to be installed
+!SUBENTRY 1 org.eclipse.equinox.p2.engine 4 0 2016-09-07 09:32:34.049
+!MESSAGE session context was:(profile=PlatformProfile, phase=org.eclipse.equinox.internal.p2.engine.phases.Collect, operand=, action=).
+!SUBENTRY 1 org.eclipse.equinox.p2.engine 4 0 2016-09-07 09:32:34.049
+!MESSAGE 
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.equinox.internal.p2.artifact.repository.simple.SimpleArtifactRepository.getMaximumThreads(SimpleArtifactRepository.java:905)
+	at org.eclipse.equinox.internal.p2.artifact.repository.simple.SimpleArtifactRepository.getArtifacts(SimpleArtifactRepository.java:771)
+	at org.eclipse.equinox.internal.p2.artifact.repository.CompositeArtifactRepository.getArtifacts(CompositeArtifactRepository.java:341)
+	at org.eclipse.equinox.internal.p2.artifact.repository.CompositeArtifactRepository.getArtifacts(CompositeArtifactRepository.java:341)
+	at org.eclipse.equinox.internal.p2.engine.DownloadManager.fetch(DownloadManager.java:112)
+	at org.eclipse.equinox.internal.p2.engine.DownloadManager.start(DownloadManager.java:100)
+	at org.eclipse.equinox.internal.p2.engine.phases.Collect.completePhase(Collect.java:101)
+	at org.eclipse.equinox.internal.p2.engine.Phase.postPerform(Phase.java:241)
+	at org.eclipse.equinox.internal.p2.engine.Phase.perform(Phase.java:98)
+	at org.eclipse.equinox.internal.p2.engine.PhaseSet.perform(PhaseSet.java:47)
+	at org.eclipse.equinox.internal.p2.engine.Engine.perform(Engine.java:75)
+	at org.eclipse.equinox.internal.p2.engine.Engine.perform(Engine.java:44)
+	at org.eclipse.equinox.p2.operations.ProvisioningSession.performProvisioningPlan(ProvisioningSession.java:174)
+	at org.eclipse.equinox.p2.operations.ProfileModificationJob.runModal(ProfileModificationJob.java:79)
+	at org.eclipse.equinox.p2.operations.ProvisioningJob.run(ProvisioningJob.java:177)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+!SESSION 2016-09-07 09:32:39.630 -----------------------------------------------
+eclipse.buildId=debbuild
+java.version=1.8.0_91
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Command-line arguments:  -os linux -ws gtk -arch x86_64
+
+!ENTRY org.eclipse.equinox.p2.operations 4 0 2016-09-07 09:40:35.990
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 1 2016-09-07 09:40:35.990
+!MESSAGE Cannot complete the install because one or more required items could not be found.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-09-07 09:40:35.990
+!MESSAGE Software being installed: Command Line Interface for Java implementation of Git 4.4.1.201607150455-r (org.eclipse.jgit.pgm.feature.group 4.4.1.201607150455-r)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-09-07 09:40:35.990
+!MESSAGE Missing requirement: JGit Large File Storage Server 4.4.1.201607150455-r (org.eclipse.jgit.lfs.server 4.4.1.201607150455-r) requires 'package javax.servlet [3.1.0,4.0.0)' but it could not be found
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2016-09-07 09:40:35.990
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-09-07 09:40:35.990
+!MESSAGE From: Java implementation of Git - optional LFS support 4.4.1.201607150455-r (org.eclipse.jgit.lfs.feature.group 4.4.1.201607150455-r)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-09-07 09:40:35.990
+!MESSAGE To: org.eclipse.jgit.lfs.server [4.4.1.201607150455-r]
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2016-09-07 09:40:35.990
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-09-07 09:40:35.990
+!MESSAGE From: Command Line Interface for Java implementation of Git 4.4.1.201607150455-r (org.eclipse.jgit.pgm.feature.group 4.4.1.201607150455-r)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-09-07 09:40:35.990
+!MESSAGE To: org.eclipse.jgit.lfs.feature.group [4.4.1.201607150455-r]
+
+!ENTRY org.eclipse.equinox.p2.operations 4 0 2016-09-07 09:40:35.993
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 1 2016-09-07 09:40:35.993
+!MESSAGE Cannot complete the install because one or more required items could not be found.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-09-07 09:40:35.993
+!MESSAGE Software being installed: Command Line Interface for Java implementation of Git 4.4.1.201607150455-r (org.eclipse.jgit.pgm.feature.group 4.4.1.201607150455-r)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-09-07 09:40:35.994
+!MESSAGE Missing requirement: JGit Large File Storage Server 4.4.1.201607150455-r (org.eclipse.jgit.lfs.server 4.4.1.201607150455-r) requires 'package javax.servlet [3.1.0,4.0.0)' but it could not be found
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2016-09-07 09:40:35.994
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-09-07 09:40:35.994
+!MESSAGE From: Java implementation of Git - optional LFS support 4.4.1.201607150455-r (org.eclipse.jgit.lfs.feature.group 4.4.1.201607150455-r)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-09-07 09:40:35.994
+!MESSAGE To: org.eclipse.jgit.lfs.server [4.4.1.201607150455-r]
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2016-09-07 09:40:35.994
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-09-07 09:40:35.994
+!MESSAGE From: Command Line Interface for Java implementation of Git 4.4.1.201607150455-r (org.eclipse.jgit.pgm.feature.group 4.4.1.201607150455-r)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-09-07 09:40:35.994
+!MESSAGE To: org.eclipse.jgit.lfs.feature.group [4.4.1.201607150455-r]
+
+!ENTRY org.eclipse.equinox.p2.touchpoint.natives 4 0 2016-09-07 10:02:13.159
+!MESSAGE Manual restore of backup needed for: /tmp/PlatformProfile_2ae0ac547d40_7f0001018009/_/usr/lib/eclipse/.eclipseproduct
+
+!ENTRY org.eclipse.equinox.p2.touchpoint.natives 4 0 2016-09-07 10:02:13.160
+!MESSAGE 0 items out of 1 items restored.
+
+!ENTRY org.eclipse.equinox.p2.engine 4 4 2016-09-07 10:02:13.160
+!MESSAGE An error occurred while committing the engine session for profile: PlatformProfile.
+!SUBENTRY 1 org.eclipse.equinox.p2.touchpoint.natives 4 0 2016-09-07 10:02:13.160
+!MESSAGE Restore of backup failed - see log for details. Backup directory name: PlatformProfile_2ae0ac547d40_7f0001018009.
+!STACK 0
+java.io.IOException: Errors while restoring - see earlier logged errors
+	at org.eclipse.equinox.internal.p2.touchpoint.natives.BackupStore.close(BackupStore.java:489)
+	at org.eclipse.equinox.internal.p2.touchpoint.natives.BackupStore.restore(BackupStore.java:452)
+	at org.eclipse.equinox.internal.p2.touchpoint.natives.LazyBackupStore.restore(LazyBackupStore.java:53)
+	at org.eclipse.equinox.internal.p2.touchpoint.natives.NativeTouchpoint.rollback(NativeTouchpoint.java:108)
+	at org.eclipse.equinox.internal.p2.engine.EngineSession.rollback(EngineSession.java:194)
+	at org.eclipse.equinox.internal.p2.engine.Engine.perform(Engine.java:84)
+	at org.eclipse.equinox.internal.p2.engine.Engine.perform(Engine.java:44)
+	at org.eclipse.equinox.p2.operations.ProvisioningSession.performProvisioningPlan(ProvisioningSession.java:174)
+	at org.eclipse.equinox.p2.operations.ProfileModificationJob.runModal(ProfileModificationJob.java:79)
+	at org.eclipse.equinox.p2.operations.ProvisioningJob.run(ProvisioningJob.java:177)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.eclipse.equinox.p2.engine 4 4 2016-09-07 10:02:13.163
+!MESSAGE An error occurred while uninstalling
+!SUBENTRY 1 org.eclipse.equinox.p2.engine 4 0 2016-09-07 10:02:13.163
+!MESSAGE session context was:(profile=PlatformProfile, phase=org.eclipse.equinox.internal.p2.engine.phases.Uninstall, operand=[R]org.eclipse.platform_root 3.8.1.dist-A8F8_IVSG4WGSImg7oLZb9p1HecSFyJZcMPL9 --> null, action=org.eclipse.equinox.internal.p2.touchpoint.natives.actions.CleanupzipAction).
+!SUBENTRY 1 org.eclipse.equinox.p2.touchpoint.natives 4 0 2016-09-07 10:02:13.163
+!MESSAGE Backup of file /usr/lib/eclipse/.eclipseproduct failed.
+!STACK 0
+java.io.IOException: File that was copied to backup could not be deleted: /usr/lib/eclipse/.eclipseproduct
+	at org.eclipse.equinox.internal.p2.touchpoint.natives.BackupStore.moveToBackup(BackupStore.java:274)
+	at org.eclipse.equinox.internal.p2.touchpoint.natives.BackupStore.backup(BackupStore.java:243)
+	at org.eclipse.equinox.internal.p2.touchpoint.natives.LazyBackupStore.backup(LazyBackupStore.java:36)
+	at org.eclipse.equinox.internal.p2.touchpoint.natives.actions.CleanupzipAction.cleanupzip(CleanupzipAction.java:85)
+	at org.eclipse.equinox.internal.p2.touchpoint.natives.actions.CleanupzipAction.execute(CleanupzipAction.java:30)
+	at org.eclipse.equinox.internal.p2.engine.ParameterizedProvisioningAction.execute(ParameterizedProvisioningAction.java:35)
+	at org.eclipse.equinox.internal.p2.engine.Phase.mainPerform(Phase.java:174)
+	at org.eclipse.equinox.internal.p2.engine.Phase.perform(Phase.java:92)
+	at org.eclipse.equinox.internal.p2.engine.PhaseSet.perform(PhaseSet.java:47)
+	at org.eclipse.equinox.internal.p2.engine.Engine.perform(Engine.java:75)
+	at org.eclipse.equinox.internal.p2.engine.Engine.perform(Engine.java:44)
+	at org.eclipse.equinox.p2.operations.ProvisioningSession.performProvisioningPlan(ProvisioningSession.java:174)
+	at org.eclipse.equinox.p2.operations.ProfileModificationJob.runModal(ProfileModificationJob.java:79)
+	at org.eclipse.equinox.p2.operations.ProvisioningJob.run(ProvisioningJob.java:177)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+!SESSION 2016-09-07 10:04:40.124 -----------------------------------------------
+eclipse.buildId=debbuild
+java.version=1.8.0_91
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Command-line arguments:  -os linux -ws gtk -arch x86_64
+
+!ENTRY org.eclipse.equinox.p2.operations 4 0 2016-09-07 10:08:56.413
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.operations 4 10011 2016-09-07 10:08:56.413
+!MESSAGE "Object Teams Patch for JDT/Core" is not applicable to the current configuration and will not be installed.
+
+!ENTRY org.eclipse.equinox.p2.operations 4 0 2016-09-07 10:08:56.414
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.operations 4 10011 2016-09-07 10:08:56.414
+!MESSAGE "Object Teams Patch for JDT/Core" is not applicable to the current configuration and will not be installed.
+
+!ENTRY org.eclipse.equinox.p2.touchpoint.natives 4 0 2016-09-07 10:09:10.054
+!MESSAGE Manual restore of backup needed for: /tmp/PlatformProfile_2ae0ad200a20_7f000101aee5/_/usr/lib/eclipse/.eclipseproduct
+
+!ENTRY org.eclipse.equinox.p2.touchpoint.natives 4 0 2016-09-07 10:09:10.054
+!MESSAGE 0 items out of 1 items restored.
+
+!ENTRY org.eclipse.equinox.p2.engine 4 4 2016-09-07 10:09:10.055
+!MESSAGE An error occurred while committing the engine session for profile: PlatformProfile.
+!SUBENTRY 1 org.eclipse.equinox.p2.touchpoint.natives 4 0 2016-09-07 10:09:10.055
+!MESSAGE Restore of backup failed - see log for details. Backup directory name: PlatformProfile_2ae0ad200a20_7f000101aee5.
+!STACK 0
+java.io.IOException: Errors while restoring - see earlier logged errors
+	at org.eclipse.equinox.internal.p2.touchpoint.natives.BackupStore.close(BackupStore.java:489)
+	at org.eclipse.equinox.internal.p2.touchpoint.natives.BackupStore.restore(BackupStore.java:452)
+	at org.eclipse.equinox.internal.p2.touchpoint.natives.LazyBackupStore.restore(LazyBackupStore.java:53)
+	at org.eclipse.equinox.internal.p2.touchpoint.natives.NativeTouchpoint.rollback(NativeTouchpoint.java:108)
+	at org.eclipse.equinox.internal.p2.engine.EngineSession.rollback(EngineSession.java:194)
+	at org.eclipse.equinox.internal.p2.engine.Engine.perform(Engine.java:84)
+	at org.eclipse.equinox.internal.p2.engine.Engine.perform(Engine.java:44)
+	at org.eclipse.equinox.p2.operations.ProvisioningSession.performProvisioningPlan(ProvisioningSession.java:174)
+	at org.eclipse.equinox.p2.operations.ProfileModificationJob.runModal(ProfileModificationJob.java:79)
+	at org.eclipse.equinox.p2.operations.ProvisioningJob.run(ProvisioningJob.java:177)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.eclipse.equinox.p2.engine 4 4 2016-09-07 10:09:10.060
+!MESSAGE An error occurred while uninstalling
+!SUBENTRY 1 org.eclipse.equinox.p2.engine 4 0 2016-09-07 10:09:10.060
+!MESSAGE session context was:(profile=PlatformProfile, phase=org.eclipse.equinox.internal.p2.engine.phases.Uninstall, operand=[R]org.eclipse.platform_root 3.8.1.dist-A8F8_IVSG4WGSImg7oLZb9p1HecSFyJZcMPL9 --> null, action=org.eclipse.equinox.internal.p2.touchpoint.natives.actions.CleanupzipAction).
+!SUBENTRY 1 org.eclipse.equinox.p2.touchpoint.natives 4 0 2016-09-07 10:09:10.060
+!MESSAGE Backup of file /usr/lib/eclipse/.eclipseproduct failed.
+!STACK 0
+java.io.IOException: File that was copied to backup could not be deleted: /usr/lib/eclipse/.eclipseproduct
+	at org.eclipse.equinox.internal.p2.touchpoint.natives.BackupStore.moveToBackup(BackupStore.java:274)
+	at org.eclipse.equinox.internal.p2.touchpoint.natives.BackupStore.backup(BackupStore.java:243)
+	at org.eclipse.equinox.internal.p2.touchpoint.natives.LazyBackupStore.backup(LazyBackupStore.java:36)
+	at org.eclipse.equinox.internal.p2.touchpoint.natives.actions.CleanupzipAction.cleanupzip(CleanupzipAction.java:85)
+	at org.eclipse.equinox.internal.p2.touchpoint.natives.actions.CleanupzipAction.execute(CleanupzipAction.java:30)
+	at org.eclipse.equinox.internal.p2.engine.ParameterizedProvisioningAction.execute(ParameterizedProvisioningAction.java:35)
+	at org.eclipse.equinox.internal.p2.engine.Phase.mainPerform(Phase.java:174)
+	at org.eclipse.equinox.internal.p2.engine.Phase.perform(Phase.java:92)
+	at org.eclipse.equinox.internal.p2.engine.PhaseSet.perform(PhaseSet.java:47)
+	at org.eclipse.equinox.internal.p2.engine.Engine.perform(Engine.java:75)
+	at org.eclipse.equinox.internal.p2.engine.Engine.perform(Engine.java:44)
+	at org.eclipse.equinox.p2.operations.ProvisioningSession.performProvisioningPlan(ProvisioningSession.java:174)
+	at org.eclipse.equinox.p2.operations.ProfileModificationJob.runModal(ProfileModificationJob.java:79)
+	at org.eclipse.equinox.p2.operations.ProvisioningJob.run(ProvisioningJob.java:177)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.eclipse.equinox.p2.transport.ecf 2 0 2016-09-07 11:02:12.957
+!MESSAGE Connection to http://download.eclipse.org/e4/snapshots/org.eclipse.e4.ui/p2.index failed on download.eclipse.org. Retry attempt 0 started
+!STACK 0
+java.net.UnknownHostException: download.eclipse.org
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:184)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at org.eclipse.ecf.provider.filetransfer.events.socket.SocketEventCreateUtil.createSocket(SocketEventCreateUtil.java:43)
+	at org.eclipse.ecf.internal.provider.filetransfer.httpclient.ECFHttpClientProtocolSocketFactory.createSocket(ECFHttpClientProtocolSocketFactory.java:81)
+	at org.eclipse.ecf.internal.provider.filetransfer.httpclient.ECFHttpClientProtocolSocketFactory.createSocket(ECFHttpClientProtocolSocketFactory.java:73)
+	at org.eclipse.ecf.internal.provider.filetransfer.httpclient.ECFHttpClientProtocolSocketFactory.createSocket(ECFHttpClientProtocolSocketFactory.java:65)
+	at org.apache.commons.httpclient.HttpConnection.open(HttpConnection.java:707)
+	at org.apache.commons.httpclient.MultiThreadedHttpConnectionManager$HttpConnectionAdapter.open(MultiThreadedHttpConnectionManager.java:1361)
+	at org.apache.commons.httpclient.HttpMethodDirector.executeWithRetry(HttpMethodDirector.java:387)
+	at org.apache.commons.httpclient.HttpMethodDirector.executeMethod(HttpMethodDirector.java:171)
+	at org.apache.commons.httpclient.HttpClient.executeMethod(HttpClient.java:397)
+	at org.apache.commons.httpclient.HttpClient.executeMethod(HttpClient.java:346)
+	at org.eclipse.ecf.provider.filetransfer.httpclient.HttpClientRetrieveFileTransfer.performConnect(HttpClientRetrieveFileTransfer.java:1129)
+	at org.eclipse.ecf.provider.filetransfer.httpclient.HttpClientRetrieveFileTransfer.openStreams(HttpClientRetrieveFileTransfer.java:699)
+	at org.eclipse.ecf.provider.filetransfer.retrieve.AbstractRetrieveFileTransfer.sendRetrieveRequest(AbstractRetrieveFileTransfer.java:889)
+	at org.eclipse.ecf.provider.filetransfer.retrieve.AbstractRetrieveFileTransfer.sendRetrieveRequest(AbstractRetrieveFileTransfer.java:576)
+	at org.eclipse.ecf.provider.filetransfer.retrieve.MultiProtocolRetrieveAdapter.sendRetrieveRequest(MultiProtocolRetrieveAdapter.java:106)
+	at org.eclipse.equinox.internal.p2.transport.ecf.FileReader.sendRetrieveRequest(FileReader.java:422)
+	at org.eclipse.equinox.internal.p2.transport.ecf.FileReader.readInto(FileReader.java:355)
+	at org.eclipse.equinox.internal.p2.transport.ecf.RepositoryTransport.download(RepositoryTransport.java:101)
+	at org.eclipse.equinox.internal.p2.transport.ecf.RepositoryTransport.download(RepositoryTransport.java:156)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadIndexFile(AbstractRepositoryManager.java:721)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:640)
+	at org.eclipse.equinox.internal.p2.artifact.repository.ArtifactRepositoryManager.loadRepository(ArtifactRepositoryManager.java:104)
+	at org.eclipse.equinox.internal.p2.artifact.repository.ArtifactRepositoryManager.loadRepository(ArtifactRepositoryManager.java:100)
+	at org.eclipse.equinox.p2.engine.ProvisioningContext.getLoadedArtifactRepositories(ProvisioningContext.java:160)
+	at org.eclipse.equinox.p2.engine.ProvisioningContext.getArtifactRepositories(ProvisioningContext.java:143)
+	at org.eclipse.equinox.internal.p2.engine.phases.Sizing.completePhase(Sizing.java:91)
+	at org.eclipse.equinox.internal.p2.engine.Phase.postPerform(Phase.java:241)
+	at org.eclipse.equinox.internal.p2.engine.Phase.perform(Phase.java:98)
+	at org.eclipse.equinox.internal.p2.engine.PhaseSet.perform(PhaseSet.java:47)
+	at org.eclipse.equinox.internal.p2.engine.Engine.perform(Engine.java:75)
+	at org.eclipse.equinox.internal.p2.engine.Engine.perform(Engine.java:44)
+	at org.eclipse.equinox.internal.p2.ui.ProvUI.getSize(ProvUI.java:230)
+	at org.eclipse.equinox.internal.p2.ui.dialogs.SizeComputingWizardPage$1.run(SizeComputingWizardPage.java:63)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.eclipse.osgi 2 1 2016-09-07 11:02:13.164
+!MESSAGE NLS unused message: CacheManager_CannotLoadNonUrlLocation in: org.eclipse.equinox.internal.p2.repository.messages
+
+!ENTRY org.eclipse.equinox.p2.transport.ecf 2 0 2016-09-07 11:02:13.168
+!MESSAGE Connection to http://download.eclipse.org/egit/updates/p2.index failed on download.eclipse.org. Retry attempt 0 started
+!STACK 0
+java.net.UnknownHostException: download.eclipse.org
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:184)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at org.eclipse.ecf.provider.filetransfer.events.socket.SocketEventCreateUtil.createSocket(SocketEventCreateUtil.java:43)
+	at org.eclipse.ecf.internal.provider.filetransfer.httpclient.ECFHttpClientProtocolSocketFactory.createSocket(ECFHttpClientProtocolSocketFactory.java:81)
+	at org.eclipse.ecf.internal.provider.filetransfer.httpclient.ECFHttpClientProtocolSocketFactory.createSocket(ECFHttpClientProtocolSocketFactory.java:73)
+	at org.eclipse.ecf.internal.provider.filetransfer.httpclient.ECFHttpClientProtocolSocketFactory.createSocket(ECFHttpClientProtocolSocketFactory.java:65)
+	at org.apache.commons.httpclient.HttpConnection.open(HttpConnection.java:707)
+	at org.apache.commons.httpclient.MultiThreadedHttpConnectionManager$HttpConnectionAdapter.open(MultiThreadedHttpConnectionManager.java:1361)
+	at org.apache.commons.httpclient.HttpMethodDirector.executeWithRetry(HttpMethodDirector.java:387)
+	at org.apache.commons.httpclient.HttpMethodDirector.executeMethod(HttpMethodDirector.java:171)
+	at org.apache.commons.httpclient.HttpClient.executeMethod(HttpClient.java:397)
+	at org.apache.commons.httpclient.HttpClient.executeMethod(HttpClient.java:346)
+	at org.eclipse.ecf.provider.filetransfer.httpclient.HttpClientRetrieveFileTransfer.performConnect(HttpClientRetrieveFileTransfer.java:1129)
+	at org.eclipse.ecf.provider.filetransfer.httpclient.HttpClientRetrieveFileTransfer.openStreams(HttpClientRetrieveFileTransfer.java:699)
+	at org.eclipse.ecf.provider.filetransfer.retrieve.AbstractRetrieveFileTransfer.sendRetrieveRequest(AbstractRetrieveFileTransfer.java:889)
+	at org.eclipse.ecf.provider.filetransfer.retrieve.AbstractRetrieveFileTransfer.sendRetrieveRequest(AbstractRetrieveFileTransfer.java:576)
+	at org.eclipse.ecf.provider.filetransfer.retrieve.MultiProtocolRetrieveAdapter.sendRetrieveRequest(MultiProtocolRetrieveAdapter.java:106)
+	at org.eclipse.equinox.internal.p2.transport.ecf.FileReader.sendRetrieveRequest(FileReader.java:422)
+	at org.eclipse.equinox.internal.p2.transport.ecf.FileReader.readInto(FileReader.java:355)
+	at org.eclipse.equinox.internal.p2.transport.ecf.RepositoryTransport.download(RepositoryTransport.java:101)
+	at org.eclipse.equinox.internal.p2.transport.ecf.RepositoryTransport.download(RepositoryTransport.java:156)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadIndexFile(AbstractRepositoryManager.java:721)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:640)
+	at org.eclipse.equinox.internal.p2.artifact.repository.ArtifactRepositoryManager.loadRepository(ArtifactRepositoryManager.java:104)
+	at org.eclipse.equinox.internal.p2.artifact.repository.ArtifactRepositoryManager.loadRepository(ArtifactRepositoryManager.java:100)
+	at org.eclipse.equinox.p2.engine.ProvisioningContext.getLoadedArtifactRepositories(ProvisioningContext.java:160)
+	at org.eclipse.equinox.p2.engine.ProvisioningContext.getArtifactRepositories(ProvisioningContext.java:143)
+	at org.eclipse.equinox.internal.p2.engine.phases.Sizing.completePhase(Sizing.java:91)
+	at org.eclipse.equinox.internal.p2.engine.Phase.postPerform(Phase.java:241)
+	at org.eclipse.equinox.internal.p2.engine.Phase.perform(Phase.java:98)
+	at org.eclipse.equinox.internal.p2.engine.PhaseSet.perform(PhaseSet.java:47)
+	at org.eclipse.equinox.internal.p2.engine.Engine.perform(Engine.java:75)
+	at org.eclipse.equinox.internal.p2.engine.Engine.perform(Engine.java:44)
+	at org.eclipse.equinox.internal.p2.ui.ProvUI.getSize(ProvUI.java:230)
+	at org.eclipse.equinox.internal.p2.ui.dialogs.SizeComputingWizardPage$1.run(SizeComputingWizardPage.java:63)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.eclipse.equinox.p2.transport.ecf 2 0 2016-09-07 11:02:13.374
+!MESSAGE Connection to http://download.eclipse.org/releases/indigo/p2.index failed on download.eclipse.org. Retry attempt 0 started
+!STACK 0
+java.net.UnknownHostException: download.eclipse.org
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:184)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at org.eclipse.ecf.provider.filetransfer.events.socket.SocketEventCreateUtil.createSocket(SocketEventCreateUtil.java:43)
+	at org.eclipse.ecf.internal.provider.filetransfer.httpclient.ECFHttpClientProtocolSocketFactory.createSocket(ECFHttpClientProtocolSocketFactory.java:81)
+	at org.eclipse.ecf.internal.provider.filetransfer.httpclient.ECFHttpClientProtocolSocketFactory.createSocket(ECFHttpClientProtocolSocketFactory.java:73)
+	at org.eclipse.ecf.internal.provider.filetransfer.httpclient.ECFHttpClientProtocolSocketFactory.createSocket(ECFHttpClientProtocolSocketFactory.java:65)
+	at org.apache.commons.httpclient.HttpConnection.open(HttpConnection.java:707)
+	at org.apache.commons.httpclient.MultiThreadedHttpConnectionManager$HttpConnectionAdapter.open(MultiThreadedHttpConnectionManager.java:1361)
+	at org.apache.commons.httpclient.HttpMethodDirector.executeWithRetry(HttpMethodDirector.java:387)
+	at org.apache.commons.httpclient.HttpMethodDirector.executeMethod(HttpMethodDirector.java:171)
+	at org.apache.commons.httpclient.HttpClient.executeMethod(HttpClient.java:397)
+	at org.apache.commons.httpclient.HttpClient.executeMethod(HttpClient.java:346)
+	at org.eclipse.ecf.provider.filetransfer.httpclient.HttpClientRetrieveFileTransfer.performConnect(HttpClientRetrieveFileTransfer.java:1129)
+	at org.eclipse.ecf.provider.filetransfer.httpclient.HttpClientRetrieveFileTransfer.openStreams(HttpClientRetrieveFileTransfer.java:699)
+	at org.eclipse.ecf.provider.filetransfer.retrieve.AbstractRetrieveFileTransfer.sendRetrieveRequest(AbstractRetrieveFileTransfer.java:889)
+	at org.eclipse.ecf.provider.filetransfer.retrieve.AbstractRetrieveFileTransfer.sendRetrieveRequest(AbstractRetrieveFileTransfer.java:576)
+	at org.eclipse.ecf.provider.filetransfer.retrieve.MultiProtocolRetrieveAdapter.sendRetrieveRequest(MultiProtocolRetrieveAdapter.java:106)
+	at org.eclipse.equinox.internal.p2.transport.ecf.FileReader.sendRetrieveRequest(FileReader.java:422)
+	at org.eclipse.equinox.internal.p2.transport.ecf.FileReader.readInto(FileReader.java:355)
+	at org.eclipse.equinox.internal.p2.transport.ecf.RepositoryTransport.download(RepositoryTransport.java:101)
+	at org.eclipse.equinox.internal.p2.transport.ecf.RepositoryTransport.download(RepositoryTransport.java:156)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadIndexFile(AbstractRepositoryManager.java:721)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:640)
+	at org.eclipse.equinox.internal.p2.artifact.repository.ArtifactRepositoryManager.loadRepository(ArtifactRepositoryManager.java:104)
+	at org.eclipse.equinox.internal.p2.artifact.repository.ArtifactRepositoryManager.loadRepository(ArtifactRepositoryManager.java:100)
+	at org.eclipse.equinox.p2.engine.ProvisioningContext.getLoadedArtifactRepositories(ProvisioningContext.java:160)
+	at org.eclipse.equinox.p2.engine.ProvisioningContext.getArtifactRepositories(ProvisioningContext.java:143)
+	at org.eclipse.equinox.internal.p2.engine.phases.Sizing.completePhase(Sizing.java:91)
+	at org.eclipse.equinox.internal.p2.engine.Phase.postPerform(Phase.java:241)
+	at org.eclipse.equinox.internal.p2.engine.Phase.perform(Phase.java:98)
+	at org.eclipse.equinox.internal.p2.engine.PhaseSet.perform(PhaseSet.java:47)
+	at org.eclipse.equinox.internal.p2.engine.Engine.perform(Engine.java:75)
+	at org.eclipse.equinox.internal.p2.engine.Engine.perform(Engine.java:44)
+	at org.eclipse.equinox.internal.p2.ui.ProvUI.getSize(ProvUI.java:230)
+	at org.eclipse.equinox.internal.p2.ui.dialogs.SizeComputingWizardPage$1.run(SizeComputingWizardPage.java:63)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.eclipse.equinox.p2.transport.ecf 2 0 2016-09-07 11:02:13.582
+!MESSAGE Connection to http://download.eclipse.org/releases/indigo/p2.index failed on download.eclipse.org. Retry attempt 0 started
+!STACK 0
+java.net.UnknownHostException: download.eclipse.org
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:184)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at org.eclipse.ecf.provider.filetransfer.events.socket.SocketEventCreateUtil.createSocket(SocketEventCreateUtil.java:43)
+	at org.eclipse.ecf.internal.provider.filetransfer.httpclient.ECFHttpClientProtocolSocketFactory.createSocket(ECFHttpClientProtocolSocketFactory.java:81)
+	at org.eclipse.ecf.internal.provider.filetransfer.httpclient.ECFHttpClientProtocolSocketFactory.createSocket(ECFHttpClientProtocolSocketFactory.java:73)
+	at org.eclipse.ecf.internal.provider.filetransfer.httpclient.ECFHttpClientProtocolSocketFactory.createSocket(ECFHttpClientProtocolSocketFactory.java:65)
+	at org.apache.commons.httpclient.HttpConnection.open(HttpConnection.java:707)
+	at org.apache.commons.httpclient.MultiThreadedHttpConnectionManager$HttpConnectionAdapter.open(MultiThreadedHttpConnectionManager.java:1361)
+	at org.apache.commons.httpclient.HttpMethodDirector.executeWithRetry(HttpMethodDirector.java:387)
+	at org.apache.commons.httpclient.HttpMethodDirector.executeMethod(HttpMethodDirector.java:171)
+	at org.apache.commons.httpclient.HttpClient.executeMethod(HttpClient.java:397)
+	at org.apache.commons.httpclient.HttpClient.executeMethod(HttpClient.java:346)
+	at org.eclipse.ecf.provider.filetransfer.httpclient.HttpClientRetrieveFileTransfer.performConnect(HttpClientRetrieveFileTransfer.java:1129)
+	at org.eclipse.ecf.provider.filetransfer.httpclient.HttpClientRetrieveFileTransfer.openStreams(HttpClientRetrieveFileTransfer.java:699)
+	at org.eclipse.ecf.provider.filetransfer.retrieve.AbstractRetrieveFileTransfer.sendRetrieveRequest(AbstractRetrieveFileTransfer.java:889)
+	at org.eclipse.ecf.provider.filetransfer.retrieve.AbstractRetrieveFileTransfer.sendRetrieveRequest(AbstractRetrieveFileTransfer.java:576)
+	at org.eclipse.ecf.provider.filetransfer.retrieve.MultiProtocolRetrieveAdapter.sendRetrieveRequest(MultiProtocolRetrieveAdapter.java:106)
+	at org.eclipse.equinox.internal.p2.transport.ecf.FileReader.sendRetrieveRequest(FileReader.java:422)
+	at org.eclipse.equinox.internal.p2.transport.ecf.FileReader.readInto(FileReader.java:355)
+	at org.eclipse.equinox.internal.p2.transport.ecf.RepositoryTransport.download(RepositoryTransport.java:101)
+	at org.eclipse.equinox.internal.p2.transport.ecf.RepositoryTransport.download(RepositoryTransport.java:156)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadIndexFile(AbstractRepositoryManager.java:721)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:640)
+	at org.eclipse.equinox.internal.p2.artifact.repository.ArtifactRepositoryManager.loadRepository(ArtifactRepositoryManager.java:104)
+	at org.eclipse.equinox.internal.p2.artifact.repository.ArtifactRepositoryManager.loadRepository(ArtifactRepositoryManager.java:100)
+	at org.eclipse.equinox.p2.engine.ProvisioningContext.getLoadedArtifactRepositories(ProvisioningContext.java:173)
+	at org.eclipse.equinox.p2.engine.ProvisioningContext.getArtifactRepositories(ProvisioningContext.java:143)
+	at org.eclipse.equinox.internal.p2.engine.phases.Sizing.completePhase(Sizing.java:91)
+	at org.eclipse.equinox.internal.p2.engine.Phase.postPerform(Phase.java:241)
+	at org.eclipse.equinox.internal.p2.engine.Phase.perform(Phase.java:98)
+	at org.eclipse.equinox.internal.p2.engine.PhaseSet.perform(PhaseSet.java:47)
+	at org.eclipse.equinox.internal.p2.engine.Engine.perform(Engine.java:75)
+	at org.eclipse.equinox.internal.p2.engine.Engine.perform(Engine.java:44)
+	at org.eclipse.equinox.internal.p2.ui.ProvUI.getSize(ProvUI.java:230)
+	at org.eclipse.equinox.internal.p2.ui.dialogs.SizeComputingWizardPage$1.run(SizeComputingWizardPage.java:63)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.eclipse.equinox.p2.touchpoint.natives 4 0 2016-09-07 11:02:24.642
+!MESSAGE Manual restore of backup needed for: /tmp/PlatformProfile_2ae0b337e581_7f000101934b/_/usr/lib/eclipse/.eclipseproduct
+
+!ENTRY org.eclipse.equinox.p2.touchpoint.natives 4 0 2016-09-07 11:02:24.642
+!MESSAGE 0 items out of 1 items restored.
+
+!ENTRY org.eclipse.equinox.p2.engine 4 4 2016-09-07 11:02:24.642
+!MESSAGE An error occurred while committing the engine session for profile: PlatformProfile.
+!SUBENTRY 1 org.eclipse.equinox.p2.touchpoint.natives 4 0 2016-09-07 11:02:24.642
+!MESSAGE Restore of backup failed - see log for details. Backup directory name: PlatformProfile_2ae0b337e581_7f000101934b.
+!STACK 0
+java.io.IOException: Errors while restoring - see earlier logged errors
+	at org.eclipse.equinox.internal.p2.touchpoint.natives.BackupStore.close(BackupStore.java:489)
+	at org.eclipse.equinox.internal.p2.touchpoint.natives.BackupStore.restore(BackupStore.java:452)
+	at org.eclipse.equinox.internal.p2.touchpoint.natives.LazyBackupStore.restore(LazyBackupStore.java:53)
+	at org.eclipse.equinox.internal.p2.touchpoint.natives.NativeTouchpoint.rollback(NativeTouchpoint.java:108)
+	at org.eclipse.equinox.internal.p2.engine.EngineSession.rollback(EngineSession.java:194)
+	at org.eclipse.equinox.internal.p2.engine.Engine.perform(Engine.java:84)
+	at org.eclipse.equinox.internal.p2.engine.Engine.perform(Engine.java:44)
+	at org.eclipse.equinox.p2.operations.ProvisioningSession.performProvisioningPlan(ProvisioningSession.java:174)
+	at org.eclipse.equinox.p2.operations.ProfileModificationJob.runModal(ProfileModificationJob.java:79)
+	at org.eclipse.equinox.p2.operations.ProvisioningJob.run(ProvisioningJob.java:177)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.eclipse.equinox.p2.engine 4 4 2016-09-07 11:02:24.644
+!MESSAGE An error occurred while uninstalling
+!SUBENTRY 1 org.eclipse.equinox.p2.engine 4 0 2016-09-07 11:02:24.644
+!MESSAGE session context was:(profile=PlatformProfile, phase=org.eclipse.equinox.internal.p2.engine.phases.Uninstall, operand=[R]org.eclipse.platform_root 3.8.1.dist-A8F8_IVSG4WGSImg7oLZb9p1HecSFyJZcMPL9 --> null, action=org.eclipse.equinox.internal.p2.touchpoint.natives.actions.CleanupzipAction).
+!SUBENTRY 1 org.eclipse.equinox.p2.touchpoint.natives 4 0 2016-09-07 11:02:24.644
+!MESSAGE Backup of file /usr/lib/eclipse/.eclipseproduct failed.
+!STACK 0
+java.io.IOException: File that was copied to backup could not be deleted: /usr/lib/eclipse/.eclipseproduct
+	at org.eclipse.equinox.internal.p2.touchpoint.natives.BackupStore.moveToBackup(BackupStore.java:274)
+	at org.eclipse.equinox.internal.p2.touchpoint.natives.BackupStore.backup(BackupStore.java:243)
+	at org.eclipse.equinox.internal.p2.touchpoint.natives.LazyBackupStore.backup(LazyBackupStore.java:36)
+	at org.eclipse.equinox.internal.p2.touchpoint.natives.actions.CleanupzipAction.cleanupzip(CleanupzipAction.java:85)
+	at org.eclipse.equinox.internal.p2.touchpoint.natives.actions.CleanupzipAction.execute(CleanupzipAction.java:30)
+	at org.eclipse.equinox.internal.p2.engine.ParameterizedProvisioningAction.execute(ParameterizedProvisioningAction.java:35)
+	at org.eclipse.equinox.internal.p2.engine.Phase.mainPerform(Phase.java:174)
+	at org.eclipse.equinox.internal.p2.engine.Phase.perform(Phase.java:92)
+	at org.eclipse.equinox.internal.p2.engine.PhaseSet.perform(PhaseSet.java:47)
+	at org.eclipse.equinox.internal.p2.engine.Engine.perform(Engine.java:75)
+	at org.eclipse.equinox.internal.p2.engine.Engine.perform(Engine.java:44)
+	at org.eclipse.equinox.p2.operations.ProvisioningSession.performProvisioningPlan(ProvisioningSession.java:174)
+	at org.eclipse.equinox.p2.operations.ProfileModificationJob.runModal(ProfileModificationJob.java:79)
+	at org.eclipse.equinox.p2.operations.ProvisioningJob.run(ProvisioningJob.java:177)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.eclipse.equinox.p2.touchpoint.natives 4 0 2016-09-07 11:03:38.811
+!MESSAGE Manual restore of backup needed for: /tmp/PlatformProfile_2ae0b35c2102_7f000101873f/_/usr/lib/eclipse/.eclipseproduct
+
+!ENTRY org.eclipse.equinox.p2.touchpoint.natives 4 0 2016-09-07 11:03:38.811
+!MESSAGE 0 items out of 1 items restored.
+
+!ENTRY org.eclipse.equinox.p2.engine 4 4 2016-09-07 11:03:38.811
+!MESSAGE An error occurred while committing the engine session for profile: PlatformProfile.
+!SUBENTRY 1 org.eclipse.equinox.p2.touchpoint.natives 4 0 2016-09-07 11:03:38.811
+!MESSAGE Restore of backup failed - see log for details. Backup directory name: PlatformProfile_2ae0b35c2102_7f000101873f.
+!STACK 0
+java.io.IOException: Errors while restoring - see earlier logged errors
+	at org.eclipse.equinox.internal.p2.touchpoint.natives.BackupStore.close(BackupStore.java:489)
+	at org.eclipse.equinox.internal.p2.touchpoint.natives.BackupStore.restore(BackupStore.java:452)
+	at org.eclipse.equinox.internal.p2.touchpoint.natives.LazyBackupStore.restore(LazyBackupStore.java:53)
+	at org.eclipse.equinox.internal.p2.touchpoint.natives.NativeTouchpoint.rollback(NativeTouchpoint.java:108)
+	at org.eclipse.equinox.internal.p2.engine.EngineSession.rollback(EngineSession.java:194)
+	at org.eclipse.equinox.internal.p2.engine.Engine.perform(Engine.java:84)
+	at org.eclipse.equinox.internal.p2.engine.Engine.perform(Engine.java:44)
+	at org.eclipse.equinox.p2.operations.ProvisioningSession.performProvisioningPlan(ProvisioningSession.java:174)
+	at org.eclipse.equinox.p2.operations.ProfileModificationJob.runModal(ProfileModificationJob.java:79)
+	at org.eclipse.equinox.p2.operations.ProvisioningJob.run(ProvisioningJob.java:177)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.eclipse.equinox.p2.engine 4 4 2016-09-07 11:03:38.812
+!MESSAGE An error occurred while uninstalling
+!SUBENTRY 1 org.eclipse.equinox.p2.engine 4 0 2016-09-07 11:03:38.812
+!MESSAGE session context was:(profile=PlatformProfile, phase=org.eclipse.equinox.internal.p2.engine.phases.Uninstall, operand=[R]org.eclipse.platform_root 3.8.1.dist-A8F8_IVSG4WGSImg7oLZb9p1HecSFyJZcMPL9 --> null, action=org.eclipse.equinox.internal.p2.touchpoint.natives.actions.CleanupzipAction).
+!SUBENTRY 1 org.eclipse.equinox.p2.touchpoint.natives 4 0 2016-09-07 11:03:38.812
+!MESSAGE Backup of file /usr/lib/eclipse/.eclipseproduct failed.
+!STACK 0
+java.io.IOException: File that was copied to backup could not be deleted: /usr/lib/eclipse/.eclipseproduct
+	at org.eclipse.equinox.internal.p2.touchpoint.natives.BackupStore.moveToBackup(BackupStore.java:274)
+	at org.eclipse.equinox.internal.p2.touchpoint.natives.BackupStore.backup(BackupStore.java:243)
+	at org.eclipse.equinox.internal.p2.touchpoint.natives.LazyBackupStore.backup(LazyBackupStore.java:36)
+	at org.eclipse.equinox.internal.p2.touchpoint.natives.actions.CleanupzipAction.cleanupzip(CleanupzipAction.java:85)
+	at org.eclipse.equinox.internal.p2.touchpoint.natives.actions.CleanupzipAction.execute(CleanupzipAction.java:30)
+	at org.eclipse.equinox.internal.p2.engine.ParameterizedProvisioningAction.execute(ParameterizedProvisioningAction.java:35)
+	at org.eclipse.equinox.internal.p2.engine.Phase.mainPerform(Phase.java:174)
+	at org.eclipse.equinox.internal.p2.engine.Phase.perform(Phase.java:92)
+	at org.eclipse.equinox.internal.p2.engine.PhaseSet.perform(PhaseSet.java:47)
+	at org.eclipse.equinox.internal.p2.engine.Engine.perform(Engine.java:75)
+	at org.eclipse.equinox.internal.p2.engine.Engine.perform(Engine.java:44)
+	at org.eclipse.equinox.p2.operations.ProvisioningSession.performProvisioningPlan(ProvisioningSession.java:174)
+	at org.eclipse.equinox.p2.operations.ProfileModificationJob.runModal(ProfileModificationJob.java:79)
+	at org.eclipse.equinox.p2.operations.ProvisioningJob.run(ProvisioningJob.java:177)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+!SESSION 2016-09-07 11:09:38.156 -----------------------------------------------
+eclipse.buildId=debbuild
+java.version=1.8.0_91
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Command-line arguments:  -os linux -ws gtk -arch x86_64
+
+!ENTRY org.eclipse.equinox.p2.operations 4 0 2016-09-07 11:14:26.034
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.operations 4 10011 2016-09-07 11:14:26.034
+!MESSAGE "Object Teams Patch for JDT/Core" is not applicable to the current configuration and will not be installed.
+
+!ENTRY org.eclipse.equinox.p2.operations 4 0 2016-09-07 11:14:26.036
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.operations 4 10011 2016-09-07 11:14:26.036
+!MESSAGE "Object Teams Patch for JDT/Core" is not applicable to the current configuration and will not be installed.
+
+!ENTRY org.eclipse.equinox.p2.operations 4 0 2016-09-07 11:18:08.699
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 1 2016-09-07 11:18:08.699
+!MESSAGE Cannot complete the install because one or more required items could not be found.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-09-07 11:18:08.699
+!MESSAGE Software being installed: Command Line Interface for Java implementation of Git 4.4.1.201607150455-r (org.eclipse.jgit.pgm.feature.group 4.4.1.201607150455-r)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-09-07 11:18:08.699
+!MESSAGE Missing requirement: JGit Large File Storage Server 4.4.1.201607150455-r (org.eclipse.jgit.lfs.server 4.4.1.201607150455-r) requires 'package javax.servlet [3.1.0,4.0.0)' but it could not be found
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2016-09-07 11:18:08.699
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-09-07 11:18:08.699
+!MESSAGE From: Java implementation of Git - optional LFS support 4.4.1.201607150455-r (org.eclipse.jgit.lfs.feature.group 4.4.1.201607150455-r)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-09-07 11:18:08.699
+!MESSAGE To: org.eclipse.jgit.lfs.server [4.4.1.201607150455-r]
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2016-09-07 11:18:08.699
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-09-07 11:18:08.699
+!MESSAGE From: Command Line Interface for Java implementation of Git 4.4.1.201607150455-r (org.eclipse.jgit.pgm.feature.group 4.4.1.201607150455-r)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-09-07 11:18:08.699
+!MESSAGE To: org.eclipse.jgit.lfs.feature.group [4.4.1.201607150455-r]
+
+!ENTRY org.eclipse.equinox.p2.operations 4 0 2016-09-07 11:18:08.702
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 1 2016-09-07 11:18:08.702
+!MESSAGE Cannot complete the install because one or more required items could not be found.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-09-07 11:18:08.702
+!MESSAGE Software being installed: Command Line Interface for Java implementation of Git 4.4.1.201607150455-r (org.eclipse.jgit.pgm.feature.group 4.4.1.201607150455-r)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-09-07 11:18:08.702
+!MESSAGE Missing requirement: JGit Large File Storage Server 4.4.1.201607150455-r (org.eclipse.jgit.lfs.server 4.4.1.201607150455-r) requires 'package javax.servlet [3.1.0,4.0.0)' but it could not be found
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2016-09-07 11:18:08.702
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-09-07 11:18:08.702
+!MESSAGE From: Java implementation of Git - optional LFS support 4.4.1.201607150455-r (org.eclipse.jgit.lfs.feature.group 4.4.1.201607150455-r)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-09-07 11:18:08.702
+!MESSAGE To: org.eclipse.jgit.lfs.server [4.4.1.201607150455-r]
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2016-09-07 11:18:08.703
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-09-07 11:18:08.703
+!MESSAGE From: Command Line Interface for Java implementation of Git 4.4.1.201607150455-r (org.eclipse.jgit.pgm.feature.group 4.4.1.201607150455-r)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-09-07 11:18:08.703
+!MESSAGE To: org.eclipse.jgit.lfs.feature.group [4.4.1.201607150455-r]
+
+!ENTRY org.eclipse.equinox.p2.operations 4 0 2016-09-07 11:18:22.858
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 1 2016-09-07 11:18:22.858
+!MESSAGE Cannot complete the install because one or more required items could not be found.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-09-07 11:18:22.858
+!MESSAGE Software being installed: Git Team Provider - auto-import for Eclipse >= 4.6 4.4.1.201607150455-r (org.eclipse.egit.ui.smartimport 4.4.1.201607150455-r)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-09-07 11:18:22.858
+!MESSAGE Missing requirement: Git Team Provider - auto-import for Eclipse >= 4.6 4.4.1.201607150455-r (org.eclipse.egit.ui.smartimport 4.4.1.201607150455-r) requires 'bundle org.eclipse.ui.ide 3.12.0' but it could not be found
+
+!ENTRY org.eclipse.equinox.p2.operations 4 0 2016-09-07 11:18:22.861
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 1 2016-09-07 11:18:22.862
+!MESSAGE Cannot complete the install because one or more required items could not be found.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-09-07 11:18:22.862
+!MESSAGE Software being installed: Git Team Provider - auto-import for Eclipse >= 4.6 4.4.1.201607150455-r (org.eclipse.egit.ui.smartimport 4.4.1.201607150455-r)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-09-07 11:18:22.862
+!MESSAGE Missing requirement: Git Team Provider - auto-import for Eclipse >= 4.6 4.4.1.201607150455-r (org.eclipse.egit.ui.smartimport 4.4.1.201607150455-r) requires 'bundle org.eclipse.ui.ide 3.12.0' but it could not be found
+
+!ENTRY org.eclipse.equinox.p2.touchpoint.natives 4 0 2016-09-07 20:37:08.745
+!MESSAGE Manual restore of backup needed for: /tmp/PlatformProfile_2ae0f4fdd8c0_7f00010196cc/_/usr/lib/eclipse/.eclipseproduct
+
+!ENTRY org.eclipse.equinox.p2.touchpoint.natives 4 0 2016-09-07 20:37:08.746
+!MESSAGE 0 items out of 1 items restored.
+
+!ENTRY org.eclipse.equinox.p2.engine 4 4 2016-09-07 20:37:08.746
+!MESSAGE An error occurred while committing the engine session for profile: PlatformProfile.
+!SUBENTRY 1 org.eclipse.equinox.p2.touchpoint.natives 4 0 2016-09-07 20:37:08.746
+!MESSAGE Restore of backup failed - see log for details. Backup directory name: PlatformProfile_2ae0f4fdd8c0_7f00010196cc.
+!STACK 0
+java.io.IOException: Errors while restoring - see earlier logged errors
+	at org.eclipse.equinox.internal.p2.touchpoint.natives.BackupStore.close(BackupStore.java:489)
+	at org.eclipse.equinox.internal.p2.touchpoint.natives.BackupStore.restore(BackupStore.java:452)
+	at org.eclipse.equinox.internal.p2.touchpoint.natives.LazyBackupStore.restore(LazyBackupStore.java:53)
+	at org.eclipse.equinox.internal.p2.touchpoint.natives.NativeTouchpoint.rollback(NativeTouchpoint.java:108)
+	at org.eclipse.equinox.internal.p2.engine.EngineSession.rollback(EngineSession.java:194)
+	at org.eclipse.equinox.internal.p2.engine.Engine.perform(Engine.java:84)
+	at org.eclipse.equinox.internal.p2.engine.Engine.perform(Engine.java:44)
+	at org.eclipse.equinox.p2.operations.ProvisioningSession.performProvisioningPlan(ProvisioningSession.java:174)
+	at org.eclipse.equinox.p2.operations.ProfileModificationJob.runModal(ProfileModificationJob.java:79)
+	at org.eclipse.equinox.p2.operations.ProvisioningJob.run(ProvisioningJob.java:177)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.eclipse.equinox.p2.engine 4 4 2016-09-07 20:37:08.749
+!MESSAGE An error occurred while uninstalling
+!SUBENTRY 1 org.eclipse.equinox.p2.engine 4 0 2016-09-07 20:37:08.749
+!MESSAGE session context was:(profile=PlatformProfile, phase=org.eclipse.equinox.internal.p2.engine.phases.Uninstall, operand=[R]org.eclipse.platform_root 3.8.1.dist-A8F8_IVSG4WGSImg7oLZb9p1HecSFyJZcMPL9 --> null, action=org.eclipse.equinox.internal.p2.touchpoint.natives.actions.CleanupzipAction).
+!SUBENTRY 1 org.eclipse.equinox.p2.touchpoint.natives 4 0 2016-09-07 20:37:08.749
+!MESSAGE Backup of file /usr/lib/eclipse/.eclipseproduct failed.
+!STACK 0
+java.io.IOException: File that was copied to backup could not be deleted: /usr/lib/eclipse/.eclipseproduct
+	at org.eclipse.equinox.internal.p2.touchpoint.natives.BackupStore.moveToBackup(BackupStore.java:274)
+	at org.eclipse.equinox.internal.p2.touchpoint.natives.BackupStore.backup(BackupStore.java:243)
+	at org.eclipse.equinox.internal.p2.touchpoint.natives.LazyBackupStore.backup(LazyBackupStore.java:36)
+	at org.eclipse.equinox.internal.p2.touchpoint.natives.actions.CleanupzipAction.cleanupzip(CleanupzipAction.java:85)
+	at org.eclipse.equinox.internal.p2.touchpoint.natives.actions.CleanupzipAction.execute(CleanupzipAction.java:30)
+	at org.eclipse.equinox.internal.p2.engine.ParameterizedProvisioningAction.execute(ParameterizedProvisioningAction.java:35)
+	at org.eclipse.equinox.internal.p2.engine.Phase.mainPerform(Phase.java:174)
+	at org.eclipse.equinox.internal.p2.engine.Phase.perform(Phase.java:92)
+	at org.eclipse.equinox.internal.p2.engine.PhaseSet.perform(PhaseSet.java:47)
+	at org.eclipse.equinox.internal.p2.engine.Engine.perform(Engine.java:75)
+	at org.eclipse.equinox.internal.p2.engine.Engine.perform(Engine.java:44)
+	at org.eclipse.equinox.p2.operations.ProvisioningSession.performProvisioningPlan(ProvisioningSession.java:174)
+	at org.eclipse.equinox.p2.operations.ProfileModificationJob.runModal(ProfileModificationJob.java:79)
+	at org.eclipse.equinox.p2.operations.ProvisioningJob.run(ProvisioningJob.java:177)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+!SESSION 2016-09-07 20:47:55.391 -----------------------------------------------
+eclipse.buildId=debbuild
+java.version=1.8.0_91
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Command-line arguments:  -os linux -ws gtk -arch x86_64
+
+!ENTRY org.eclipse.jsch.core 4 0 2016-09-07 21:05:52.241
+!MESSAGE An error occurred while loading the know hosts file /root/.ssh/known_hosts
+!STACK 0
+com.jcraft.jsch.JSchException: java.io.FileNotFoundException: /root/.ssh/known_hosts (No such file or directory)
+	at com.jcraft.jsch.KnownHosts.setKnownHosts(KnownHosts.java:57)
+	at com.jcraft.jsch.JSch.setKnownHosts(JSch.java:317)
+	at org.eclipse.jsch.internal.core.JSchCorePlugin.loadKnownHosts(JSchCorePlugin.java:117)
+	at org.eclipse.jsch.internal.core.JSchProvider.createSession(JSchProvider.java:41)
+	at org.eclipse.jsch.internal.core.JSchProvider.createSession(JSchProvider.java:56)
+	at org.eclipse.team.internal.ccvs.ssh2.JSchSession.createSession(JSchSession.java:108)
+	at org.eclipse.team.internal.ccvs.ssh2.JSchSession.getSession(JSchSession.java:83)
+	at org.eclipse.team.internal.ccvs.ssh2.PServerSSH2ServerConnection.open(PServerSSH2ServerConnection.java:91)
+	at org.eclipse.team.internal.ccvs.core.connection.Connection.open(Connection.java:132)
+	at org.eclipse.team.internal.ccvs.core.connection.CVSRepositoryLocation.createConnection(CVSRepositoryLocation.java:545)
+	at org.eclipse.team.internal.ccvs.core.connection.CVSRepositoryLocation.openConnection(CVSRepositoryLocation.java:806)
+	at org.eclipse.team.internal.ccvs.core.client.Session.open(Session.java:159)
+	at org.eclipse.team.internal.ccvs.core.resources.RemoteFolderMemberFetcher.performUpdate(RemoteFolderMemberFetcher.java:95)
+	at org.eclipse.team.internal.ccvs.core.resources.RemoteFolderMemberFetcher.fetchMembers(RemoteFolderMemberFetcher.java:62)
+	at org.eclipse.team.internal.ccvs.core.resources.RemoteFolderMemberFetcher.fetchMembers(RemoteFolderMemberFetcher.java:53)
+	at org.eclipse.team.internal.ccvs.core.resources.RemoteFolder.getMembers(RemoteFolder.java:218)
+	at org.eclipse.team.internal.ccvs.core.resources.RemoteFolder.getMembers(RemoteFolder.java:204)
+	at org.eclipse.team.internal.ccvs.core.resources.RemoteFolder.members(RemoteFolder.java:424)
+	at org.eclipse.team.internal.ccvs.core.resources.RemoteFolder.exists(RemoteFolder.java:108)
+	at org.eclipse.team.internal.ccvs.ui.wizards.SharingWizard.exists(SharingWizard.java:504)
+	at org.eclipse.team.internal.ccvs.ui.wizards.SharingWizard.access$3(SharingWizard.java:502)
+	at org.eclipse.team.internal.ccvs.ui.wizards.SharingWizard$7.run(SharingWizard.java:519)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+Caused by: java.io.FileNotFoundException: /root/.ssh/known_hosts (No such file or directory)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at com.jcraft.jsch.KnownHosts.setKnownHosts(KnownHosts.java:53)
+	... 22 more
+
+!ENTRY org.eclipse.equinox.p2.operations 4 0 2016-09-07 21:10:50.734
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 1 2016-09-07 21:10:50.734
+!MESSAGE Cannot complete the install because one or more required items could not be found.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-09-07 21:10:50.734
+!MESSAGE Software being installed: Command Line Interface for Java implementation of Git 4.4.1.201607150455-r (org.eclipse.jgit.pgm.feature.group 4.4.1.201607150455-r)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-09-07 21:10:50.734
+!MESSAGE Missing requirement: JGit Large File Storage Server 4.4.1.201607150455-r (org.eclipse.jgit.lfs.server 4.4.1.201607150455-r) requires 'package javax.servlet [3.1.0,4.0.0)' but it could not be found
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2016-09-07 21:10:50.734
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-09-07 21:10:50.734
+!MESSAGE From: Java implementation of Git - optional LFS support 4.4.1.201607150455-r (org.eclipse.jgit.lfs.feature.group 4.4.1.201607150455-r)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-09-07 21:10:50.734
+!MESSAGE To: org.eclipse.jgit.lfs.server [4.4.1.201607150455-r]
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2016-09-07 21:10:50.734
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-09-07 21:10:50.734
+!MESSAGE From: Command Line Interface for Java implementation of Git 4.4.1.201607150455-r (org.eclipse.jgit.pgm.feature.group 4.4.1.201607150455-r)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-09-07 21:10:50.734
+!MESSAGE To: org.eclipse.jgit.lfs.feature.group [4.4.1.201607150455-r]
+
+!ENTRY org.eclipse.equinox.p2.operations 4 0 2016-09-07 21:10:50.737
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 1 2016-09-07 21:10:50.737
+!MESSAGE Cannot complete the install because one or more required items could not be found.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-09-07 21:10:50.737
+!MESSAGE Software being installed: Command Line Interface for Java implementation of Git 4.4.1.201607150455-r (org.eclipse.jgit.pgm.feature.group 4.4.1.201607150455-r)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-09-07 21:10:50.737
+!MESSAGE Missing requirement: JGit Large File Storage Server 4.4.1.201607150455-r (org.eclipse.jgit.lfs.server 4.4.1.201607150455-r) requires 'package javax.servlet [3.1.0,4.0.0)' but it could not be found
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2016-09-07 21:10:50.737
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-09-07 21:10:50.737
+!MESSAGE From: Java implementation of Git - optional LFS support 4.4.1.201607150455-r (org.eclipse.jgit.lfs.feature.group 4.4.1.201607150455-r)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-09-07 21:10:50.737
+!MESSAGE To: org.eclipse.jgit.lfs.server [4.4.1.201607150455-r]
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2016-09-07 21:10:50.737
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-09-07 21:10:50.737
+!MESSAGE From: Command Line Interface for Java implementation of Git 4.4.1.201607150455-r (org.eclipse.jgit.pgm.feature.group 4.4.1.201607150455-r)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-09-07 21:10:50.737
+!MESSAGE To: org.eclipse.jgit.lfs.feature.group [4.4.1.201607150455-r]
+
+!ENTRY org.eclipse.equinox.p2.operations 4 0 2016-09-07 21:11:18.483
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 1 2016-09-07 21:11:18.483
+!MESSAGE Cannot complete the install because one or more required items could not be found.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-09-07 21:11:18.483
+!MESSAGE Software being installed: Git Team Provider - auto-import for Eclipse >= 4.6 4.4.1.201607150455-r (org.eclipse.egit.ui.smartimport 4.4.1.201607150455-r)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-09-07 21:11:18.483
+!MESSAGE Missing requirement: Git Team Provider - auto-import for Eclipse >= 4.6 4.4.1.201607150455-r (org.eclipse.egit.ui.smartimport 4.4.1.201607150455-r) requires 'bundle org.eclipse.ui.ide 3.12.0' but it could not be found
+
+!ENTRY org.eclipse.equinox.p2.operations 4 0 2016-09-07 21:11:18.485
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 1 2016-09-07 21:11:18.485
+!MESSAGE Cannot complete the install because one or more required items could not be found.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-09-07 21:11:18.485
+!MESSAGE Software being installed: Git Team Provider - auto-import for Eclipse >= 4.6 4.4.1.201607150455-r (org.eclipse.egit.ui.smartimport 4.4.1.201607150455-r)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-09-07 21:11:18.485
+!MESSAGE Missing requirement: Git Team Provider - auto-import for Eclipse >= 4.6 4.4.1.201607150455-r (org.eclipse.egit.ui.smartimport 4.4.1.201607150455-r) requires 'bundle org.eclipse.ui.ide 3.12.0' but it could not be found
+!SESSION 2016-09-07 21:22:27.161 -----------------------------------------------
+eclipse.buildId=debbuild
+java.version=1.8.0_91
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Command-line arguments:  -os linux -ws gtk -arch x86_64
+
+!ENTRY org.eclipse.osgi 2 1 2016-09-07 21:27:06.703
+!MESSAGE NLS unused message: CacheManager_CannotLoadNonUrlLocation in: org.eclipse.equinox.internal.p2.repository.messages

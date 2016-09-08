@@ -1,0 +1,14 @@
+package runmodels;
+/*
+ * An abstract class for the functions implemented in this work.
+ */
+public abstract class AbstractPoint {
+	
+	public AbstractPoint(){
+		
+	}
+	
+	abstract boolean checkIntersection(Point a, Point b, Point c, Point d);
+	abstract double calcderivfx(double x);
+
+}

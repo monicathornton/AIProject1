@@ -1,0 +1,580 @@
+package runmodels;
+
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Random;
+
+/*
+ * A class to create planar graphs ranging in size from 10-100 vertices (in steps of 10).  
+ * The graphs are written out as flat files, which will be read in by a variety of 
+ * graph coloring strategies.
+ */
+
+public class GraphGenerator {
+	// The ranges that determine possible x and y values for the vertex locations
+	double minRange = 0.0;
+	double maxRange = 1.0;
+	
+	/**
+	 * Generates the graphs to be used by the various graph coloring approaches
+	 * @throws IOException 
+	 */
+	
+	public GraphGenerator() {
+		// The size of the graph (as measured by the number of vertices)
+		int size = 10; 
+		
+		// The x and y locations randomly assigned to each point 
+		ArrayList<Double> xVals = new ArrayList<Double>();
+		ArrayList<Double> yVals = new ArrayList<Double>();		
+		
+		// A list containing all of the vertices for the given problem
+		ArrayList<Vertex> vertices = new ArrayList<Vertex>();
+		
+		// A variable used to store the distance between two points 
+		double distance;		
+		
+		// Variables used to store the x and y locations of each vertex
+		double xLoc = Double.MIN_VALUE;
+		double yLoc = Double.MAX_VALUE;
+			
+		//file writer that writes out all of the graphs in the specified sizes
+		BufferedWriter graphWriter10 = null;
+		
+//		BufferedWriter graphWriter20 = null;
+//		BufferedWriter graphWriter30 = null;
+//		BufferedWriter graphWriter40 = null;
+//		BufferedWriter graphWriter50 = null;
+//		BufferedWriter graphWriter60 = null;
+//		BufferedWriter graphWriter70 = null;
+//		BufferedWriter graphWriter80 = null;
+//		BufferedWriter graphWriter90 = null;
+//		BufferedWriter graphWriter100 = null;
+		
+		//TODO: make a new file if file already exists
+		try {
+			FileWriter fileWriter10 = new FileWriter("../graphColoring/graphsBySize/graphSize10/graph10.txt");
+			graphWriter10 = new BufferedWriter(fileWriter10);			
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		// Scatter the n points on the unit square
+		for (int i = 0; i < size; i++) {
+			// Gets the random x and y location for each of the points
+			double randomXVal = Math.random();
+			double randomYVal = Math.random();
+
+	        // Check that no two points have exact same x and y locations, if so - correct
+			while (xVals.contains(randomXVal) && yVals.contains(randomYVal)) {
+				randomXVal = Math.random();
+				randomYVal = Math.random();
+			}
+
+			// In the (likely) case where there are no duplicate x and y locations, add to array of xVals and yVals
+			xVals.add(randomXVal);
+			yVals.add(randomYVal);
+			
+	        // Build the vertices, given the node's unique identifier, and x and y locations
+	        Vertex x = new Vertex(i, xVals.get(i).doubleValue(), yVals.get(i).doubleValue());	
+	        System.out.println(x.getName() + ":" +  x.getXLoc());
+	      
+	        
+	        // Add each vertex to the list of vertices
+	        vertices.add(x);
+		}
+		
+		System.out.println(size + " vertices constructed");
+		
+		      
+		// Select a point X at random
+		
+		// Connect X to nearest point Y (s.t. X is not already connected to Y and line crosses no other line)
+		
+		// Repeat until no more connections are possible
+		
+		// Write out to flat file (x 10)
+		
+		
+		// Close all the writers, clear the array lists
+		
+		// increase the size by 10
+		
+		// close the writers for the graphs of size 10
+		try {
+			graphWriter10.close();
+		} catch(IOException e)
+	
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+		
+		
+		
+		
+		
+		// calculate Rosenbrock for all vectors of size 2, with inputs from -5
+		// to 5
+//		if (size == 2) {
+//			x1 = -5;
+//			x2 = -5;
+//
+//			// increment x1 values by 1 at each iteration
+//			for (int k = 0; k < 11; k++) {
+//				// increment x2 values by 1 at each iteration
+//				for (int j = 0; j < 11; j++) {
+//					// loop through for all size 2 vectors, starting with x1 and
+//					// x2 at -5
+//					for (int i = 1; i < size; i++) {
+//						sum = 0;
+//						intermediatecalc = Math.pow(1 - gcx1, 2);
+//						intermediatecalc += 100 * Math.pow((x2 - Math.pow(x1, 2)), 2);
+//						sum += intermediatecalc;
+//					} // end for loop for size 2 vectors
+//					o = sum;
+//					try {
+//						writer.write(x1 + "," + x2 + "," + o);
+//						writer.newLine();
+//					} catch (IOException e) {
+//						// TODO Auto-generated catch block
+//						e.printStackTrace();
+//					}
+//					x2 += 1;
+//				} // end for loop for incrementing x2
+//				x1 += 1;
+//				// set x2 back to -5
+//				x2 = -5;
+//			} // end loop for incrementing x1
+//		
+//	
+//	
+//	} // end if
+//
+//	size++;
+//
+//	// calculate Rosenbrock for all vectors of size 3, with inputs from -5
+//	// to 5
+//	if(size==3)
+//
+//	{
+//		x1 = -5;
+//		x2 = -5;
+//		x3 = -5;
+//
+//		// increment x1 values by 1 at each iteration
+//		for (int l = 0; l < 11; l++) {
+//			// increment x2 values by 1 at each iteration
+//			for (int k = 0; k < 11; k++) {
+//				// increment x3 values by 1 at each iteration
+//				for (int j = 0; j < 11; j++) {
+//					// loop through for all size 3 vectors
+//					for (int i = 1; i < size; i++) {
+//						sum = 0;
+//						intermediatecalc = Math.pow(1 - x1, 2);
+//						intermediatecalc += 100 * Math.pow((x2 - Math.pow(x1, 2)), 2);
+//						sum += intermediatecalc;
+//						intermediatecalc = Math.pow(1 - x2, 2);
+//						intermediatecalc += 100 * Math.pow((x3 - Math.pow(x2, 2)), 2);
+//						sum += intermediatecalc;
+//					} // end for loop for size 3 vectors
+//					o = sum;
+//					try {
+//						writer.write(x1 + "," + x2 + "," + x3 + "," + o);
+//						writer.newLine();
+//					} catch (IOException e) {
+//						// TODO Auto-generated catch block
+//						e.printStackTrace();
+//					}
+//					x3 += 1;
+//				} // end for loop for incrementing x3
+//				x2 += 1;
+//				// set x2 back to -5
+//				x3 = -5;
+//			} // end loop for incrementing x2
+//			x1 += 1;
+//			x2 = -5;
+//			x3 = -5;
+//		} // end loop for incrementing x1
+//	} // end if
+//
+//	size++;
+//
+//	// calculate Rosenbrock for all vectors of size 3, with inputs from -5
+//	// to 5
+//	if(size==4)
+//
+//	{
+//		x1 = -5;
+//		x2 = -5;
+//		x3 = -5;
+//		x4 = -5;
+//
+//		// increment x1 values by 1 at each iteration
+//		for (int m = 0; m < 11; m++) {
+//			// increment x2 values by 1 at each iteration
+//			for (int l = 0; l < 11; l++) {
+//				// increment x3 values by 1 at each iteration
+//				for (int k = 0; k < 11; k++) {
+//					// increment x4 values by 1 at each iteration
+//					for (int j = 0; j < 11; j++) {
+//						// loop through for all size 4 vectors
+//						for (int i = 1; i < size; i++) {
+//							sum = 0;
+//							intermediatecalc = Math.pow(1 - x1, 2);
+//							intermediatecalc += 100 * Math.pow((x2 - Math.pow(x1, 2)), 2);
+//							sum += intermediatecalc;
+//							intermediatecalc = Math.pow(1 - x2, 2);
+//							intermediatecalc += 100 * Math.pow((x3 - Math.pow(x2, 2)), 2);
+//							sum += intermediatecalc;
+//							intermediatecalc = Math.pow(1 - x3, 2);
+//							intermediatecalc += 100 * Math.pow((x4 - Math.pow(x3, 2)), 2);
+//							sum += intermediatecalc;
+//						} // end for loop for size 3 vectors
+//						o = sum;
+//						try {
+//							writer.write(x1 + "," + x2 + "," + x3 + "," + x4 + "," + o);
+//							writer.newLine();
+//						} catch (IOException e) {
+//							// TODO Auto-generated catch block
+//							e.printStackTrace();
+//						}
+//						;
+//						x4 += 1;
+//					} // end for loop for incrementing x4
+//					x3 += 1;
+//					// set x4 back to -5
+//					x4 = -5;
+//				} // end loop for incrementing x3
+//				x2 += 1;
+//				x3 = -5;
+//				x4 = -5;
+//			} // end loop for incrementing x2
+//			x1 += 1;
+//			x2 = -5;
+//			x3 = -5;
+//			x4 = -5;
+//			x5 = -5;
+//		} // end for loop for incrementing x1
+//	} // end if
+//
+//	size++;
+//
+//	// calculate Rosenbrock for all vectors of size 5, with inputs from -5
+//	// to 5
+//	if(size==5)
+//
+//	{
+//		x1 = -5;
+//		x2 = -5;
+//		x3 = -5;
+//		x4 = -5;
+//		x5 = -5;
+//
+//		// increment x1 values by 1 at each iteration
+//		for (int n = 0; n < 11; n++) {
+//			// increment x2 values by 1 at each iteration
+//			for (int m = 0; m < 11; m++) {
+//				// increment x3 values by 1 at each iteration
+//				for (int l = 0; l < 11; l++) {
+//					// increment x4 values by 1 at each iteration
+//					for (int k = 0; k < 11; k++) {
+//						// increment x5 values by 1 at each iteration
+//						for (int j = 0; j < 11; j++) {
+//							// loop through for all size 5 vectors
+//							for (int i = 1; i < size; i++) {
+//								sum = 0;
+//								intermediatecalc = Math.pow(1 - x1, 2);
+//								intermediatecalc += 100 * Math.pow((x2 - Math.pow(x1, 2)), 2);
+//								sum += intermediatecalc;
+//								intermediatecalc = Math.pow(1 - x2, 2);
+//								intermediatecalc += 100 * Math.pow((x3 - Math.pow(x2, 2)), 2);
+//								sum += intermediatecalc;
+//								intermediatecalc = Math.pow(1 - x3, 2);
+//								intermediatecalc += 100 * Math.pow((x4 - Math.pow(x3, 2)), 2);
+//								sum += intermediatecalc;
+//								intermediatecalc = Math.pow(1 - x4, 2);
+//								intermediatecalc += 100 * Math.pow((x5 - Math.pow(x4, 2)), 2);
+//								sum += intermediatecalc;
+//							} // end for loop for size 5 vectors
+//							o = sum;
+//
+//							try {
+//								writer.write(x1 + "," + x2 + "," + x3 + "," + x4 + "," + x5 + "," + o);
+//								writer.newLine();
+//							} catch (IOException e) {
+//								// TODO Auto-generated catch block
+//								e.printStackTrace();
+//							}
+//							x5 += 1;
+//						} // end for loop for incrementing x5
+//						x4 += 1;
+//						// set x5 back to -5
+//						x5 = -5;
+//					} // end loop for incrementing x4
+//					x3 += 1;
+//					x4 = -5;
+//					x5 = -5;
+//				} // end loop for incrementing x3
+//				x2 += 1;
+//				x3 = -5;
+//				x4 = -5;
+//				x5 = -5;
+//			} // end for loop for incrementing x2
+//			x1 += 1;
+//			x2 = -5;
+//			x3 = -5;
+//			x4 = -5;
+//			x5 = -5;
+//		} // end loop for incrementing x1
+//	} // end if
+//
+//	size++;
+//
+//	// calculate Rosenbrock for all vectors of size 6, with inputs from -5
+//	// to 5
+//	if(size==6)
+//
+//	{
+//		x1 = -5;
+//		x2 = -5;
+//		x3 = -5;
+//		x4 = -5;
+//		x5 = -5;
+//		x5 = -5;
+//		x6 = -5;
+//
+//		// increment x1 values by 1 at each iteration
+//		for (int p = 0; p < 11; p++) {
+//			// increment x2 values by 1 at each iteration
+//			for (int n = 0; n < 11; n++) {
+//				// increment x3 values by 1 at each iteration
+//				for (int m = 0; m < 11; m++) {
+//					// increment x4 values by 1 at each iteration
+//					for (int l = 0; l < 11; l++) {
+//						// increment x5 values by 1 at each iteration
+//						for (int k = 0; k < 11; k++) {
+//							// increment x6 values by 1 at each iteration
+//							for (int j = 0; j < 11; j++) {
+//								// loop through for all size 5 vectors
+//								for (int i = 1; i < size; i++) {
+//									sum = 0;
+//									intermediatecalc = Math.pow(1 - x1, 2);
+//									intermediatecalc += 100 * Math.pow((x2 - Math.pow(x1, 2)), 2);
+//									sum += intermediatecalc;
+//									intermediatecalc = Math.pow(1 - x2, 2);
+//									intermediatecalc += 100 * Math.pow((x3 - Math.pow(x2, 2)), 2);
+//									sum += intermediatecalc;
+//									intermediatecalc = Math.pow(1 - x3, 2);
+//									intermediatecalc += 100 * Math.pow((x4 - Math.pow(x3, 2)), 2);
+//									sum += intermediatecalc;
+//									intermediatecalc = Math.pow(1 - x4, 2);
+//									intermediatecalc += 100 * Math.pow((x5 - Math.pow(x4, 2)), 2);
+//									sum += intermediatecalc;
+//									intermediatecalc = Math.pow(1 - x5, 2);
+//									intermediatecalc += 100 * Math.pow((x6 - Math.pow(x5, 2)), 2);
+//									sum += intermediatecalc;
+//								} // end for loop for size 6 vectors
+//								o = sum;
+//								try {
+//									writer.write(x1 + "," + x2 + "," + x3 + "," + x4 + "," + x5 + "," + x6 + "," + o);
+//									writer.newLine();
+//								} catch (IOException e) {
+//									// TODO Auto-generated catch block
+//									e.printStackTrace();
+//								}
+//								x6 += 1;
+//							} // end for loop for incrementing x6
+//							x5 += 1;
+//							// set x5 back to -5
+//							x6 = -5;
+//						} // end loop for incrementing x5
+//						x4 += 1;
+//						x5 = -5;
+//						x6 = -5;
+//					} // end loop for incrementing x4
+//					x3 += 1;
+//					x4 = -5;
+//					x5 = -5;
+//					x6 = -5;
+//				} // end for loop for incrementing x3
+//				x2 += 1;
+//				x3 = -5;
+//				x4 = -5;
+//				x5 = -5;
+//				x6 = -5;
+//			} // end loop for incrementing x2
+//			x1 += 1;
+//			x2 = -5;
+//			x3 = -5;
+//			x4 = -5;
+//			x5 = -5;
+//			x6 = -5;
+//		}
+//	} // end if
+//
+//	System.out.println("Rosenbrock output generated.");
+//
+//	try
+//
+//	{
+//		// closes the writer for the file consisting of all inputs/outputs
+//		writer.close();
+//	} catch(
+//
+//	IOException e)
+//
+//	{
+//		// TODO Auto-generated catch block
+//		e.printStackTrace();
+//	}
+//
+//	// a reader to read the file of all inputs/outputs
+//	BufferedReader reader = null;
+//
+//	try	
+//	{
+//		// the current line in the full file
+//		String sCurrentLine;
+//		int lineNo = 0;
+//		
+//		//a random number to decide which line goes to the appropriate file
+//		int randomNumber = 0;
+//
+//		// a reader used to read the full file of Rosenbrock outputs
+//		reader = new BufferedReader(new FileReader("NeuralNets/src/runmodels/rosenbrock.txt"));
+//
+//		//the series of while loops below scale the data accordingly, because we do 
+//		//not want to use the entire 11^2+11^3+...+11^6 size dataset for training or 
+//		//testing. Therefore, from the full dataset, we loop through the file and
+//		//probabilistically select a certain portion of the dataset to include in either
+//		//the training or the test set. 
+//		
+//		//while we are in the size 2 segment of the file
+//		while (lineNo < 122) {
+//			randomNumber = randInt(0, 10);
+//			sCurrentLine = reader.readLine();
+//			lineNo++;
+//			if (randomNumber == 1 || randomNumber == 2 || randomNumber == 8) {
+//				trainWriter.write(sCurrentLine);
+//				trainWriter.newLine();
+//			} else if (randomNumber == 7) {
+//				testWriter.write(sCurrentLine);
+//				testWriter.newLine();
+//			}
+//		} //ends size 2 part of data
+//		
+//		//while we are in the size 3 segment of the file
+//		while (lineNo < 1453) {
+//			randomNumber = randInt(0, 20);
+//			sCurrentLine = reader.readLine();
+//			lineNo++;
+//			if (randomNumber == 1 || randomNumber == 2 || randomNumber == 9 ) {
+//				trainWriter.write(sCurrentLine);
+//				trainWriter.newLine();
+//			} else if (randomNumber == 7) {
+//				testWriter.write(sCurrentLine);
+//				testWriter.newLine();
+//			}
+//		} //ends size 3 part of data
+//		
+//		//while we are in the size 4 segment of the file
+//		while (lineNo < 16094) {
+//			randomNumber = randInt(0, 30);
+//			sCurrentLine = reader.readLine();
+//			lineNo++;
+//			if (randomNumber == 1 || randomNumber == 8 || randomNumber == 9 ) {
+//				trainWriter.write(sCurrentLine);
+//				trainWriter.newLine();
+//			} else if (randomNumber == 7) {
+//				testWriter.write(sCurrentLine);
+//				testWriter.newLine();
+//			}
+//		} //ends size 4 part of data
+//		
+//		//while we are in the size 5 segment of the file
+//		while (lineNo < 177145) {
+//			randomNumber = randInt(0, 70);
+//			sCurrentLine = reader.readLine();
+//			lineNo++;
+//			if (randomNumber == 2 || randomNumber == 8 || randomNumber == 9 ) {
+//				trainWriter.write(sCurrentLine);
+//				trainWriter.newLine();
+//			} else if (randomNumber == 7) {
+//				testWriter.write(sCurrentLine);
+//				testWriter.newLine();
+//			}
+//		} //ends size 5 part of data
+//		
+//		// while there is still data left to be read		
+//		while ((sCurrentLine = reader.readLine()) != null) {
+//			randomNumber = randInt(0, 100);
+//			sCurrentLine = reader.readLine();
+//			lineNo++;
+//			if (randomNumber == 1 || randomNumber == 8 || randomNumber == 9 ) {
+//				trainWriter.write(sCurrentLine);
+//				trainWriter.newLine();
+//			} else if (randomNumber == 7) {
+//				testWriter.write(sCurrentLine);
+//				testWriter.newLine();
+//			}
+//		}
+//		System.out.println("Rosenbrock test and train data generated.");
+//
+//	} catch(
+//
+//	IOException e)
+//
+//	{
+//		e.printStackTrace();
+//	} finally
+//
+//	{
+//		try {
+//			if (reader != null)
+//				reader.close();
+//		} catch (IOException ex) {
+//			ex.printStackTrace();
+//		}
+//	}
+//
+//	// close the writers for the train and test datasets
+//	try
+//
+//	{
+//		trainWriter.close();
+//		testWriter.close();
+//	} catch(
+//
+//	IOException e)
+//
+//	{
+//		// TODO Auto-generated catch block
+//		e.printStackTrace();
+//	}
+//
+	}
+//
+//	// generates a random number, used to determine if line should go in test or
+//	// train set
+//	public static int randInt(int min, int max) {
+//		Random rand = new Random();
+//		// generates a random number between two inclusive values
+//		int randomNum = rand.nextInt((max - min) + 1) + min;
+//
+//		return randomNum;
+//	}
+//
+//	// TODO: if time allows, move calculation of Rosenbrock function down here
+//	// and call
+//	public double calcfx(double x) {
+//		return 0.00;
+//	}
+//
+//	// the derivative calculation is not necessary for this function
+//	public double calcderivfx(double x) {
+//		return 0.00;
+//	}
+
+}

@@ -1,0 +1,13 @@
+package runmodels;
+/*
+ * An abstract class for the functions implemented in this work.
+ */
+public abstract class AbstractPoint {
+	
+	public AbstractPoint(){
+		
+	}
+	
+//	abstract boolean getXLoc(Point a);
+//	abstract boolean getYLoc(Point a);	
+}

@@ -1,0 +1,13 @@
+package runmodels;
+/*
+ * An abstract class for the functions implemented in this work.
+ */
+public abstract class AbstractVertex {
+	
+	public AbstractVertex(){
+		
+	}
+	
+	abstract double getXLoc(Vertex x);
+	abstract double getYLoc(Vertex x);	
+}

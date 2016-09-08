@@ -1,0 +1,74 @@
+package runmodels;
+
+/*
+ * A class to create the vertices for a graph coloring problem. 
+ */
+
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+
+public class Vertex extends AbstractVertex {
+	// unique identifier associated with each node
+	private int id;
+	
+	// x and y coordinates associated with each node
+	private double xLoc;
+	private double yLoc;
+	
+	// list of all neighbors for each node
+	ArrayList<Vertex> neighbors = new ArrayList<Vertex>();
+
+	/**
+	 * 
+	 * @param name
+	 *            unique identifier associated with the node
+	 * @param xLoc
+	 *            x-coordinate of node
+	 * @param yLoc
+	 *            y-coordinate of node
+	 */
+	public Vertex(int id, double xLoc, double yLoc) {
+		this.id = id;
+		this.xLoc = xLoc;
+		this.yLoc = yLoc;
+		//TODO: Will need to give each node a color, and a list of neighbors (will save as unique id, so an array of ints, also something to indicate was visited?)
+	}
+
+
+	@Override
+	double getXLoc() {
+		return xLoc;
+	}
+
+	@Override
+	double getYLoc() {
+		return yLoc;
+	}
+
+
+	@Override
+	int getColor(Vertex x) {
+		return Integer.MIN_VALUE;
+	}
+
+	@Override
+	int getId() {
+		return id;
+	}
+
+
+	@Override
+	ArrayList <Vertex> addNeighbors(Vertex x) {
+		neighbors.add(x);
+		return neighbors;
+	}
+
+
+	@Override
+	int[] getNeighbors() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
+

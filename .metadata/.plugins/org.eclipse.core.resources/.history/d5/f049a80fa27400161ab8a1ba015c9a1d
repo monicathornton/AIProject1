@@ -1,0 +1,47 @@
+package runmodels;
+
+/*
+ * A class to create the vertices for a graph coloring problem. 
+ */
+
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+
+public class Vertex extends AbstractVertex {
+	// unique identifier associated with each node
+	private int id;
+	
+	// x and y coordinates associated with each node
+	private double xLoc;
+	private double yLoc;
+	
+
+	/**
+	 * 
+	 * @param name
+	 *            unique identifier associated with the node
+	 * @param xLoc
+	 *            x-coordinate of node
+	 * @param yLoc
+	 *            y-coordinate of node
+	 */
+	public Vertex(int id, double xLoc, double yLoc) {
+		this.id = id;
+		this.xLoc = xLoc;
+		this.yLoc = yLoc;
+	}
+
+
+	@Override
+	double getXLoc(Vertex x) {
+		// TODO Auto-generated method stub
+		return xLoc;
+	}
+
+	@Override
+	double getYLoc(Vertex x) {
+		return yLoc;
+	}
+
+}
+

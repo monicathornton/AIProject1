@@ -1,0 +1,19 @@
+package runmodels;
+/*
+ * An abstract class for the functions implemented in this work.
+ */
+public abstract class AbstractPoint {
+	
+	public AbstractPoint(){
+		
+	}
+	
+	public double xLoc;
+	public double yLoc;
+	public 
+	
+	
+	abstract double calcfx(double x);
+	abstract double calcderivfx(double x);
+
+}

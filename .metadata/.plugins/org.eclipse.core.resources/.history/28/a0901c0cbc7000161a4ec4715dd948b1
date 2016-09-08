@@ -1,0 +1,37 @@
+package runmodels;
+/*
+ * A unit test for the logistic function.
+ */
+
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class LogisticFunctionTest {
+
+	@Test
+	public void testFx() {
+		LogisticFunction l = new LogisticFunction();
+		assertEquals(0.95257, l.calcfx(3), .00005);
+		System.out.println(l.calcfx(3));
+		assertEquals(0.5, l.calcfx(0), 0.0);
+		System.out.println(l.calcfx(0));
+		assertEquals(.000409, l.calcfx(-7.8), .00005);
+		System.out.println(l.calcfx(-7.8));
+	}
+	
+	@Test
+	public void testDerivFx() {
+		System.out.println();
+		LogisticFunction l = new LogisticFunction();
+		assertEquals(0.95257 * (1 - 0.95257), l.calcderivfx(3), .00005);
+		System.out.println(l.calcderivfx(3));
+		assertEquals(0.5 * (1 - 0.5), l.calcderivfx(0), 0.0);
+		System.out.println(l.calcderivfx(0));
+		assertEquals(.000409 * (1 - .000409), l.calcderivfx(-7.8), .00005);
+		System.out.println(l.calcderivfx(-7.8));
+
+	}
+
+}
