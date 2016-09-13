@@ -27,11 +27,11 @@ public class Vertex extends AbstractVertex {
 	 * @param yLoc
 	 *            y-coordinate of node
 	 */
-	public Vertex(int id, double xLoc, double yLoc) {
+	public Vertex(int id, double xLoc, double yLoc, int color) {
 		this.id = id;
 		this.xLoc = xLoc;
 		this.yLoc = yLoc;
-		//TODO: Will need to give each node a color, and a list of neighbors (will save as unique id, so an array of ints, also something to indicate was visited?)
+		this.color = color;
 	}
 
 	@Override

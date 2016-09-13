@@ -25,53 +25,118 @@ public class RunModels {
     	//gives the user a series of choices
     	System.out.println("Please pick from one of the following options");
     	System.out.println("To run the graph generator, type 'gc'");
-//    	System.out.println("To run the feed-forward neural net (with backprop) type 'ffnn'");
-//    	System.out.println("To run the RBF network type 'rbf'");
+    	System.out.println("To run the Min Conflicts algorithm type '1'");
+    	System.out.println("To run the Simple Backtracking algorithm type '2'");
+    	System.out.println("To run the Backtracking algorithm with forward checking type '3'");
+    	System.out.println("To run the Backgracking algorithm with constraint propagation type '4'");
+    	System.out.println("To run Local search using a genetic algorithm type '5'");    	
     	System.out.println("Type 'x' to exit");
 
     	choice = in.nextLine();
+    	
+   		// the below is for testing, I will clean this up and make it prettier soon!
+		
+		// A list containing all of the vertices for the given problem
+		ArrayList<Vertex> vertices = new ArrayList<Vertex>();
+		
+		double xLoc = 0.0;
+		double yLoc = 0.0;
+		int color = 0;
+		
+		Vertex p1 = new Vertex(1, xLoc, yLoc, color);
+		Vertex p2 = new Vertex(2, xLoc, yLoc, color);	 
+		Vertex p3 = new Vertex(3, xLoc, yLoc, color);
+		Vertex p4 = new Vertex(4, xLoc, yLoc, color);
+		Vertex p5 = new Vertex(5, xLoc, yLoc, color);
+		
+		vertices.add(p1);
+		vertices.add(p2);
+		vertices.add(p3);
+		vertices.add(p4);
+		vertices.add(p5);
+		   		
+		// Neighbors of 1: 5 and 2
+		p1.addNeighbors(p5);
+		p1.addNeighbors(p2);
+		
+		//Neighbors of 2: 1, 3, 5
+		p2.addNeighbors(p1);
+		p2.addNeighbors(p3);
+		p2.addNeighbors(p5);		
+		
+		//Neighbors of 3: 2, 4		
+		p3.addNeighbors(p2);
+		p3.addNeighbors(p4);		
+		
+		//Neighbors of 4: 3, 5		
+		p4.addNeighbors(p3);
+		p4.addNeighbors(p5);		
+		
+		//Neighbors of 5: 1, 2, 4		
+		p5.addNeighbors(p1);
+		p5.addNeighbors(p2);		
+		p5.addNeighbors(p4);		
+
+    	// end testing -- will clean this up to make it more general
     	
     	if (choice.equals("gc")) {
     		//calls function to run the graph generator
     		System.out.println("Generating Graphs");    		
             GraphGenerator gcGraphs = new GraphGenerator();
-    	} else if (choice.equals("ffnn")) {
-//			WILL MODIFY THE BELOW TO WORK FOR different GC algos    		
-//    		//gets necessary info for performing Feed Forward Experiments	
-//    		System.out.println("Performing Feed Forward Experiments");
-//            // gets the os for the computer this program is run on
-//            String os = System.getProperty("os.name").toLowerCase();
-//            // gets the home location
-//            String home = System.getProperty("user.home");
-//            // starts building the file path
-//            String filePathTrain = home;
-//            String filePathTest = home;
-//            
-//            // uses file separator so is operating system agnostic
-//            if (os.startsWith("windows")) { // Windows
-//                filePathTrain += File.separator;
-//                filePathTest += File.separator;
-//            } else if (os.startsWith("mac")) { // Mac
-//                filePathTrain += File.separator;
-//                filePathTest += File.separator;
-//            } else {
-//                // everything else
-//                filePathTrain += File.separator;
-//                filePathTest += File.separator;
-//            }
-
-//            // calls the file chooser, returns the updated file path
-//            System.out.println("Select Training Data Location");
-//            filePathTrain = callFileChooser(filePathTrain);
-//            System.out.println("Training Data: " + filePathTrain);
-//            System.out.println("Select Test Data Location");
-//            filePathTest = callFileChooser(filePathTest);
-//            System.out.println("Test Data: " + filePathTest);
-//            
-//            FeedForwardExperiment test1 = new FeedForwardExperiment(filePathTrain, filePathTest);
+    	} else if (choice.equals("1")) {
+     		System.out.println("Running the Min Conflicts algorithm");	    		
+    		MinConflicts mc = new MinConflicts(vertices);
+    	} else if (choice.equals("2")) {
+    		System.out.println("Running the Simple Backtracking algorithm");
+    		System.out.println("Not implemented yet");
+    	} else if (choice.equals("3")) {
+    		System.out.println("Running the Backtracking algorithm with forward checking");
+    		System.out.println("Not implemented yet");
+    	} else if (choice.equals("4")) {
+    		System.out.println("Running the Simple Backtracking algorithm with constraint propagation (MAC)");
+    		System.out.println("Not implemented yet");
+    	} else if (choice.equals("5")) {
+    		System.out.println("Running the Local Search using a genetic algorithm");
+    		System.out.println("Not implemented yet");
     	} else {
     		System.exit(0);
     	}
+    	
+    	// Monica leaving this, will need again in future
+//		//gets necessary info for performing Feed Forward Experiments	
+//		System.out.println("Performing Feed Forward Experiments");
+//        // gets the os for the computer this program is run on
+//        String os = System.getProperty("os.name").toLowerCase();
+//        // gets the home location
+//        String home = System.getProperty("user.home");
+//        // starts building the file path
+//        String filePathTrain = home;
+//        String filePathTest = home;
+//        
+//        // uses file separator so is operating system agnostic
+//        if (os.startsWith("windows")) { // Windows
+//            filePathTrain += File.separator;
+//            filePathTest += File.separator;
+//        } else if (os.startsWith("mac")) { // Mac
+//            filePathTrain += File.separator;
+//            filePathTest += File.separator;
+//        } else {
+//            // everything else
+//            filePathTrain += File.separator;
+//            filePathTest += File.separator;
+//        }
+
+//        // calls the file chooser, returns the updated file path
+//        System.out.println("Select Training Data Location");
+//        filePathTrain = callFileChooser(filePathTrain);
+//        System.out.println("Training Data: " + filePathTrain);
+//        System.out.println("Select Test Data Location");
+//        filePathTest = callFileChooser(filePathTest);
+//        System.out.println("Test Data: " + filePathTest);
+//        
+//        FeedForwardExperiment test1 = new FeedForwardExperiment(filePathTrain, filePathTest);
+    	
+    	
     }
 
     //calls a window with a pop up box that lets the user choose their exact
