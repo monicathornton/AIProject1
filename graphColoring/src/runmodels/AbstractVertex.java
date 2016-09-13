@@ -15,5 +15,5 @@ public abstract class AbstractVertex {
 	abstract double getYLoc();
 	abstract int getId();
 	abstract int getColor();
-	abstract ArrayList<Integer> getNeighbors();
+	abstract ArrayList<Vertex> getNeighbors();
 }
