@@ -15,8 +15,11 @@ public class Vertex extends AbstractVertex {
 	private double xLoc;
 	private double yLoc;
 	
+	// the color associated with each node, a value of -1 means that the node has no color
+	private int color;
+	
 	// list of all neighbors for each node
-	ArrayList<Integer> neighbors = new ArrayList<Integer>();
+	ArrayList<Vertex> neighbors = new ArrayList<Vertex>();
 
 	/**
 	 * 
@@ -44,10 +47,13 @@ public class Vertex extends AbstractVertex {
 		return yLoc;
 	}
 
-	//TODO: handle the color
+	int setColor(int newColor) {
+		return color = newColor;
+	}
+	
 	@Override
 	int getColor() {
-		return Integer.MIN_VALUE;
+		return color;
 	}
 
 	@Override
@@ -55,13 +61,12 @@ public class Vertex extends AbstractVertex {
 		return id;
 	}
 
-	 void addNeighbors(int id) {
-		neighbors.add(id);
+	 void addNeighbors(Vertex v) {
+		neighbors.add(v);
 	}
 
-
 	@Override
-	ArrayList<Integer> getNeighbors() {
+	ArrayList<Vertex> getNeighbors() {
 		return neighbors;
 	}
 

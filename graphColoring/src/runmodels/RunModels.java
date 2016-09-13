@@ -85,7 +85,7 @@ public class RunModels {
             GraphGenerator gcGraphs = new GraphGenerator();
     	} else if (choice.equals("1")) {
      		System.out.println("Running the Min Conflicts algorithm");	    		
-    		MinConflicts mc = new MinConflicts(vertices);
+    		//MinConflicts mc = new MinConflicts(vertices);
     	} else if (choice.equals("2")) {
     		System.out.println("Running the Simple Backtracking algorithm");
     		System.out.println("Not implemented yet");
