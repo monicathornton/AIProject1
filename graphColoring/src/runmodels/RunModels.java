@@ -83,21 +83,16 @@ public class RunModels {
     		//calls function to run the graph generator
     		System.out.println("Generating Graphs");    		
             GraphGenerator gcGraphs = new GraphGenerator();
-    	} else if (choice.equals("1")) {
-     		System.out.println("Running the Min Conflicts algorithm");	    		
-    		//MinConflicts mc = new MinConflicts(vertices);
+    	} else if (choice.equals("1")) {	    		
+    		MinConflicts mc = new MinConflicts(vertices);
     	} else if (choice.equals("2")) {
-    		System.out.println("Running the Simple Backtracking algorithm");
-    		System.out.println("Not implemented yet");
+    		BacktrackSimple bs = new BacktrackSimple(vertices);
     	} else if (choice.equals("3")) {
-    		System.out.println("Running the Backtracking algorithm with forward checking");
-    		System.out.println("Not implemented yet");
+    		BacktrackForCheck fc = new BacktrackForCheck(vertices);    		
     	} else if (choice.equals("4")) {
-    		System.out.println("Running the Simple Backtracking algorithm with constraint propagation (MAC)");
-    		System.out.println("Not implemented yet");
+    		BacktrackConProp mac = new BacktrackConProp(vertices);
     	} else if (choice.equals("5")) {
-    		System.out.println("Running the Local Search using a genetic algorithm");
-    		System.out.println("Not implemented yet");
+    		LocalSearchGA ls = new LocalSearchGA(vertices);
     	} else {
     		System.exit(0);
     	}

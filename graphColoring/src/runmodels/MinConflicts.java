@@ -3,7 +3,9 @@ package runmodels;
 import java.util.ArrayList;
 
 public class MinConflicts extends AbstractAlgorithm {
+	
 	public MinConflicts(ArrayList<Vertex> vertices) {
+		System.out.println("Running the Min Conflicts algorithm");
 		
 		// makes sure the vertices were brought in correctly
 		System.out.println("Vertices :");
