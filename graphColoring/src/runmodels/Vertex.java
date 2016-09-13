@@ -4,7 +4,6 @@ package runmodels;
  * A class to create the vertices for a graph coloring problem. 
  */
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class Vertex extends AbstractVertex {

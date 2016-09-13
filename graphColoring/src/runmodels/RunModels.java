@@ -41,7 +41,7 @@ public class RunModels {
 		
 		double xLoc = 0.0;
 		double yLoc = 0.0;
-		int color = 0;
+		int color = -1;
 		
 		Vertex p1 = new Vertex(1, xLoc, yLoc, color);
 		Vertex p2 = new Vertex(2, xLoc, yLoc, color);	 
