@@ -45,29 +45,18 @@ public class GraphGenerator {
 		
 		// A variable used to store the distance between two points
 		double distance = Double.MIN_VALUE;
-
-		// Variables used to store the x and y locations of each vertex
-		double xLoc = Double.MIN_VALUE;
-		double yLoc = Double.MAX_VALUE;
 		
 		// file writer that writes out all of the graphs in the specified sizes
-		BufferedWriter graphWriter10 = null;
+		BufferedWriter graphWriter = null;
 
-		// BufferedWriter graphWriter20 = null;
-		// BufferedWriter graphWriter30 = null;
-		// BufferedWriter graphWriter40 = null;
-		// BufferedWriter graphWriter50 = null;
-		// BufferedWriter graphWriter60 = null;
-		// BufferedWriter graphWriter70 = null;
-		// BufferedWriter graphWriter80 = null;
-		// BufferedWriter graphWriter90 = null;
-		// BufferedWriter graphWriter100 = null;
-
-		// TODO: make a new file if file already exists
+		// These can be adjusted to make new folders/files as appropriate
+		String folderName = "graphSize10";
+		String outFile = "graph10.txt";
+		
 		try {
-			FileWriter fileWriter10 = new FileWriter(
-					"../graphColoring/graphsBySize/graphSize10/graph10.txt");
-			graphWriter10 = new BufferedWriter(fileWriter10);
+			FileWriter fileWriter = new FileWriter(
+					"../graphColoring/graphsBySize/" + folderName + "/" + outFile);
+			graphWriter = new BufferedWriter(fileWriter);
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -231,8 +220,8 @@ public class GraphGenerator {
 
 		// close the writers for the graphs of size 10
 		try {
-			graphWriter10.write("% list of all vertices in the graph (comma separated)");
-			graphWriter10.newLine();
+			graphWriter.write("% list of all vertices in the graph (comma separated)");
+			graphWriter.newLine();
 			
 			String listOfVerts = "";
 			
@@ -244,8 +233,8 @@ public class GraphGenerator {
 			listOfVerts = listOfVerts.substring(0, listOfVerts.length() - 1);
 			
 			// print the list of vertices
-			graphWriter10.write(listOfVerts);
-			graphWriter10.newLine();			
+			graphWriter.write(listOfVerts);
+			graphWriter.newLine();			
 			
 			String listOfNeighbors = "";
 			String listOfLocs = "";
@@ -261,7 +250,7 @@ public class GraphGenerator {
 			System.out.println(listOfLocs);
 			System.out.println(listOfNeighbors);
 			
-			graphWriter10.close();
+			graphWriter.close();
 		} catch (IOException e)
 
 		{
