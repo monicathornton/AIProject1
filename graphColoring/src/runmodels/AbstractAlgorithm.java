@@ -19,7 +19,7 @@ public abstract class AbstractAlgorithm {
 	protected ArrayList<Integer> conflictHistory;//Tracks conflicts/blank values at each iteration
 	private ArrayList<Vertex> curGraph;
 	
-	public ArrayList<Integer> runAlgo(){ //Template Method demands I write an algorithm skellington: Does this skellington hold for GA?
+	public ArrayList<Integer> runAlgo(){ //Template Method demands I write an algorithm skellington: Maybe override for GA?
 		while(curIterations < maxIterations){
 			if(countConflicts(curGraph) == 0){
 				return conflictHistory; //Algorithm done
