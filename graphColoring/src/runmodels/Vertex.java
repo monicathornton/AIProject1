@@ -113,7 +113,7 @@ public class Vertex extends AbstractVertex {
             for (Vertex nei: v.getNeighbors()){
                 newV.addNeighbors(nei);
             }
-            newV.usableColors = v.usableColors;
+            newV.usableColors = v.usableColors;  //may need to be changed...
             clonedList.add(newV);
         }
         return clonedList;
