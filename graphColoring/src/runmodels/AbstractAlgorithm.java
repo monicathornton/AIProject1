@@ -13,25 +13,33 @@ public abstract class AbstractAlgorithm {
 	 * iterations (and compare to maxIterations) and 
 	 * conflicts at each iteration
 	 */
-	protected int curIterations = 0;
+	protected int curIterations = 0; 
 	protected int maxIterations = 0;
 	protected int curConflicts;
 	protected ArrayList<Integer> conflictHistory;//Tracks conflicts/blank values at each iteration
 	private ArrayList<Vertex> curGraph;
 	
 	public ArrayList<Integer> runAlgo(){ //Template Method demands I write an algorithm skellington: Maybe override for GA?
+		ArrayList<Integer[]> conflicts = findConflicts(curGraph);
 		while(curIterations < maxIterations){
-			if(countConflicts(curGraph) == 0){
+			conflicts = findConflicts(curGraph);
+			curConflicts = conflicts.size();
+			conflictHistory.add(curConflicts);
+			if(curConflicts == 0){
 				return conflictHistory; //Algorithm done
 			}
 			int curV= selectVertex();
 			int color = algorithm(curV);
 			assignColorToVertex(curV, color);
+			
+			curIterations++;
 		}
 		return conflictHistory;//Algorithm fails
 	}
-	private int countConflicts(ArrayList<Vertex> sol){//Can be used to check validity? will implement later
-		return Integer.MAX_VALUE;
+	private ArrayList<Integer[]> findConflicts(ArrayList<Vertex> graph){//Can be used to check validity? will implement later! 
+		//Returns a list of pairs of indices of vertices that conflict
+		ArrayList<Integer[]> con = new ArrayList<Integer[]>();
+		return con;
 	}
 	protected abstract int algorithm(int curV);//detects conflicts, finds required values, etc. returns color
 	protected abstract int selectVertex(); //Selects unassigned/conflicting/random variable(vertex) and returns the index in the current graph
