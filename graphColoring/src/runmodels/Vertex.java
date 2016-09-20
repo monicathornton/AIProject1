@@ -7,6 +7,7 @@ package runmodels;
 import sun.java2d.pipe.AAShapePipe;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Vertex extends AbstractVertex {
 	// unique identifier associated with each node
@@ -80,6 +81,9 @@ public class Vertex extends AbstractVertex {
 
 	public void deleteColor(int toDelete){
 		usableColors.remove(usableColors.indexOf(toDelete));
+        if (usableColors.size() == 0) {
+            allDeleted = true;
+        }
 	}
 
 	public boolean getAllDeleted(){
@@ -102,5 +106,17 @@ public class Vertex extends AbstractVertex {
 	}
 
 
+    public ArrayList<Vertex> cloneList(ArrayList<Vertex> vList) {
+        ArrayList<Vertex> clonedList = new ArrayList<Vertex>(vList.size());
+        for (Vertex v : vList) {
+            Vertex newV = new Vertex(v.getId(), v.getXLoc(), v.getYLoc(), v.getColor());
+            for (Vertex nei: v.getNeighbors()){
+                newV.addNeighbors(nei);
+            }
+            newV.usableColors = v.usableColors;
+            clonedList.add(newV);
+        }
+        return clonedList;
+    }
 }
 

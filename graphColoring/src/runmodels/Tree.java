@@ -2,6 +2,7 @@ package runmodels;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import runmodels.Vertex;
 
 public class Tree {
 
@@ -31,10 +32,17 @@ public class Tree {
         last = root;
     }
 
-    public void addChild(ArrayList vertices){
-        Node newNode = new Node(last, vertices);
-        prev.add(newNode);
-        last = newNode;
+    public void addChild(ArrayList<Vertex> vertices){
+        Vertex v  = vertices.get(0); //fix this
+        ArrayList<Vertex> clone = v.cloneList(vertices);
+        if (root == null){
+            setRoot(new Node(null, vertices));
+        }
+        else {
+            Node newNode = new Node(last, clone);
+            prev.add(newNode);
+            last = newNode;
+        }
     }
 
 }

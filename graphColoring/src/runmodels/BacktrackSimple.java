@@ -19,8 +19,6 @@ public class BacktrackSimple extends AbstractAlgorithm {
         this.curVertex = current.get(0);
         this.numNodes = vertices.size();
 
-		states.setRoot(new Node(null, vertices)); //no colors have been assigned
-
         actualAlgorithm();
         System.out.println("Totally done!");
     }
@@ -43,20 +41,11 @@ public class BacktrackSimple extends AbstractAlgorithm {
 		
 	}
 
-	private ArrayList<Vertex> cloneList(List<Vertex> vList) {
-		ArrayList<Vertex> clonedList = new ArrayList<Vertex>(vList.size());
-		for (Vertex v : vList) {
-			clonedList.add(new Vertex(v.getId(), v.getXLoc(), v.getYLoc(), v.getColor()));
-		}
-		return clonedList;
-	}
-
 	private ArrayList actualAlgorithm() {
 
         while(true) {
-            ArrayList<Vertex> newList = cloneList(current);  //clone previous state
             chooseColorStupid();  //choose first available color
-            states.addChild(newList);  //add state to tree
+            states.addChild(current);  //add state to tree
             if (curVertex.getId() != numNodes) {// check for all nodes colored
                 curVertex = current.get(current.indexOf(curVertex) + 1); //next vertex
             }
@@ -69,7 +58,10 @@ public class BacktrackSimple extends AbstractAlgorithm {
     }
 
     private void chooseColorStupid(){
-        if (curVertex.usableColors.size() == 0 && !curVertex.getAllDeleted()) {
+        if (curVertex.getAllDeleted()) {
+            backtrackLevel();
+        }
+        else if (curVertex.usableColors.size() == 0) {
             curVertex.createUsableColors(numColors);  // set number of colors available
         }
         curVertex.setColor(curVertex.usableColors.get(0)); //set first color in list
@@ -82,5 +74,12 @@ public class BacktrackSimple extends AbstractAlgorithm {
     private void backtrackColor(Vertex conflict){
         curVertex.deleteColor(conflict.getColor());  //delete conflicting color from possible choices
         chooseColorStupid();   //call again
+    }
+
+    private void backtrackLevel(){
+
+
+        Node hopeful = (Node) states.getPrev().get( states.getPrev().indexOf( states.getLast()) - 1);
+        System.out.println("Oh shit!");
     }
 }
