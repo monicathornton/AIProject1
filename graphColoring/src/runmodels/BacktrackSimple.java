@@ -6,11 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BacktrackSimple extends AbstractAlgorithm {
-    ArrayList<Vertex> current;
-    Tree states;
-    int numColors = 3;
-    Vertex curVertex;
-    int numNodes;
+    ArrayList<Vertex> current; //vertices as currently colored
+    Tree states; //tree of states, where each state depends on color of vertices
+    int numColors = 3;  //total number of colors allowed
+    Vertex curVertex; //cur vertex to color
+    int numNodes;  //total number of vertices to color
 	
 	public BacktrackSimple(ArrayList<Vertex> vertices) {
 		System.out.println("Running the Simple Backtracking algorithm");
@@ -18,7 +18,9 @@ public class BacktrackSimple extends AbstractAlgorithm {
         this.states = new Tree();
         this.curVertex = current.get(0);
         this.numNodes = vertices.size();
-		states.setRoot(new Node(null, vertices));
+
+		states.setRoot(new Node(null, vertices)); //no colors have been assigned
+
         actualAlgorithm();
         System.out.println("Totally done!");
     }
@@ -51,14 +53,14 @@ public class BacktrackSimple extends AbstractAlgorithm {
 
 	private ArrayList actualAlgorithm() {
 
-        while(true) {  // all nodes colored return tree of states that got us here. TODO: make sure this colors last node.
-            ArrayList<Vertex> newList = cloneList(current);
-            chooseColorStupid(curVertex);
-            states.addChild(newList);
-            if (curVertex.getId() != numNodes) {
+        while(true) {
+            ArrayList<Vertex> newList = cloneList(current);  //clone previous state
+            chooseColorStupid();  //choose first available color
+            states.addChild(newList);  //add state to tree
+            if (curVertex.getId() != numNodes) {// check for all nodes colored
                 curVertex = current.get(current.indexOf(curVertex) + 1); //next vertex
             }
-            else{
+            else{ //return list of states that got us here.
                 break;
             }
             actualAlgorithm(); //recursive call
@@ -66,12 +68,19 @@ public class BacktrackSimple extends AbstractAlgorithm {
         return states.getPrev();
     }
 
-    private void chooseColorStupid(Vertex v){ //simply choose first available color
-        if (v.usableColors.size() == 0 && !v.getAllDeleted()) {
-            v.createUsableColors(numColors);
+    private void chooseColorStupid(){
+        if (curVertex.usableColors.size() == 0 && !curVertex.getAllDeleted()) {
+            curVertex.createUsableColors(numColors);  // set number of colors available
         }
-        v.setColor(v.usableColors.get(0));
-
+        curVertex.setColor(curVertex.usableColors.get(0)); //set first color in list
+        Vertex conflict = curVertex.checkConflicts();  //check for a single conflicting neighboring color
+        if (conflict != null){
+            backtrackColor(conflict);
+        }
     }
-	
+
+    private void backtrackColor(Vertex conflict){
+        curVertex.deleteColor(conflict.getColor());  //delete conflicting color from possible choices
+        chooseColorStupid();   //call again
+    }
 }

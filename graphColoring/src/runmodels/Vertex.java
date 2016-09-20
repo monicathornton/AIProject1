@@ -4,6 +4,8 @@ package runmodels;
  * A class to create the vertices for a graph coloring problem. 
  */
 
+import sun.java2d.pipe.AAShapePipe;
+
 import java.util.ArrayList;
 
 public class Vertex extends AbstractVertex {
@@ -77,16 +79,28 @@ public class Vertex extends AbstractVertex {
 	}
 
 	public void deleteColor(int toDelete){
-		usableColors.remove(toDelete);
+		usableColors.remove(usableColors.indexOf(toDelete));
 	}
 
 	public boolean getAllDeleted(){
 		return allDeleted;
 	}
+
 	@Override
 	ArrayList<Vertex> getNeighbors() {
 		return neighbors;
 	}
+
+	public Vertex checkConflicts(){
+		Vertex conflicting = null;
+		for (Vertex nei : neighbors) {
+			if (this.color == nei.color){
+				conflicting = nei;
+			}
+		}
+		return conflicting;
+	}
+
 
 }
 
