@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class Node {
     private String id;
     private ArrayList state; //vertices as currently colored
-    private final List<Node> children = new ArrayList<>();
+    private final ArrayList<Node> children = new ArrayList<>();
     private final Node parent;
 
     public Node(Node parent, ArrayList state) {
@@ -19,11 +19,13 @@ public class Node {
         return id;
     }
 
+    public ArrayList getState(){return  state;}
+
     public void setId(String id) {
         this.id = id;
     }
 
-    public List<Node> getChildren() {
+    public ArrayList<Node> getChildren() {
         return children;
     }
 
