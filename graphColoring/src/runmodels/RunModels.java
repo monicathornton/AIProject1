@@ -81,8 +81,11 @@ public class RunModels {
     	
     	if (choice.equals("gc")) {
     		//calls function to run the graph generator
-    		System.out.println("Generating Graphs");    		
-            GraphGenerator gcGraphs = new GraphGenerator();
+    	
+    		for (int i = 0; i < 11; i++) {
+                GraphGenerator gcGraphs = new GraphGenerator();
+    		}
+
     	} else if (choice.equals("1")) {	    		
     		MinConflicts mc = new MinConflicts(vertices);
     	} else if (choice.equals("2")) {
