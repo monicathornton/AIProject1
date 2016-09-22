@@ -17,7 +17,7 @@ public abstract class AbstractAlgorithm {
 	protected int maxIterations = 0;
 	protected int curConflicts;
 	protected ArrayList<Integer> conflictHistory;//Tracks conflicts/blank values at each iteration
-	private ArrayList<Vertex> curGraph;
+	protected ArrayList<Vertex> curGraph;
 	
 	public ArrayList<Integer> runAlgo(){ //Template Method demands I write an algorithm skellington: Maybe override for GA?
 		ArrayList<Integer[]> conflicts = findConflicts(curGraph);
@@ -36,7 +36,7 @@ public abstract class AbstractAlgorithm {
 		}
 		return conflictHistory;//Algorithm fails
 	}
-	private ArrayList<Integer[]> findConflicts(ArrayList<Vertex> graph){//Can be used to check validity? will implement later! 
+	protected ArrayList<Integer[]> findConflicts(ArrayList<Vertex> graph){//will implement later! 
 		//Returns a list of pairs of indices of vertices that conflict
 		ArrayList<Integer[]> con = new ArrayList<Integer[]>();
 		return con;
