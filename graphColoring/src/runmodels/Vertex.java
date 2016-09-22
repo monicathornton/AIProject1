@@ -90,6 +90,10 @@ public class Vertex extends AbstractVertex {
 		return allDeleted;
 	}
 
+    public void setAllDeleted(){
+         allDeleted = false;
+    }
+
 	@Override
 	ArrayList<Vertex> getNeighbors() {
 		return neighbors;

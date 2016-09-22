@@ -41,11 +41,11 @@ public class BacktrackSimple extends AbstractAlgorithm {
 		
 	}
 
-	private ArrayList actualAlgorithm() {
+	private void actualAlgorithm() {
 
         while(true) {
             chooseColorStupid();  //choose first available color
-            states.addChild(current);  //add state to tree
+//            states.add(current); //add state to tree TODO: not abandon this
             if (curVertex.getId() != numNodes) {// check for all nodes colored
                 curVertex = current.get(current.indexOf(curVertex) + 1); //next vertex
             }
@@ -54,7 +54,6 @@ public class BacktrackSimple extends AbstractAlgorithm {
             }
             actualAlgorithm(); //recursive call
         }
-        return states.getPrev();
     }
 
     private void chooseColorStupid(){
@@ -77,9 +76,18 @@ public class BacktrackSimple extends AbstractAlgorithm {
     }
 
     private void backtrackLevel(){
+        System.out.println("starting backtrack");
+        Vertex curNextI = current.get(curVertex.getId() -2);  //taking into account 0-based index. indexOf(curVertext doesn't work because wrong pointers)
+        curNextI.deleteColor(curNextI.getColor()); // color won't work
 
 
-        Node hopeful = (Node) states.getPrev().get( states.getPrev().indexOf( states.getLast()) - 1);
-        System.out.println("Oh shit!");
+        curVertex.setColor(-1);
+        curVertex.createUsableColors(numColors); //reset curVertex colors to all possible
+        curVertex.setAllDeleted();
+        curVertex = curNextI; //set curVertext back one
+//        current = states.backtrack();
+
+        actualAlgorithm(); //start over from here
+        System.out.println("backtracked successfully! Maybe...");
     }
 }

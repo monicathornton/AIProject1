@@ -32,17 +32,32 @@ public class Tree {
         last = root;
     }
 
-    public void addChild(ArrayList<Vertex> vertices){
-        Vertex v  = vertices.get(0); //fix this
-        ArrayList<Vertex> clone = v.cloneList(vertices);
+    public void add(ArrayList<Vertex> vertices){
         if (root == null){
             setRoot(new Node(null, vertices));
         }
         else {
-            Node newNode = new Node(last, clone);
+            Node newNode = new Node(last, vertices);
+            last.addChild(newNode);
+            last = newNode;
+        }
+    }
+
+    public void addChild(ArrayList<Vertex> vertices){
+//        Vertex v  = vertices.get(0); //fix this
+//        ArrayList<Vertex> clone = v.cloneList(vertices);
+        if (root == null){
+            setRoot(new Node(null, vertices));
+        }
+        else {
+            Node newNode = new Node(last, vertices);
             prev.add(newNode);
             last = newNode;
         }
     }
 
+    public ArrayList backtrack(){
+        last = (Node) this.getPrev().get(this.getPrev().size() -2);
+        return last.getState();
+    }
 }
