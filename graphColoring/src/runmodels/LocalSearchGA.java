@@ -53,24 +53,57 @@ public class LocalSearchGA extends AbstractAlgorithm {
 		return fitConstant*conflicts.size();
 	}
 	protected Chromosome getBest(){
-		return population.get(0);
+		int bestindex = 0;
+		int bestfitness = population.get(0).fitness;
+		for(int i = 1; i < population.size(); i++){
+			if(population.get(i).fitness < bestfitness){
+				bestfitness = population.get(i).fitness;
+				bestindex = i;
+			}
+		}
+		return population.get(bestindex);
 	}
-	protected void replacement(Chromosome growinUp){
+	protected void replacement(Chromosome growinUp){//TODO finish replacement
 		
 	}
 	
-	protected void initialize(){
+	protected void initialize(){//TODO finish initialization
 		
 	}
-	protected Chromosome mutation(Chromosome frankie){
+	protected Chromosome mutation(Chromosome frankie){//TODO finish mutation
 		return frankie;
 	}
-	protected Chromosome[] selection(){
+	protected Chromosome[] selection(){ //TODO finish selection
 		Chromosome[] parents = new Chromosome[2];
 		return parents;
 	}
 	protected Chromosome recombination(Chromosome[] parents){
-		return parents[0];
+		int parentSize = parents.length;
+		double selectProb = (1 / parentSize);
+
+		double[] parentProbs = new double[parentSize];
+
+		// vector of upper bounds on parent probabilities (uniform)
+		parentProbs[0] = selectProb;
+		for (int i = 1; i < parentSize; i++) {
+			parentProbs[i] = parentProbs[i - 1] + selectProb;
+		}
+
+		Chromosome offspring = new Chromosome();
+		// probabilistically selects each gene
+		for (int i = 0; i < parents[0].getNumVertices(); i++) {
+			double p = Math.random();
+
+			for (int j = 0; j < parentProbs.length; j++) {
+				if (p < parentProbs[j]) {
+					offspring.setGene(i, parents[j].getGene(i));
+					break;
+				}
+			}
+
+		}
+
+		return offspring;
 	}
 	public double getMutRate() {
 		return mutRate;
