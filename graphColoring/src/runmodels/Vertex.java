@@ -72,6 +72,11 @@ public class Vertex extends AbstractVertex {
 		neighbors.add(v);
 	}
 
+	void addColor(int color){
+		usableColors.add(color);
+		setAllDeleted();
+
+	}
 
 	public void createUsableColors(int upper){
 		for (int i = 0; i < upper; i++){
@@ -80,7 +85,9 @@ public class Vertex extends AbstractVertex {
 	}
 
 	public void deleteColor(int toDelete){
-		usableColors.remove(usableColors.indexOf(toDelete));
+		if (usableColors.contains(toDelete)) {
+			usableColors.remove(usableColors.indexOf(toDelete));
+		}
         if (usableColors.size() == 0) {
             allDeleted = true;
         }

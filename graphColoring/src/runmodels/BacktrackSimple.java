@@ -16,7 +16,7 @@ public class BacktrackSimple extends AbstractAlgorithm {
 	public BacktrackSimple(ArrayList<Vertex> vertices) {
 		System.out.println("Running the Simple Backtracking algorithm");
         this.current = vertices;
-        this.states = new Tree();
+//        this.states = new Tree();
         this.curVertex = current.get(0);
         this.numNodes = vertices.size();
 
@@ -59,7 +59,7 @@ public class BacktrackSimple extends AbstractAlgorithm {
             else{ //TODO: return list of states that got us here.
                 break;
             }
-            actualAlgorithm(); //recursive call
+            actualAlgorithm(); //recursive call TODO: erasable...?
         }
 
     }
