@@ -25,7 +25,7 @@ public class Vertex extends AbstractVertex {
 	
 	// list of all neighbors for each node
 	ArrayList<Vertex> neighbors = new ArrayList<Vertex>();
-	ArrayList<Integer> usableColors = new ArrayList<>();
+	ArrayList<Integer> usableColors = new ArrayList<Integer>();
 
 	/**
 	 * 

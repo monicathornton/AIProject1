@@ -16,5 +16,4 @@ public abstract class AbstractVertex {
 	abstract int getId();
 	abstract int getColor();
 	abstract ArrayList<Vertex> getNeighbors();
-	abstract ArrayList<Vertex> getConflicts();	
 }
