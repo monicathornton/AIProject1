@@ -6,44 +6,67 @@ import java.util.Collections;
 public class LocalSearchGA extends AbstractAlgorithm {
 	protected double mutRate = 0.2;
 	protected double killRate = 0.6;
-	protected int popSize = 5;
+	protected int popSize = 100;
 	protected int numVertices;
 	//curGraph is current best graph
-	protected ArrayList<Chromosome> population;
+	protected ArrayList<Chromosome> population = new ArrayList<Chromosome>();
 	protected int fitConstant = -1;
 	protected int poolSize = 2;
 	protected int parentSize = 2;
+	protected int colorlim = 3;
+	
 	public LocalSearchGA(ArrayList<Vertex> vertices) {
 		curGraph = vertices;
 		numVertices = vertices.size();
+		for(int i = 0; i < numVertices; i++){
+			vertices.get(i).createUsableColors(colorlim);
+		}
+		maxIterations = 1000;
+		mutRate = 0.2;
+		killRate = 0.6;
+		popSize = 100;
+		fitConstant = -1;
+		poolSize = 2;
+		parentSize = 2;
+		colorlim = 3;
+		conflictHistory = new ArrayList<Integer>();
 		System.out.println("Running the Local Search using a genetic algorithm");	
+		runAlgo();
 	}
 	@Override
 	public ArrayList<Integer> runAlgo(){
 		curIterations = 0;
 		initialize();
-		int numOffspring = (int) killRate*popSize;
+		int bestfitness = Integer.MIN_VALUE;
+		Double d = killRate*popSize;
+		int numOffspring = d.intValue();
+		System.out.println((killRate*popSize) + " " + numOffspring);
 		for(int i = 0; i < population.size(); i++){
 			population.get(i).fitness = evalFit(population.get(i));
 		}
 		
-		ArrayList<Chromosome> kiddos = new ArrayList<Chromosome>();
-		while(curIterations < maxIterations){
+		
+		while(curIterations < maxIterations && bestfitness < 0){
+			System.out.println(numOffspring);
+			ArrayList<Chromosome> kiddos = new ArrayList<Chromosome>();
 			for (int j = 0; j < numOffspring; j++){
+				
 				Chromosome[] parents = selection();
 				Chromosome child = recombination(parents);
 				child = mutation(child);
 				child.fitness = evalFit(child);
 				kiddos.add(child);
 			}
-			Collections.sort(kiddos,(player1, player2) -> player1.getFitness()- player2.getFitness());
-			Collections.sort(population, (player1, player2) -> player1.getFitness()- player2.getFitness());
+			//Collections.sort(kiddos,(player1, player2) -> player1.getFitness()- player2.getFitness());
+			Collections.sort(population, (chromo1, chromo2) -> chromo1.getFitness()- chromo2.getFitness());
+			
 			for(int k = 0; k < kiddos.size(); k++){
 				population.set(k, kiddos.get(k));
 			}
 			Chromosome best = getBest();
 			curGraph = best.genes;
 			conflictHistory.add(best.fitness);
+			bestfitness = best.fitness;
 			System.out.println(curIterations + " " + best.fitness);
 			curIterations++;
 		}
@@ -67,14 +90,15 @@ public class LocalSearchGA extends AbstractAlgorithm {
 		
 	}
 	protected int evalFit(Chromosome c){
-		ArrayList<Integer[]> conflicts = findConflicts(c.genes);
-		return fitConstant*conflicts.size();
+		ArrayList<Vertex> conflicts = findConflicts(c.genes);
+		
+		return fitConstant*conflicts.size()/2;
 	}
 	protected Chromosome getBest(){
 		int bestindex = 0;
 		int bestfitness = population.get(0).fitness;
 		for(int i = 1; i < population.size(); i++){
-			if(population.get(i).fitness < bestfitness){
+			if(population.get(i).fitness > bestfitness){
 				bestfitness = population.get(i).fitness;
 				bestindex = i;
 			}
@@ -84,14 +108,17 @@ public class LocalSearchGA extends AbstractAlgorithm {
 	
 	
 	protected void initialize(){//TODO finish initialization
-		Chromosome c = new Chromosome(curGraph);
+		ArrayList v = curGraph;
+		Chromosome c = new Chromosome(v);
 		for(int i = 0; i < popSize; i++){
-			Chromosome c1 = new Chromosome(curGraph);
+			Chromosome c1 = new Chromosome(c.getGenes());
 			for(int j = 0; j < curGraph.size(); j++){
 				int r = (int) Math.random() * curGraph.get(0).usableColors.size();
 				int newcolor = curGraph.get(0).usableColors.get(r);
 				c1.setGene(j, newcolor);
+				
 			}
+			c1.fitness = evalFit(c1);
 			population.add(c1);
 		}
 	}

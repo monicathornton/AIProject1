@@ -20,7 +20,7 @@ public abstract class AbstractAlgorithm {
 	protected ArrayList<Vertex> curGraph;
 	
 	public ArrayList<Integer> runAlgo(){ //Template Method demands I write an algorithm skellington: Maybe override for GA?
-		ArrayList<Integer[]> conflicts = findConflicts(curGraph);
+		ArrayList<Vertex> conflicts = findConflicts(curGraph);
 		while(curIterations < maxIterations){
 			conflicts = findConflicts(curGraph);
 			curConflicts = conflicts.size();
@@ -36,9 +36,17 @@ public abstract class AbstractAlgorithm {
 		}
 		return conflictHistory;//Algorithm fails
 	}
-	protected ArrayList<Integer[]> findConflicts(ArrayList<Vertex> graph){//will implement later! 
+	protected ArrayList<Vertex> findConflicts(ArrayList<Vertex> graph){//will implement later! 
 		//Returns a list of pairs of indices of vertices that conflict
-		ArrayList<Integer[]> con = new ArrayList<Integer[]>();
+		ArrayList<Vertex> con = new ArrayList<Vertex>();
+		for(Vertex v : graph){
+			ArrayList<Vertex> neighbors = v.getNeighbors();
+			for(Vertex nei :  neighbors){
+				if(nei.getColor() == v.getColor()){
+					con.add(nei);
+				}
+			}
+		}
 		return con;
 	}
 	protected abstract int algorithm(int curV);//detects conflicts, finds required values, etc. returns color
