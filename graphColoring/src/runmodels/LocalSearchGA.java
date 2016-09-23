@@ -48,6 +48,7 @@ public class LocalSearchGA extends AbstractAlgorithm {
 		
 		while(curIterations < maxIterations && bestfitness < 0){
 			//System.out.println(numOffspring);
+			
 			ArrayList<Chromosome> kiddos = new ArrayList<Chromosome>();
 			for (int j = 0; j < numOffspring; j++){
 				
