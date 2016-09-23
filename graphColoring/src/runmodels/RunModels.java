@@ -49,8 +49,8 @@ public class RunModels {
 		choice = in.nextLine();
 
 		// change these to get the required graph from the input file
-		String folderName = "graphSize10";
-		String fileName = "graph10";
+		String folderName = "graphSize40";
+		String fileName = "graph40";
 		String versionName = "_v1.txt";
 //		String versionName = "_v2.txt";
 //		String versionName = "_v3.txt";
@@ -101,7 +101,7 @@ public class RunModels {
 	 static void getGraphFromFile(String folderName, String fileName, String versionName) throws IOException {
 
 		try {
-			fileIn = new FileReader("../graphColoring/graphsBySize/"
+			fileIn = new FileReader("graphColoring/graphsBySize/"
 					+ folderName + "/" + fileName + versionName);
 			br = new BufferedReader(fileIn);
 

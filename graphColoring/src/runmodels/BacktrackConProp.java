@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class BacktrackConProp extends AbstractAlgorithm { //May want to make this inherit from BacktrackSimple? Can we do that?
 	ArrayList<Vertex> current; //vertices as currently colored
-	int numColors = 3;  //total number of colors allowed
+	int numColors = 4;  //total number of colors allowed
 	Vertex curVertex; //cur vertex to color
 	int numNodes;  //total number of vertices to color
 	boolean unsolvable = false;
@@ -28,7 +28,7 @@ public class BacktrackConProp extends AbstractAlgorithm { //May want to make thi
                             + " coloring of graph");
 		}
 		else {
-            System.out.println("Found a " + numColors + " coloring of graph");
+            System.out.println("\nFound a " + numColors + " coloring of graph");
         }
         System.out.println("Backtracking with MAC has finished running");
         System.out.println("Final Graph");
@@ -91,6 +91,7 @@ public class BacktrackConProp extends AbstractAlgorithm { //May want to make thi
     }
 
     public void applyArc(){
+        System.out.println("Enforcing arc consistency");
         for (Arc arc : curVertex.outArcs){
             if (arc.getTail().getNeighbors().contains(curVertex)){
                 arc.getTail().deleteColor(curVertex.getColor());
@@ -122,6 +123,7 @@ public class BacktrackConProp extends AbstractAlgorithm { //May want to make thi
     }
 
     public void backtrackColor(){
+        System.out.println("Backtracking a color");
         resetConsistency();
         curVertex.deleteColor(curVertex.getColor());
         if (curVertex.getAllDeleted() && curVertex.getId() == 0){
@@ -146,6 +148,7 @@ public class BacktrackConProp extends AbstractAlgorithm { //May want to make thi
     }
 
     public void backtrackLevel(){
+        System.out.println("Backtracking a level");
         curVertex.setColor(-1);
         curVertex = current.get(current.indexOf(curVertex) -1);
         resetConsistency();
