@@ -150,10 +150,10 @@ public class LocalSearchGA extends AbstractAlgorithm {
 			if (p < mutRate) {
 				
 					Vertex c = frankie.getGene(i);
-					Double q1 =  Math.random() * c.usableColors.size();
+					Double q1 =  Math.random() * colorlim;
 					int q = q1.intValue();
 					int newcolor = c.usableColors.get(q);
-					frankie.setGene(i, ((newcolor+c.getColor())%c.usableColors.size()));
+					frankie.setGene(i, ((newcolor+c.getColor())%colorlim));
 				
 			}
 		}
