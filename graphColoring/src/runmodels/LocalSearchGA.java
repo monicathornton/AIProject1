@@ -22,7 +22,7 @@ public class LocalSearchGA extends AbstractAlgorithm {
 		for(int i = 0; i < numVertices; i++){
 			vertices.get(i).createUsableColors(colorlim);
 		}
-		maxIterations = 1000;
+		maxIterations = 10000;
 		mutRate = 0.2;
 		killRate = 0.6;
 		popSize = 100;
@@ -31,7 +31,7 @@ public class LocalSearchGA extends AbstractAlgorithm {
 		parentSize = 2;
 		colorlim = 3;
 		conflictHistory = new ArrayList<Integer>();
-		System.out.println("Running the Local Search using a genetic algorithm");	
+		System.out.println("Running the Local Search using a genetic algorithmto " + colorlim + " color graph with " + vertices.size() + " vertices");	
 		runAlgo();
 	}
 	@Override
