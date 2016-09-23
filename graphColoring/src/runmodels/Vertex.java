@@ -4,10 +4,9 @@ package runmodels;
  * A class to create the vertices for a graph coloring problem. 
  */
 
-import sun.java2d.pipe.AAShapePipe;
 
 import java.util.ArrayList;
-import java.util.List;
+
 
 public class Vertex extends AbstractVertex {
 	// unique identifier associated with each node
