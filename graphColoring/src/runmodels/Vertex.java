@@ -1,13 +1,11 @@
 package runmodels;
 
+
 /*
  * A class to create the vertices for a graph coloring problem. 
  */
 
-import sun.java2d.pipe.AAShapePipe;
-
 import java.util.ArrayList;
-import java.util.List;
 
 public class Vertex extends AbstractVertex {
 	// unique identifier associated with each node
@@ -45,45 +43,49 @@ public class Vertex extends AbstractVertex {
 
 
 	@Override
+	// get node's x Location
 	double getXLoc() {
 		return xLoc;
 	}
 
 	@Override
+	// get node's y location
 	double getYLoc() {
 		return yLoc;
 	}
-
+	
+	// set the color of the node
 	int setColor(int newColor) {
 		return color = newColor;
 	}
 	
 	@Override
+	// gets the color of the node
 	int getColor() {
 		return color;
 	}
 
 	@Override
+	// gets the node's unique id
 	int getId() {
 		return id;
 	}
-
-	void addNeighbors(Vertex v) {
-		neighbors.add(v);
-	}
-
+	
+	// add the color to the list of usable colors
 	void addColor(int color){
 		usableColors.add(color);
 		setAllDeleted();
 
 	}
 
+	// create the usable colors for this vertex
 	public void createUsableColors(int upper){
 		for (int i = 0; i < upper; i++){
 			usableColors.add(i);
 		}
 	}
 
+	// remove a color as usable
 	public void deleteColor(int toDelete){
 		if (usableColors.contains(toDelete)) {
 			usableColors.remove(usableColors.indexOf(toDelete));
@@ -93,19 +95,28 @@ public class Vertex extends AbstractVertex {
         }
 	}
 
+	// get all deleted colors
 	public boolean getAllDeleted(){
 		return allDeleted;
 	}
 
+	// set all deleted colors
     public void setAllDeleted(){
          allDeleted = false;
     }
 
 	@Override
+	// get all neighbors for the specified node
 	ArrayList<Vertex> getNeighbors() {
 		return neighbors;
 	}
 
+	// given a vertex V, add it to the list of this node's neighbors
+	void addNeighbors(Vertex v) {
+		neighbors.add(v);
+	}
+	
+	// check for a vertex that conflicts with this vertex
 	public Vertex checkConflicts(){
 		Vertex conflicting = null;
 		
@@ -117,7 +128,7 @@ public class Vertex extends AbstractVertex {
 		return conflicting;
 	}
 
-
+	// get the number of conflicts for this node in the current graph
 	public int getNumConflicts(){
 		int numConflicts = 0;
 		
@@ -144,4 +155,3 @@ public class Vertex extends AbstractVertex {
         return clonedList;
     }
 }
-
