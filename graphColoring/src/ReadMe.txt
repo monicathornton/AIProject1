@@ -23,30 +23,26 @@ BacktrackForProp: this class builds a constraint solver that uses forward checki
 Specifically, this algorithm  checks arc consistency inferences to ensure that variables connected by a constraint
 do not have any values in their domain that violate this constraint. This algo can be called from RunModels.
 
-BacktrackSimple: this class builds a constraint solver that 
+BacktrackSimple: this class builds a constraint solver that chooses values for a variable one at a time, and backtracks
+once it gets to a place where there are no legal values left to assign. This algo can be called from RunModels.
 
+Chromosome: Used by LocalSearchGA, and in this context each chromosome holds a fully colored graph. 
 
-Chromosome:
+GraphGenerator: Generates problems to test the various constraint problems. Given an n as input, makes n points 
+(corresponding to vertices) in unit square, and connects them subject to constraints that result in a planar
+graph with n vertices. This can be called from RunModels to generate graphs, although is commented out right
+now to avoid accidentally overwriting one of our graphs for testing. 
 
+LocalSearchGA: A constraint solver that corresponds to a local search using a genetic algorithm with a 
+pentalty function and tournament selection.
 
-GraphGenerator:
+MinConflicts: A constraint solver that uses a local search process that greedily chooses a minimum 
+conflict value at every turn. This is augmented with tabu search as specified in textbook (Russel & Norvig)
+to help get it out of local plateaux.
 
+RunModels: Calls each of the 5 constraint solvers. 
 
-LocalSearchGA:
+Tree: Used in backtracking to keep track of colorings tried so far. 
 
-
-MinConflicts:
-
-
-Node:
-
-
-RunModels:
-
-
-Tree: 
-
-
-Vertex:
-
-
+Vertex: Used in building and coloring the graphs, contains methods to specify neighbors of vertex, get/set conflicts, 
+get/set colors, etc. 
