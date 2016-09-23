@@ -101,7 +101,7 @@ public class RunModels {
 	 static void getGraphFromFile(String folderName, String fileName, String versionName) throws IOException {
 
 		try {
-			fileIn = new FileReader("graphColoring/graphsBySize/"
+			fileIn = new FileReader("../graphColoring/graphsBySize/"
 					+ folderName + "/" + fileName + versionName);
 			br = new BufferedReader(fileIn);
 
