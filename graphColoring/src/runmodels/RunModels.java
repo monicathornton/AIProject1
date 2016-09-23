@@ -49,8 +49,8 @@ public class RunModels {
 		choice = in.nextLine();
 
 		// change these to get the required graph from the input file
-		String folderName = "graphSize80";
-		String fileName = "graph80";
+		String folderName = "graphSize10";
+		String fileName = "graph10";
 		String versionName = "_v1.txt";
 //		String versionName = "_v2.txt";
 //		String versionName = "_v3.txt";
