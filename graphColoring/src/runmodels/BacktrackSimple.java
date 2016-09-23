@@ -58,12 +58,11 @@ public class BacktrackSimple extends AbstractAlgorithm {
 //            states.add(current); //add state to tree
                 if (unsolvable) {
                     break;
-                } else if (curVertex.getId() != numNodes) {// check for all nodes colored
+                } else if (curVertex.getId() != numNodes -1) {// check for all nodes colored
                     curVertex = current.get(current.indexOf(curVertex) + 1); //next vertex
                 } else { //TODO: return list of states that got us here.
                     break;
                 }
-                actualAlgorithm(); //recursive call TODO: erasable...?
             }
     }
 
