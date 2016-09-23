@@ -66,14 +66,12 @@ public class BacktrackConProp extends AbstractAlgorithm { //May want to make thi
 				curVertex = current.get(current.indexOf(curVertex) + 1); //next vertex
 			}
 			else{
-				System.out.println("Breaking out of while loop.");
 				break;
 			}
 		}
 	}
 
 	public void chooseColor(){
-        System.out.println("choosing color");
         curVertex.setColor(curVertex.usableColors.get(0)); // first available color
         applyArc();
     }
@@ -83,7 +81,6 @@ public class BacktrackConProp extends AbstractAlgorithm { //May want to make thi
             if (arc.getTail().getNeighbors().contains(curVertex)){
                 arc.getTail().deleteColor(curVertex.getColor());
                 if (arc.getTail().getAllDeleted()){
-                    System.out.println("Backtracking");
                     backtrackColor();
                 }
                 //since something was deleted from tail, all arcs pointing to tail need to be reconsidered
@@ -97,6 +94,13 @@ public class BacktrackConProp extends AbstractAlgorithm { //May want to make thi
             if (arc.getTail().getNeighbors().contains(arc.getStart()) && arc.getTail().usableColors.size() == 1) { //neighbors
                 if (arc.getStart().getColor() == -1) {  //only prune unassigned colors
                     arc.getStart().deleteColor(arc.getTail().usableColors.get(0));
+                    if (arc.getStart().getAllDeleted() && arc.getStart().getId() == 0){
+                        unsolvable = true;
+                        return;
+                    }
+                    else if (arc.getStart().getAllDeleted()){
+                        backtrackColor();
+                    }
                 }
             }
 
@@ -106,7 +110,11 @@ public class BacktrackConProp extends AbstractAlgorithm { //May want to make thi
     public void backtrackColor(){
         resetConsistency();
         curVertex.deleteColor(curVertex.getColor());
-        if (curVertex.getAllDeleted()){
+        if (curVertex.getAllDeleted() && curVertex.getId() == 0){
+            unsolvable = true;
+            return;
+        }
+        else if (curVertex.getAllDeleted()){
             backtrackLevel();
         }
         else{
@@ -116,10 +124,24 @@ public class BacktrackConProp extends AbstractAlgorithm { //May want to make thi
     }
 
     public void resetConsistency(){
-
+        for (Arc arc : curVertex.outArcs){
+            if (arc.getTail().getNeighbors().contains(curVertex)) {
+                arc.getTail().addColor(curVertex.getColor());
+            }
+        }
     }
 
     public void backtrackLevel(){
-        System.out.println("backtrack!");
+        curVertex.setColor(-1);
+        curVertex = current.get(current.indexOf(curVertex) -1);
+        resetConsistency();
+        curVertex.deleteColor(curVertex.getColor());
+        if (curVertex.getAllDeleted() && curVertex.getId() == 0){
+            unsolvable = true;
+            return;
+        }
+        curVertex.setColor(curVertex.usableColors.get(0));
+        applyArc();
+
     }
 }
