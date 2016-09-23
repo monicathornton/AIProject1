@@ -9,19 +9,30 @@ public class BacktrackConProp extends AbstractAlgorithm { //May want to make thi
 	int numNodes;  //total number of vertices to color
 	boolean unsolvable = false;
 
+
 	public BacktrackConProp(ArrayList<Vertex> vertices) {
-		System.out.println("Running the Simple Backtracking algorithm with constraint propagation (MAC)");
+        System.out.println("Running the backtracking algorithm with MAC to " + numColors + " color graph with " + vertices.size() + " vertices");
 		this.current = vertices;
-		this.curVertex = current.get(0);
+        setCurGraph(current);
+        this.curVertex = current.get(0);
 		this.numNodes = vertices.size();
+        System.out.println("Initial Graph");
+        printGandC();
 
         preProcess(); //create arcs and set number of usable colors
 
 		algorithm(0);
 		if (unsolvable){
-			System.out.println("This graph is unsolvable!");
+            System.out
+                    .println("\nDid not find a " + numColors
+                            + " coloring of graph");
 		}
-		System.out.println("Done!");
+		else {
+            System.out.println("Found a " + numColors + " coloring of graph");
+        }
+        System.out.println("Backtracking with MAC has finished running");
+        System.out.println("Final Graph");
+        printGandC();
 	}
 
 	@Override
