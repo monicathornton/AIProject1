@@ -4,10 +4,11 @@ import java.util.ArrayList;
 
 public class Chromosome {
 	protected int numVertices;
-	public ArrayList<Vertex> genes;
+	public ArrayList<Vertex> genes = new ArrayList<Vertex>();
 	public int fitness;
 	public Chromosome(ArrayList<Vertex> genes){
 		this.genes = genes;
+		numVertices = genes.size();
 	}
 	public int getNumVertices() {
 		return numVertices;
@@ -31,7 +32,7 @@ public class Chromosome {
 		return genes.get(i);
 	}
 	public void setGene(int i, int color){
-		System.out.println(i + " " + color);
+		//System.out.println(i + " " + color + " " +  genes.size());
 		genes.get(i).setColor(color);
 	}
 	public Chromosome clone(){
@@ -41,6 +42,7 @@ public class Chromosome {
 			v.createUsableColors(genes.get(i).usableColors.size());
 			geneCopy.add(v);
 		}
+		//System.out.println(geneCopy.size() + " " + numVertices);
 		for(int i = 0; i < numVertices;i++){
 			ArrayList<Vertex> nei = genes.get(i).getNeighbors();
 			for(int j = 0; j < genes.get(i).neighbors.size(); j++){
@@ -48,6 +50,7 @@ public class Chromosome {
 				geneCopy.get(i).addNeighbors(geneCopy.get(nei.get(j).getId()));
 			}
 		}
+		//System.out.println(geneCopy.size() + " " + genes.size() + " " + numVertices);
 		Chromosome c = new Chromosome(geneCopy);
 		c.fitness = this.fitness;
 		c.numVertices = this.numVertices;
