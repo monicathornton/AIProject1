@@ -54,7 +54,6 @@ public class BacktrackForCheck extends AbstractAlgorithm {
 				curVertex = current.get(current.indexOf(curVertex) + 1); //next vertex
 			}
 			else{
-				System.out.println("Breaking out of while loop.");
 				break;
 			}
 		}
@@ -62,7 +61,6 @@ public class BacktrackForCheck extends AbstractAlgorithm {
 
 	public void chooseColor(){
 	    if (unsolvable){return;}
-        System.out.println("Forward checking...");
         if (curVertex.getAllDeleted()){unsolvable = true; return;}  //Hack
         curVertex.setColor(curVertex.usableColors.get(0));  //first available color
         for (Vertex nei : curVertex.neighbors){         //delete all conflicting colors in neighbors

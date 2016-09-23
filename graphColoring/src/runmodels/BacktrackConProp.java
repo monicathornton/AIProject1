@@ -95,7 +95,9 @@ public class BacktrackConProp extends AbstractAlgorithm { //May want to make thi
     public void checkConsistency(Vertex tail){
         for (Arc arc : tail.inArcs ){
             if (arc.getTail().getNeighbors().contains(arc.getStart()) && arc.getTail().usableColors.size() == 1) { //neighbors
-                arc.getStart().deleteColor(arc.getTail().usableColors.get(0));
+                if (arc.getStart().getColor() == -1) {  //only prune unassigned colors
+                    arc.getStart().deleteColor(arc.getTail().usableColors.get(0));
+                }
             }
 
         }
@@ -114,14 +116,10 @@ public class BacktrackConProp extends AbstractAlgorithm { //May want to make thi
     }
 
     public void resetConsistency(){
-        for (Arc arc : curVertex.outArcs){
-            if (arc.getTail().getNeighbors().contains(curVertex)){
-            arc.getTail().addColor(curVertex.getColor());
-        }
-    }
+
     }
 
     public void backtrackLevel(){
-        System.out.println("haven't hit this yet");
+        System.out.println("backtrack!");
     }
 }
