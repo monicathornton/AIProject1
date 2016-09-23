@@ -12,17 +12,28 @@ public class BacktrackForCheck extends AbstractAlgorithm {
 	public BacktrackForCheck(ArrayList<Vertex> vertices) {
 		System.out.println("Running the Backtracking algorithm with forward checking");
 		this.current = vertices;
-		this.curVertex = current.get(0);
+        setCurGraph(current);
+        this.curVertex = current.get(0);
 		this.numNodes = vertices.size();
+
+        System.out.println("Initial Graph");
+        printGandC();
 
         for (Vertex v : vertices){
             v.createUsableColors(numColors);  // set number of colors available
         }
 		algorithm(0);
-		if (unsolvable){
-			System.out.println("This graph is unsolvable!");
-		}
-		System.out.println("Done!");
+        if (unsolvable){
+            System.out
+                    .println("\nDid not find a " + numColors
+                            + " coloring of graph");
+        }
+        else {
+            System.out.println("Found a " + numColors + " coloring of graph");
+        }
+        System.out.println("Backtracking with MAC has finished running");
+        System.out.println("Final Graph");
+        printGandC();
 	}
 
 	@Override
