@@ -4,9 +4,10 @@ package runmodels;
  * A class to create the vertices for a graph coloring problem. 
  */
 
+import sun.java2d.pipe.AAShapePipe;
 
 import java.util.ArrayList;
-
+import java.util.List;
 
 public class Vertex extends AbstractVertex {
 	// unique identifier associated with each node
@@ -24,6 +25,8 @@ public class Vertex extends AbstractVertex {
 	
 	// list of all neighbors for each node
 	ArrayList<Vertex> neighbors = new ArrayList<Vertex>();
+	ArrayList<Arc> inArcs = new ArrayList<>();
+    ArrayList<Arc> outArcs = new ArrayList<>();
 	ArrayList<Integer> usableColors = new ArrayList<Integer>();
 
 	/**
@@ -69,7 +72,16 @@ public class Vertex extends AbstractVertex {
 
 	void addNeighbors(Vertex v) {
 		neighbors.add(v);
+
 	}
+
+	void addArc(Vertex v){
+        Arc a = new Arc(this, v);
+        if(v.getId() > this.getId()) {
+            outArcs.add(a);
+            v.inArcs.add(a);
+        }
+    }
 
 	void addColor(int color){
 		usableColors.add(color);
@@ -107,7 +119,6 @@ public class Vertex extends AbstractVertex {
 
 	public Vertex checkConflicts(){
 		Vertex conflicting = null;
-		
 		for (Vertex nei : neighbors) {
 			if (this.color == nei.color){
 				conflicting = nei;
@@ -116,19 +127,6 @@ public class Vertex extends AbstractVertex {
 		return conflicting;
 	}
 
-
-	public int getNumConflicts(){
-		int numConflicts = 0;
-		
-		for (Vertex nei : neighbors) {
-			if (this.color == nei.color){
-				numConflicts++;
-			}
-		}
-		return numConflicts;
-	}
-	
-	
 
     public ArrayList<Vertex> cloneList(ArrayList<Vertex> vList) {
         ArrayList<Vertex> clonedList = new ArrayList<Vertex>(vList.size());
