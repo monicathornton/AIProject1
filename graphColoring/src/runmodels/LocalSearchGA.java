@@ -38,7 +38,10 @@ public class LocalSearchGA extends AbstractAlgorithm {
 		curIterations = 0;
 		initialize();
 		int bestfitness = Integer.MIN_VALUE;
+		Chromosome best = getBest();
+		curGraph = best.genes;
 		Double d = killRate*popSize;
+		printGandC();
 		int numOffspring = d.intValue();
 		//System.out.println((killRate*popSize) + " " + numOffspring);
 		for(int i = 0; i < population.size(); i++){
@@ -64,13 +67,15 @@ public class LocalSearchGA extends AbstractAlgorithm {
 			for(int k = 0; k < kiddos.size(); k++){
 				population.set(k, kiddos.get(k).clone());
 			}
-			Chromosome best = getBest();
+			best = getBest();
 			curGraph = best.genes;
+			
 			conflictHistory.add(best.fitness);
 			bestfitness = best.fitness;
 			System.out.println(curIterations + " " + best.fitness);
 			curIterations++;
 		}
+		printGandC();
 		return conflictHistory;
 	}
 	@Override
