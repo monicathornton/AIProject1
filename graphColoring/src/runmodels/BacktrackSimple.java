@@ -1,5 +1,6 @@
 package runmodels;
 
+import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
 import runmodels.Node;
 import runmodels.Tree;
 import java.util.ArrayList;
@@ -20,7 +21,12 @@ public class BacktrackSimple extends AbstractAlgorithm {
         this.curVertex = current.get(0);
         this.numNodes = vertices.size();
 
-        actualAlgorithm();
+        try {
+            actualAlgorithm();
+        }
+        catch (StackOverflowError e){
+            System.out.println("StackOverflow, abandoning attempt!");
+        }
         if (unsolvable){
             System.out.println("This graph is unsolvable!");
         }
@@ -47,21 +53,18 @@ public class BacktrackSimple extends AbstractAlgorithm {
 
 	private void actualAlgorithm() {
 
-        while(true) {
-            chooseColorStupid();  //choose first available color
+            while (true) {
+                chooseColorStupid();  //choose first available color
 //            states.add(current); //add state to tree
-            if (unsolvable){
-                break;
+                if (unsolvable) {
+                    break;
+                } else if (curVertex.getId() != numNodes) {// check for all nodes colored
+                    curVertex = current.get(current.indexOf(curVertex) + 1); //next vertex
+                } else { //TODO: return list of states that got us here.
+                    break;
+                }
+                actualAlgorithm(); //recursive call TODO: erasable...?
             }
-            else if (curVertex.getId() != numNodes) {// check for all nodes colored
-                curVertex = current.get(current.indexOf(curVertex) + 1); //next vertex
-            }
-            else{ //TODO: return list of states that got us here.
-                break;
-            }
-            actualAlgorithm(); //recursive call TODO: erasable...?
-        }
-
     }
 
     private void chooseColorStupid(){
@@ -87,7 +90,6 @@ public class BacktrackSimple extends AbstractAlgorithm {
     }
 
     private void backtrackLevel(){
-        System.out.println("Backtracking one level.");
         if (curVertex.getId() == 1){
             unsolvable = true;
             return;
