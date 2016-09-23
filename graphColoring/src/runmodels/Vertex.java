@@ -108,6 +108,7 @@ public class Vertex extends AbstractVertex {
 
 	public Vertex checkConflicts(){
 		Vertex conflicting = null;
+		
 		for (Vertex nei : neighbors) {
 			if (this.color == nei.color){
 				conflicting = nei;
@@ -116,6 +117,19 @@ public class Vertex extends AbstractVertex {
 		return conflicting;
 	}
 
+
+	public int getNumConflicts(){
+		int numConflicts = 0;
+		
+		for (Vertex nei : neighbors) {
+			if (this.color == nei.color){
+				numConflicts++;
+			}
+		}
+		return numConflicts;
+	}
+	
+	
 
     public ArrayList<Vertex> cloneList(ArrayList<Vertex> vList) {
         ArrayList<Vertex> clonedList = new ArrayList<Vertex>(vList.size());
