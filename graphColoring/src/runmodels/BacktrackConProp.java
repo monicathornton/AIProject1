@@ -53,7 +53,6 @@ public class BacktrackConProp extends AbstractAlgorithm { //May want to make thi
                 }
             }
         }
-
     }
 
 	public void actualAlgorithm(){
