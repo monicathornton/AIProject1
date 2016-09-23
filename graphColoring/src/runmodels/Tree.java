@@ -56,8 +56,8 @@ public class Tree {
         }
     }
 
-    public ArrayList backtrack(){
-        last = (Node) this.getPrev().get(this.getPrev().size() -2);
-        return last.getState();
-    }
+//    public ArrayList backtrack(){
+//        last = (Node) this.getPrev().get(this.getPrev().size() -2);
+//        return last.getState();
+//    }
 }

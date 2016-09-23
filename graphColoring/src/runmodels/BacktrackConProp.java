@@ -3,8 +3,25 @@ package runmodels;
 import java.util.ArrayList;
 
 public class BacktrackConProp extends AbstractAlgorithm { //May want to make this inherit from BacktrackSimple? Can we do that?
+	ArrayList<Vertex> current; //vertices as currently colored
+	int numColors = 3;  //total number of colors allowed
+	Vertex curVertex; //cur vertex to color
+	int numNodes;  //total number of vertices to color
+	boolean unsolvable = false;
+
 	public BacktrackConProp(ArrayList<Vertex> vertices) {
-		System.out.println("Running the Simple Backtracking algorithm with constraint propagation (MAC)");	
+		System.out.println("Running the Simple Backtracking algorithm with constraint propagation (MAC)");
+		this.current = vertices;
+		this.curVertex = current.get(0);
+		this.numNodes = vertices.size();
+
+        preProcess(); //create arcs and set number of usable colors
+
+		algorithm(0);
+		if (unsolvable){
+			System.out.println("This graph is unsolvable!");
+		}
+		System.out.println("Done!");
 	}
 
 	@Override
@@ -22,7 +39,89 @@ public class BacktrackConProp extends AbstractAlgorithm { //May want to make thi
 	@Override
 	protected int algorithm(int curV) {
 		// TODO Auto-generated method stub
+		actualAlgorithm();
+
 		return 0;
 	}
-	
+
+	public void preProcess(){
+        for (Vertex v : current){
+            v.createUsableColors(numColors);  // set number of colors available
+            for (Vertex vt : current){        // set arcs up
+                if (vt != v) {
+                    v.addArc(vt);
+                }
+            }
+        }
+
+    }
+
+	public void actualAlgorithm(){
+		while(true){
+			chooseColor();
+			if (unsolvable){
+				break;
+			}
+			else if (curVertex.getId() != numNodes) {// check for all nodes colored
+				curVertex = current.get(current.indexOf(curVertex) + 1); //next vertex
+			}
+			else{
+				System.out.println("Breaking out of while loop.");
+				break;
+			}
+		}
+	}
+
+	public void chooseColor(){
+        System.out.println("choosing color");
+        curVertex.setColor(curVertex.usableColors.get(0)); // first available color
+        applyArc();
+    }
+
+    public void applyArc(){
+        for (Arc arc : curVertex.outArcs){
+            if (arc.getTail().getNeighbors().contains(curVertex)){
+                arc.getTail().deleteColor(curVertex.getColor());
+                if (arc.getTail().getAllDeleted()){
+                    System.out.println("Backtracking");
+                    backtrackColor();
+                }
+                //since something was deleted from tail, all arcs pointing to tail need to be reconsidered
+                checkConsistency(arc.getTail());
+            }
+        }
+    }
+
+    public void checkConsistency(Vertex tail){
+        for (Arc arc : tail.inArcs ){
+            if (arc.getTail().getNeighbors().contains(arc.getStart()) && arc.getTail().usableColors.size() == 1) { //neighbors
+                arc.getStart().deleteColor(arc.getTail().usableColors.get(0));
+            }
+
+        }
+    }
+
+    public void backtrackColor(){
+        resetConsistency();
+        curVertex.deleteColor(curVertex.getColor());
+        if (curVertex.getAllDeleted()){
+            backtrackLevel();
+        }
+        else{
+            curVertex.setColor(curVertex.usableColors.get(0));
+            applyArc();
+        }
+    }
+
+    public void resetConsistency(){
+        for (Arc arc : curVertex.outArcs){
+            if (arc.getTail().getNeighbors().contains(curVertex)){
+            arc.getTail().addColor(curVertex.getColor());
+        }
+    }
+    }
+
+    public void backtrackLevel(){
+        System.out.println("haven't hit this yet");
+    }
 }

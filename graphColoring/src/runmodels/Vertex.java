@@ -25,6 +25,8 @@ public class Vertex extends AbstractVertex {
 	
 	// list of all neighbors for each node
 	ArrayList<Vertex> neighbors = new ArrayList<Vertex>();
+	ArrayList<Arc> inArcs = new ArrayList<>();
+    ArrayList<Arc> outArcs = new ArrayList<>();
 	ArrayList<Integer> usableColors = new ArrayList<Integer>();
 
 	/**
@@ -70,7 +72,16 @@ public class Vertex extends AbstractVertex {
 
 	void addNeighbors(Vertex v) {
 		neighbors.add(v);
+
 	}
+
+	void addArc(Vertex v){
+        Arc a = new Arc(this, v);
+        if(v.getId() > this.getId()) {
+            outArcs.add(a);
+            v.inArcs.add(a);
+        }
+    }
 
 	void addColor(int color){
 		usableColors.add(color);
