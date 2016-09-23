@@ -71,6 +71,10 @@ public class BacktrackConProp extends AbstractAlgorithm { //May want to make thi
 	}
 
 	public void chooseColor(){
+	    if(curVertex.getAllDeleted()){
+            unsolvable = true; //hack
+            return;
+        }
         curVertex.setColor(curVertex.usableColors.get(0)); // first available color
         applyArc();
     }
@@ -137,6 +141,10 @@ public class BacktrackConProp extends AbstractAlgorithm { //May want to make thi
         curVertex.deleteColor(curVertex.getColor());
         if (curVertex.getAllDeleted() && curVertex.getId() == 0){
             unsolvable = true;
+            return;
+        }
+        else if(curVertex.getAllDeleted()){
+            unsolvable = true; //hack
             return;
         }
         curVertex.setColor(curVertex.usableColors.get(0));
