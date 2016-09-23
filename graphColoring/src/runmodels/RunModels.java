@@ -1,5 +1,5 @@
 /*
- * The class that contains the main method that runs either the graph
+5 * The class that contains the main method that runs either the graph
  * generation process, or one of the graph coloring variations (min conflicts, 
  * simple backtracking, backtracking with forward checking, backtracking with
  * constraint propagation and local search using a genetic algorithm).  

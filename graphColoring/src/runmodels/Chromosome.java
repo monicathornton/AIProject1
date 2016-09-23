@@ -6,8 +6,8 @@ public class Chromosome {
 	protected int numVertices;
 	public ArrayList<Vertex> genes;
 	public int fitness;
-	public Chromosome(){
-		
+	public Chromosome(ArrayList<Vertex> genes){
+		this.genes = genes;
 	}
 	public int getNumVertices() {
 		return numVertices;
@@ -30,7 +30,7 @@ public class Chromosome {
 	public Vertex getGene(int i){
 		return genes.get(i);
 	}
-	public void setGene(int i, Vertex v){
-		genes.set(i, v);
+	public void setGene(int i, int color){
+		genes.get(i).setColor(color);
 	}
 }
