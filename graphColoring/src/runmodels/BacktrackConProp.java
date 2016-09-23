@@ -62,7 +62,7 @@ public class BacktrackConProp extends AbstractAlgorithm { //May want to make thi
 			if (unsolvable){
 				break;
 			}
-			else if (curVertex.getId() != numNodes) {// check for all nodes colored
+			else if (curVertex.getId() != numNodes -1 ) {// check for all nodes colored
 				curVertex = current.get(current.indexOf(curVertex) + 1); //next vertex
 			}
 			else{
