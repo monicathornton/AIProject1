@@ -1,5 +1,5 @@
 /*
-5 * The class that contains the main method that runs either the graph
+ * The class that contains the main method that runs either the graph
  * generation process, or one of the graph coloring variations (min conflicts, 
  * simple backtracking, backtracking with forward checking, backtracking with
  * constraint propagation and local search using a genetic algorithm).  
@@ -49,9 +49,14 @@ public class RunModels {
 		choice = in.nextLine();
 
 		// change these to get the required graph from the input file
-		String folderName = "graphSize100";
-		String fileName = "graph100";
-		String versionName = "_v5.txt";
+		String folderName = "graphSize80";
+		String fileName = "graph80";
+		String versionName = "_v1.txt";
+//		String versionName = "_v2.txt";
+//		String versionName = "_v3.txt";
+//		String versionName = "_v4.txt";
+//		String versionName = "_v5.txt";
+//		
 		
 		if (!choice.equals("gc")) {
 			// reads the input file to populate the ArrayList of vertices, for passing to the algorithm
@@ -61,7 +66,9 @@ public class RunModels {
 		
 		if (choice.equals("gc")) {
 			// calls function to run the graph generator
-			GraphGenerator gcGraphs = new GraphGenerator();
+			// commented out for now, bc don't want to change a graph accidentally while we are running experiments
+			//GraphGenerator gcGraphs = new GraphGenerator();
+			System.out.println("If you need to run the graph generator,please uncomment it.");
 		} else if (choice.equals("1")) {
 
 			for (int i = 0; i < 5; i++) {
