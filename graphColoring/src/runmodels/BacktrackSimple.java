@@ -93,7 +93,7 @@ public class BacktrackSimple extends AbstractAlgorithm {
             unsolvable = true;
             return;
         }
-        Vertex curNextI = current.get(curVertex.getId() -2);  //taking into account 0-based index. indexOf(curVertext may work now)
+        Vertex curNextI = current.get(curVertex.getId() -1);  //taking into account 0-based index. indexOf(curVertext may work now)
         curNextI.deleteColor(curNextI.getColor()); // color won't work
 
         //reset curVertex
