@@ -1,34 +1,81 @@
 package runmodels;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class LocalSearchGA extends AbstractAlgorithm {
-	protected double mutRate;
-	protected double killRate;
-	protected double popSize;
+	protected double mutRate = 0.2;
+	protected double killRate = 0.6;
+	protected int popSize = 100;
+	protected int numVertices;
 	//curGraph is current best graph
-	protected ArrayList<Chromosome> population;
+	protected ArrayList<Chromosome> population = new ArrayList<Chromosome>();
 	protected int fitConstant = -1;
+	protected int poolSize = 2;
+	protected int parentSize = 2;
+	protected int colorlim = 3;
+	
 	public LocalSearchGA(ArrayList<Vertex> vertices) {
 		curGraph = vertices;
-		
+		numVertices = vertices.size();
+		for(int i = 0; i < numVertices; i++){
+			vertices.get(i).createUsableColors(colorlim);
+		}
+		maxIterations = 1000;
+		mutRate = 0.2;
+		killRate = 0.6;
+		popSize = 100;
+		fitConstant = -1;
+		poolSize = 2;
+		parentSize = 2;
+		colorlim = 3;
+		conflictHistory = new ArrayList<Integer>();
 		System.out.println("Running the Local Search using a genetic algorithm");	
+		runAlgo();
 	}
 	@Override
 	public ArrayList<Integer> runAlgo(){
 		curIterations = 0;
 		initialize();
-		while(curIterations < maxIterations){
-			Chromosome[] parents = selection();
-			Chromosome child = recombination(parents);
-			child = mutation(child);
-			child.fitness = evalFit(child);
-			replacement(child);
-			Chromosome best = getBest();
+		int bestfitness = Integer.MIN_VALUE;
+		Chromosome best = getBest();
+		curGraph = best.genes;
+		Double d = killRate*popSize;
+		printGandC();
+		int numOffspring = d.intValue();
+		//System.out.println((killRate*popSize) + " " + numOffspring);
+		for(int i = 0; i < population.size(); i++){
+			population.get(i).fitness = evalFit(population.get(i));
+		}
+		
+		
+		while(curIterations < maxIterations && bestfitness < 0){
+			//System.out.println(numOffspring);
+			
+			ArrayList<Chromosome> kiddos = new ArrayList<Chromosome>();
+			for (int j = 0; j < numOffspring; j++){
+				
+				Chromosome[] parents = selection();
+				Chromosome child = recombination(parents);
+				child = mutation(child);
+				child.fitness = evalFit(child);
+				kiddos.add(child);
+			}
+			//Collections.sort(kiddos,(player1, player2) -> player1.getFitness()- player2.getFitness());
+			Collections.sort(population, (chromo1, chromo2) -> chromo1.getFitness()- chromo2.getFitness());
+			
+			for(int k = 0; k < kiddos.size(); k++){
+				population.set(k, kiddos.get(k).clone());
+			}
+			best = getBest();
 			curGraph = best.genes;
+			
 			conflictHistory.add(best.fitness);
+			bestfitness = best.fitness;
+			System.out.println(curIterations + " " + best.fitness);
 			curIterations++;
 		}
+		printGandC();
 		return conflictHistory;
 	}
 	@Override
@@ -49,32 +96,86 @@ public class LocalSearchGA extends AbstractAlgorithm {
 		
 	}
 	protected int evalFit(Chromosome c){
-		ArrayList<Integer[]> conflicts = findConflicts(c.genes);
-		return fitConstant*conflicts.size();
+		ArrayList<Vertex> conflicts = findConflicts(c.genes);
+		
+		return fitConstant*conflicts.size()/2;
 	}
 	protected Chromosome getBest(){
 		int bestindex = 0;
 		int bestfitness = population.get(0).fitness;
 		for(int i = 1; i < population.size(); i++){
-			if(population.get(i).fitness < bestfitness){
+			if(population.get(i).fitness > bestfitness){
 				bestfitness = population.get(i).fitness;
 				bestindex = i;
 			}
 		}
 		return population.get(bestindex);
 	}
-	protected void replacement(Chromosome growinUp){//TODO finish replacement
-		
-	}
+	
 	
 	protected void initialize(){//TODO finish initialization
+		ArrayList<Vertex> v = curGraph;
 		
+		for(int i = 0; i < numVertices; i++){
+			v.get(i).createUsableColors(colorlim);
+		}
+		Chromosome c = new Chromosome(v);
+		for(int i = 0; i < popSize; i++){
+			
+			
+			Chromosome c1 = copyGraph(c);
+			for(int j = 0; j < curGraph.size(); j++){
+				
+				
+				Double r1 = Math.random() * curGraph.get(0).usableColors.size();
+				int r = r1.intValue();
+				//System.out.println(r);
+				int newcolor = curGraph.get(0).usableColors.get(r);
+				//System.out.println(newcolor);
+				c1.setGene(j, newcolor);
+				
+			}
+			c1.fitness = evalFit(c1);
+			population.add(c1);
+		}
 	}
-	protected Chromosome mutation(Chromosome frankie){//TODO finish mutation
+	protected Chromosome mutation(Chromosome tomut){//TODO finish mutation
+		Chromosome frankie = tomut.clone();
+		for (int i = 0; i < frankie.getNumVertices(); i++) {
+			double p = Math.random();
+			if (p < mutRate) {
+				
+					Vertex c = frankie.getGene(i);
+					Double q1 =  Math.random() * c.usableColors.size();
+					int q = q1.intValue();
+					int newcolor = c.usableColors.get(q);
+					frankie.setGene(i, ((newcolor+c.getColor())%c.usableColors.size()));
+				
+			}
+		}
+		
 		return frankie;
 	}
 	protected Chromosome[] selection(){ //TODO finish selection
-		Chromosome[] parents = new Chromosome[2];
+		Chromosome[] parents = new Chromosome[parentSize];
+		for(int i = 0; i < parentSize; i++){
+			ArrayList<Chromosome> pool = new ArrayList<Chromosome>();
+			for(int j = 0; j < poolSize; j++){
+				Double r = Math.random()*popSize;
+				int r1 = r.intValue();
+				pool.add(population.get(r1));
+				
+			}
+			Chromosome best = pool.get(0);
+			for(int k = 1; k < pool.size(); k++){
+				if(best.fitness > pool.get(k).fitness){
+					best = pool.get(k);
+				}
+			}
+			parents[i] = best;
+		}
+		
+		
 		return parents;
 	}
 	protected Chromosome recombination(Chromosome[] parents){
@@ -89,14 +190,14 @@ public class LocalSearchGA extends AbstractAlgorithm {
 			parentProbs[i] = parentProbs[i - 1] + selectProb;
 		}
 
-		Chromosome offspring = new Chromosome();
+		Chromosome offspring = parents[0].clone();
 		// probabilistically selects each gene
 		for (int i = 0; i < parents[0].getNumVertices(); i++) {
 			double p = Math.random();
 
 			for (int j = 0; j < parentProbs.length; j++) {
 				if (p < parentProbs[j]) {
-					offspring.setGene(i, parents[j].getGene(i));
+					offspring.setGene(i, parents[j].getGene(i).getColor());
 					break;
 				}
 			}
@@ -125,7 +226,7 @@ public class LocalSearchGA extends AbstractAlgorithm {
 		return popSize;
 	}
 
-	public void setPopSize(double popSize) {
+	public void setPopSize(int popSize) {
 		this.popSize = popSize;
 	}
 
@@ -136,9 +237,8 @@ public class LocalSearchGA extends AbstractAlgorithm {
 	public void setPopulation(ArrayList<Chromosome> population) {
 		this.population = population;
 	}
-	
-	
-
-	
-
+	public Chromosome copyGraph(Chromosome graph){
+		//System.out.println("clonging chromosome");
+		return graph.clone();
+	}
 }

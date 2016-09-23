@@ -20,7 +20,7 @@ public abstract class AbstractAlgorithm {
 	protected ArrayList<Vertex> curGraph;
 	
 	public ArrayList<Integer> runAlgo(){ //Template Method demands I write an algorithm skellington: Maybe override for GA?
-		ArrayList<Integer[]> conflicts = findConflicts(curGraph);
+		ArrayList<Vertex> conflicts = findConflicts(curGraph);
 		while(curIterations < maxIterations){
 			conflicts = findConflicts(curGraph);
 			curConflicts = conflicts.size();
@@ -36,15 +36,48 @@ public abstract class AbstractAlgorithm {
 		}
 		return conflictHistory;//Algorithm fails
 	}
-	protected ArrayList<Integer[]> findConflicts(ArrayList<Vertex> graph){//will implement later! 
+	protected ArrayList<Vertex> findConflicts(ArrayList<Vertex> graph){//will implement later! 
 		//Returns a list of pairs of indices of vertices that conflict
-		ArrayList<Integer[]> con = new ArrayList<Integer[]>();
+		ArrayList<Vertex> con = new ArrayList<Vertex>();
+		for(Vertex v : graph){
+			ArrayList<Vertex> neighbors = v.getNeighbors();
+			for(Vertex nei :  neighbors){
+				if(nei.getColor() == v.getColor()){
+					con.add(nei);
+				}
+			}
+		}
 		return con;
 	}
 	protected abstract int algorithm(int curV);//detects conflicts, finds required values, etc. returns color
 	protected abstract int selectVertex(); //Selects unassigned/conflicting/random variable(vertex) and returns the index in the current graph
 	protected abstract void assignColorToVertex(int v, int c); //assigns a color c to a vertex at index v in curGraph
 	//TODO What other functions to add, you guys?
+	
+	public void printGandC(){
+		//prints graph and coloring
+		//print coloring first
+		System.out.println("Printing coloring");
+		for(Vertex v : curGraph){
+		
+			System.out.println("Vertex: " + v.getId() + ", Color:" + v.getColor());
+		}
+		int count = 0;
+		System.out.println("Printing graph");
+		for(int i = 0; i < curGraph.size(); i++){
+			for(int j = 0; j < curGraph.get(i).neighbors.size(); j++){
+				
+				System.out.print(curGraph.get(i).getId() + " -> " + curGraph.get(i).neighbors.get(j).getId() + ", ");
+				count++;
+				if(count == 15){
+					System.out.println();
+					count = 0;
+				}
+			}
+			
+		}
+		
+	}
 	public int getCurIterations() {
 		return curIterations;
 	}
