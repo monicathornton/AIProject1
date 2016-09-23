@@ -23,6 +23,8 @@ public class Vertex extends AbstractVertex {
 	
 	// list of all neighbors for each node
 	ArrayList<Vertex> neighbors = new ArrayList<Vertex>();
+	ArrayList<Arc> inArcs = new ArrayList<>();
+    ArrayList<Arc> outArcs = new ArrayList<>();
 	ArrayList<Integer> usableColors = new ArrayList<Integer>();
 
 	/**
@@ -70,7 +72,18 @@ public class Vertex extends AbstractVertex {
 	int getId() {
 		return id;
 	}
-	
+
+
+	//add arc to list of arcs
+	void addArc(Vertex v){
+        Arc a = new Arc(this, v);
+        if(v.getId() > this.getId()) {
+            outArcs.add(a);
+            v.inArcs.add(a);
+        }
+    }
+
+
 	// add the color to the list of usable colors
 	void addColor(int color){
 		usableColors.add(color);
@@ -119,7 +132,6 @@ public class Vertex extends AbstractVertex {
 	// check for a vertex that conflicts with this vertex
 	public Vertex checkConflicts(){
 		Vertex conflicting = null;
-		
 		for (Vertex nei : neighbors) {
 			if (this.color == nei.color){
 				conflicting = nei;
