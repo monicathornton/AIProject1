@@ -108,13 +108,26 @@ public class LocalSearchGA extends AbstractAlgorithm {
 	
 	
 	protected void initialize(){//TODO finish initialization
-		ArrayList v = curGraph;
+		ArrayList<Vertex> v = curGraph;
+		
+		for(int i = 0; i < numVertices; i++){
+			v.get(i).createUsableColors(colorlim);
+		}
 		Chromosome c = new Chromosome(v);
 		for(int i = 0; i < popSize; i++){
-			Chromosome c1 = new Chromosome(c.getGenes());
+			
+			
+			Chromosome c1 = copyGraph(c);
 			for(int j = 0; j < curGraph.size(); j++){
-				int r = (int) Math.random() * curGraph.get(0).usableColors.size();
+				for(int m = 0; m < curGraph.get(0).usableColors.size(); m++){
+					System.out.println(curGraph.get(0).usableColors.get(m));
+				}
+				
+				Double r1 = Math.random() * curGraph.get(0).usableColors.size();
+				int r = r1.intValue();
+				System.out.println(r);
 				int newcolor = curGraph.get(0).usableColors.get(r);
+				System.out.println(newcolor);
 				c1.setGene(j, newcolor);
 				
 			}
@@ -217,9 +230,7 @@ public class LocalSearchGA extends AbstractAlgorithm {
 	public void setPopulation(ArrayList<Chromosome> population) {
 		this.population = population;
 	}
-	
-	
-
-	
-
+	public Chromosome copyGraph(Chromosome graph){
+		return graph.clone();
+	}
 }

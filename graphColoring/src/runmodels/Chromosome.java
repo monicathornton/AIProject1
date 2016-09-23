@@ -31,6 +31,26 @@ public class Chromosome {
 		return genes.get(i);
 	}
 	public void setGene(int i, int color){
+		System.out.println(i + " " + color);
 		genes.get(i).setColor(color);
+	}
+	public Chromosome clone(){
+		ArrayList<Vertex> geneCopy = new ArrayList<Vertex>();
+		for(int i = 0; i < numVertices; i++){
+			Vertex v = new Vertex(genes.get(i).getId(), genes.get(i).getXLoc(), genes.get(i).getYLoc(), genes.get(i).getColor());
+			v.createUsableColors(genes.get(i).usableColors.size());
+			geneCopy.add(v);
+		}
+		for(int i = 0; i < numVertices;i++){
+			ArrayList<Vertex> nei = genes.get(i).getNeighbors();
+			for(int j = 0; j < genes.get(i).neighbors.size(); j++){
+				
+				geneCopy.get(i).addNeighbors(geneCopy.get(nei.get(j).getId()));
+			}
+		}
+		Chromosome c = new Chromosome(geneCopy);
+		c.fitness = this.fitness;
+		c.numVertices = this.numVertices;
+		return c;
 	}
 }
