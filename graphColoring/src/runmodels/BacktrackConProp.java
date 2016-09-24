@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class BacktrackConProp extends AbstractAlgorithm { //May want to make this inherit from BacktrackSimple? Can we do that?
 	ArrayList<Vertex> current; //vertices as currently colored
-	int numColors = 4;  //total number of colors allowed
+	int numColors = 3;  //total number of colors allowed
 	Vertex curVertex; //cur vertex to color
 	int numNodes;  //total number of vertices to color
 	boolean unsolvable = false;
@@ -91,9 +91,9 @@ public class BacktrackConProp extends AbstractAlgorithm { //May want to make thi
     }
 
     public void applyArc(){
-        System.out.println("Enforcing arc consistency");
         for (Arc arc : curVertex.outArcs){
             if (arc.getTail().getNeighbors().contains(curVertex)){
+                System.out.println("Enforcing consistency between " + arc.getStart().getId() + ":" + arc.getStart().printColors() + " and " + arc.getTail().getId() +  ":" +arc.getTail().printColors());
                 arc.getTail().deleteColor(curVertex.getColor());
                 if (arc.getTail().getAllDeleted()){
                     backtrackColor();
@@ -109,6 +109,7 @@ public class BacktrackConProp extends AbstractAlgorithm { //May want to make thi
             if (arc.getTail().getNeighbors().contains(arc.getStart()) && arc.getTail().usableColors.size() == 1) { //neighbors
                 if (arc.getStart().getColor() == -1) {  //only prune unassigned colors
                     arc.getStart().deleteColor(arc.getTail().usableColors.get(0));
+                    System.out.println("Enforcing consistency between " + arc.getStart().getId() + ":" + arc.getStart().printColors() + " and " + arc.getTail().getId() + ":" + arc.getTail().printColors());
                     if (arc.getStart().getAllDeleted() && arc.getStart().getId() == 0){
                         unsolvable = true;
                         return;
@@ -123,7 +124,7 @@ public class BacktrackConProp extends AbstractAlgorithm { //May want to make thi
     }
 
     public void backtrackColor(){
-        System.out.println("Backtracking a color");
+        System.out.println("Backtracking a color on Vertex " + curVertex.getId());
         resetConsistency();
         curVertex.deleteColor(curVertex.getColor());
         if (curVertex.getAllDeleted() && curVertex.getId() == 0){
@@ -148,7 +149,7 @@ public class BacktrackConProp extends AbstractAlgorithm { //May want to make thi
     }
 
     public void backtrackLevel(){
-        System.out.println("Backtracking a level");
+        System.out.println("Backtracking a level on Vertex " + curVertex.getId());
         curVertex.setColor(-1);
         curVertex = current.get(current.indexOf(curVertex) -1);
         resetConsistency();
