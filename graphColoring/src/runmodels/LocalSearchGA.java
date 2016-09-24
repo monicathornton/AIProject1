@@ -22,10 +22,11 @@ public class LocalSearchGA extends AbstractAlgorithm {
 		for(int i = 0; i < numVertices; i++){
 			vertices.get(i).createUsableColors(colorlim);
 		}
+		
 		maxIterations = 10000;
-		mutRate = 0.2;
-		killRate = 0.6;
-		popSize = 100;
+		mutRate = 0.1;
+		killRate = 0.5;
+		popSize = 150;
 		fitConstant = -1;
 		poolSize = 2;
 		parentSize = 2;
