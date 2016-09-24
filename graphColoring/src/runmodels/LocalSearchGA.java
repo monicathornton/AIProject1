@@ -1,5 +1,8 @@
 package runmodels;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -16,7 +19,15 @@ public class LocalSearchGA extends AbstractAlgorithm {
 	protected int parentSize = 2;//parameter for recombination
 	protected int colorlim = 3;//target coloring
 	
-	public LocalSearchGA(ArrayList<Vertex> vertices) {//initialize ALL the parameters and call runAlgo
+	// File writer that writes out the sample run information (if needed)
+	BufferedWriter sampleWriter = null;
+
+	// allows user to indicate whether or not this is a sample run (for output
+	// purposes)
+	boolean sampleRun = true;
+	
+	
+	public LocalSearchGA(ArrayList<Vertex> vertices) throws IOException {//initialize ALL the parameters and call runAlgo
 		curGraph = vertices;
 		numVertices = vertices.size();
 		for(int i = 0; i < numVertices; i++){
@@ -29,10 +40,27 @@ public class LocalSearchGA extends AbstractAlgorithm {
 		fitConstant = -1;
 		poolSize = 2;
 		parentSize = 2;
-		colorlim = 3;
+		colorlim = 4;
 		conflictHistory = new ArrayList<Integer>();
-		System.out.println("Running the Local Search using a genetic algorithmto " + colorlim + " color graph with " + vertices.size() + " vertices");	
+		
+
+		try {
+			FileWriter fileWriter = new FileWriter(
+					"../graphColoring/sampleRuns/SampleRunsGA_"
+							+ vertices.size() + "nodes.txt");
+			sampleWriter = new BufferedWriter(fileWriter);
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 		runAlgo();
+		
+		
+		printSampleRun4();
+		
+		
+		sampleWriter.close();
 	}
 	@Override
 	public ArrayList<Integer> runAlgo(){
@@ -42,7 +70,16 @@ public class LocalSearchGA extends AbstractAlgorithm {
 		Chromosome best = getBest();
 		curGraph = best.genes;
 		Double d = killRate*popSize;
-		printGandC();
+
+		if (sampleRun == true) {
+			try {
+				printSampleRun1();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
 		int numOffspring = d.intValue();
 		//System.out.println((killRate*popSize) + " " + numOffspring);
 		
@@ -58,7 +95,7 @@ public class LocalSearchGA extends AbstractAlgorithm {
 			ArrayList<Chromosome> kiddos = new ArrayList<Chromosome>();//create list of offspring
 			for (int j = 0; j < numOffspring; j++){
 				
-				Chromosome[] parents = selection();//tournament selection
+				Chromosome[] parents = selection();//tournament selection			
 				Chromosome child = recombination(parents);//uniform recombination
 				child = mutation(child);//mutation
 				child.fitness = evalFit(child);//evaluate fitness
@@ -75,11 +112,27 @@ public class LocalSearchGA extends AbstractAlgorithm {
 			
 			conflictHistory.add(best.fitness);//add the best fitness to the history
 			bestfitness = best.fitness;
-			System.out.println(curIterations + " " + best.fitness);
+			
+			if (sampleRun == true) {
+				try {
+					printSampleRun2(best.fitness);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}				
+			}
+
 			curIterations++;
 		}
 		//print the best graph after algorithm finishes
-		printGandC();
+		if (sampleRun==true) {
+			try {
+				printSampleRun3();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		return conflictHistory;
 	}
 	@Override
@@ -115,7 +168,6 @@ public class LocalSearchGA extends AbstractAlgorithm {
 		}
 		return population.get(bestindex);
 	}
-	
 	
 	protected void initialize(){//copies the graph popSize times and color each vertex randomly
 		ArrayList<Vertex> v = curGraph;
@@ -162,6 +214,8 @@ public class LocalSearchGA extends AbstractAlgorithm {
 	}
 	protected Chromosome[] selection(){ //tournament selection
 		Chromosome[] parents = new Chromosome[parentSize];
+		
+	
 		for(int i = 0; i < parentSize; i++){//for each set of parents
 			ArrayList<Chromosome> pool = new ArrayList<Chromosome>();//create a pool
 			for(int j = 0; j < poolSize; j++){
@@ -178,8 +232,7 @@ public class LocalSearchGA extends AbstractAlgorithm {
 			}
 			parents[i] = best;
 		}
-		
-		
+				
 		return parents;
 	}
 	protected Chromosome recombination(Chromosome[] parents){//uniform recombination
@@ -245,4 +298,147 @@ public class LocalSearchGA extends AbstractAlgorithm {
 		//System.out.println("clonging chromosome");
 		return graph.clone();
 	}
+	
+	// print intro and initial graph
+	public void printSampleRun1() throws IOException {
+
+		sampleWriter
+				.write("*******************************************************************************************");
+		sampleWriter.newLine();
+		sampleWriter
+				.write("*******************************************************************************************");
+		sampleWriter.newLine();
+		sampleWriter
+				.write("Running the Local Search using a genetic algorithm to " + colorlim + " color graph with " + curGraph.size() + " vertices");	
+		
+		sampleWriter.newLine();
+		sampleWriter
+				.write("*******************************************************************************************");
+		sampleWriter.newLine();
+		sampleWriter
+				.write("*******************************************************************************************");
+		sampleWriter.newLine();
+
+		
+		sampleWriter.newLine();
+		sampleWriter.write("###############################");
+		sampleWriter.newLine();
+		sampleWriter.write("Initial Graph");
+		sampleWriter.newLine();
+		sampleWriter.newLine();
+		
+		printGandCOut(sampleWriter);
+		
+		sampleWriter.newLine();
+	
+		sampleWriter.write("###############################");	
+		
+		sampleWriter.newLine();
+		sampleWriter.newLine();		
+		sampleWriter.write("Genes in inital population");
+		sampleWriter.newLine();		
+		
+		int count = 0; 
+		
+		for (int i = 0; i < population.size(); i++) {
+			for (int j = 0; j < population.get(i).getGenes().size(); j++) {
+				count++;
+				sampleWriter.write(population.get(i).getGene(j).getId() + ":" + population.get(i).getGene(j).getColor() + ", ");
+			
+				if (count == 10) {
+					sampleWriter.newLine();
+					count = 0; 
+				}
+			}
+		}
+		
+		sampleWriter.newLine();
+		sampleWriter
+		.write("----------------------------------------------------------------------------");
+		sampleWriter.newLine();
+		sampleWriter.write("Algorithm terminates once solution is found or " + maxIterations + " iterations is reached and bestFitness = 0");
+		sampleWriter.newLine();
+	}
+	
+	
+	// print iteration info
+	public void printSampleRun2(int bestFitness) throws IOException {
+		sampleWriter.write("Iteration " + curIterations + ": " + bestFitness + " best fitness");
+		sampleWriter.newLine();		
+	}
+	
+	
+	// print finalGraph
+	public void printSampleRun3() throws IOException {
+		sampleWriter.newLine();
+		sampleWriter
+		.write("----------------------------------------------------------------------------");
+		
+		sampleWriter.newLine();		
+		sampleWriter.write("Genes in final population");
+		sampleWriter.newLine();		
+		
+		int count = 0; 
+		
+		for (int i = 0; i < population.size(); i++) {
+			for (int j = 0; j < population.get(i).getGenes().size(); j++) {
+				count++;
+				sampleWriter.write(population.get(i).getGene(j).getId() + ":" + population.get(i).getGene(j).getColor() + ", ");
+			
+				if (count == 10) {
+					sampleWriter.newLine();
+					count = 0; 
+				}
+			}
+		}
+		
+		
+		sampleWriter.newLine();
+		sampleWriter.write("###############################");
+		sampleWriter.newLine();
+		sampleWriter.write("Final Graph");
+		sampleWriter.newLine();
+		sampleWriter.newLine();
+		
+		printGandCOut(sampleWriter);
+		
+		sampleWriter.newLine();
+	
+		sampleWriter.write("###############################");	
+
+	}
+	
+	
+	// print finalGraph
+	public void printSampleRun4() throws IOException  {
+		sampleWriter.newLine();
+		int numConflictsInEntireGraph = 0; 
+		
+		for (Vertex v: curGraph) {
+			numConflictsInEntireGraph += v.getNumConflicts();
+		}
+
+		sampleWriter
+		.write("*****************************************************************************");
+		sampleWriter.newLine();	
+		
+		if (numConflictsInEntireGraph > 0) {
+			sampleWriter.write("Did not find a " + colorlim
+					+ " coloring of graph in " + maxIterations
+					+ " iterations.");
+				sampleWriter.newLine();
+		} 	else {
+			sampleWriter.write("Found a " + colorlim + " coloring of graph in "
+					+ curIterations + " iterations.");
+			
+			sampleWriter.newLine();
+		}
+		
+		sampleWriter.newLine();			
+		sampleWriter
+		.write("*****************************************************************************");
+
+		
+	}
+	
 }
