@@ -1,5 +1,8 @@
 package runmodels;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
@@ -39,39 +42,64 @@ public class MinConflicts extends AbstractAlgorithm {
 	// graph
 	Random rand = new Random();
 
-	public MinConflicts(ArrayList<Vertex> vertices) {
+	// File writer that writes out the sample run information (if needed)
+	BufferedWriter sampleWriter = null;
+
+	// allows user to indicate whether or not this is a sample run (for output
+	// purposes)
+	boolean sampleRun = true;
+
+	public MinConflicts(ArrayList<Vertex> vertices) throws IOException {
 		this.vertices = vertices;
 
-		System.out.println();
-		System.out.println("Running the Min Conflicts algorithm (with Tabu Search on) to " + kColors + " color graph with " + vertices.size() + " vertices");
-		System.out.println();
+		try {
+			FileWriter fileWriter = new FileWriter(
+					"../graphColoring/sampleRuns/SampleRuns_MinConflicts_"
+							+ vertices.size() + ".txt");
+			sampleWriter = new BufferedWriter(fileWriter);
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		if (sampleRun == true) {
+			printSampleRun1();
+
+		}
 
 		// call the minConflicts algorithm
 		algorithm(0);
 
-		if (!unsolvable) {
-			System.out
-					.println("Did not find a " + kColors
-							+ " coloring of graph in " + numIterations
-							+ " iterations.");
+		if (sampleRun == true) {
+			printSampleRun4();
 		} else {
-			System.out.println("Found a " + kColors + " coloring of graph in "
-					+ numIterations + " iterations.");
+
+			if (!unsolvable) {
+				System.out.println("Did not find a " + kColors
+						+ " coloring of graph in " + numIterations
+						+ " iterations.");
+			} else {
+				System.out.println("Found a " + kColors
+						+ " coloring of graph in " + numIterations
+						+ " iterations.");
+			}
 		}
 
 		System.out.println("MinConflicts has finished running");
-		
+
 		// for Sample Run
-		System.out.println("Final Graph");
-		printGandC();
-		
-		
+		// System.out.println("Final Graph");
+		// printGandC();
+
 		// print colors, for checking
-//		 System.out.println("Colors :");
-//		 for (int i = 0; i < vertices.size(); i++) {
-//		 System.out.println("Vertex " + vertices.get(i).getId() + " : " +
-//		 vertices.get(i).getColor());
-//		 }
+		// System.out.println("Colors :");
+		// for (int i = 0; i < vertices.size(); i++) {
+		// System.out.println("Vertex " + vertices.get(i).getId() + " : " +
+		// vertices.get(i).getColor());
+		// }
+
+		sampleWriter.close();
+
 	}
 
 	@Override
@@ -84,11 +112,15 @@ public class MinConflicts extends AbstractAlgorithm {
 			vertices.get(iterator).setColor(randomVertexColor);
 		}
 
-		// for sample run
-		System.out.println("Initial Graph");
-		printGandC();
-		
-		
+		if (sampleRun == true) {
+			try {
+				printSampleRun2();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
 		// direct algorithm with tabu search to help avoid plateaus
 		tabuListMaxSize = vertices.size() / 10;
 
@@ -98,7 +130,6 @@ public class MinConflicts extends AbstractAlgorithm {
 
 			// set this to 0, before reassigning based on changes to graph
 			numConflictsInEntireGraph = 0;
-
 			ArrayList<Vertex> conflictVerts = new ArrayList<Vertex>();
 
 			Vertex randomVertWithConflict = null;
@@ -117,21 +148,34 @@ public class MinConflicts extends AbstractAlgorithm {
 					if (v.getNumConflicts() > 0) {
 						conflictVerts.add(v);
 					} else {
-						// there were no conflicts with this vertex, so candidate for tabu list
+						// there were no conflicts with this vertex, so
+						// candidate for tabu list
 						if (!tabuList.contains(v)) {
 							tabuList.add(v);
-						} 
+						}
 					} // end else -- tabu list additions
 
 					// System.out.println("num conflicts for " + v.getId() +
 					// " = " + v.getNumConflicts());
 				} // end if -- have picked a vertex not in the tabuList
-				
+
 				if (tabuList.size() >= tabuListMaxSize) {
 					tabuList.remove(0);
-				}				
-				
+				}
+
 			} // end for -- have gone through each vertex checking for conflicts
+
+			// for sample run
+			if (sampleRun == true) {
+
+				try {
+					printSampleRun3();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+			}
 
 			// test the current color assignment to see if a solution has been
 			// found
@@ -151,9 +195,6 @@ public class MinConflicts extends AbstractAlgorithm {
 			assignColor(randomVertWithConflict,
 					randomVertWithConflict.getColor());
 
-			// for sample run
-			System.out.println("Iteration " + numIterations + ": " + numConflictsInEntireGraph/2 + " conflicts");
-			
 			numIterations++;
 		} // end while -- we have either returned a solution or reached
 			// maxIterations
@@ -218,32 +259,132 @@ public class MinConflicts extends AbstractAlgorithm {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-	
-	// for sample runs
-	public void printGandC(){
-		//prints graph and coloring
-		//print coloring first
-		System.out.println("Printing coloring");
-		
-		for(Vertex v : vertices){		
-			System.out.println("Vertex: " + v.getId() + ", Color:" + v.getColor());
-		}
-		
-		int count = 0;
-		System.out.println("Printing graph");
-		for(int i = 0; i < vertices.size(); i++){
-			for(int j = 0; j < vertices.get(i).neighbors.size(); j++){
-				
-				System.out.print(vertices.get(i).getId() + " -> " + vertices.get(i).neighbors.get(j).getId() + ", ");
-				count++;
-				if(count == 15){
-					System.out.println();
-					count = 0;
+
+	// for printing sample runs
+	public void printSampleRun1() throws IOException {
+
+		sampleWriter
+				.write("*******************************************************************************************");
+		sampleWriter.newLine();
+		sampleWriter
+				.write("*******************************************************************************************");
+		sampleWriter.newLine();
+		sampleWriter
+				.write("Running the Min Conflicts algorithm (with Tabu Search on) to "
+						+ kColors
+						+ " color graph with "
+						+ vertices.size()
+						+ " vertices");
+		sampleWriter.newLine();
+		sampleWriter
+				.write("*******************************************************************************************");
+		sampleWriter.newLine();
+		sampleWriter
+				.write("*******************************************************************************************");
+		sampleWriter.newLine();
+
+	}
+
+	// for printing initial graph
+	public void printSampleRun2() throws IOException {
+
+		// for sample run
+
+		sampleWriter.newLine();
+		sampleWriter.write("###############################");
+		sampleWriter.newLine();
+		sampleWriter.write("Randomly Colored Initial Graph");
+		sampleWriter.newLine();
+		sampleWriter.newLine();
+
+		setCurGraph(vertices);
+		printGandCOut(sampleWriter);
+
+		sampleWriter.write("###############################");
+		sampleWriter.newLine();
+		sampleWriter.newLine();
+
+		sampleWriter
+				.write("----------------------------------------------------------------------------");
+		sampleWriter.newLine();
+		sampleWriter.write("Algorithm terminates once solution is found or "
+				+ maxIterations + " iterations is reached");
+		sampleWriter.newLine();
+
+		sampleWriter
+				.write("Conflicts written as A:Color --> B:Color, and A -> B is counted, as is B-> A ");
+		sampleWriter.newLine();
+	}
+
+	// for printing iterations
+	public void printSampleRun3() throws IOException {
+		sampleWriter.newLine();
+		sampleWriter.write("Iteration " + numIterations + ": "
+				+ numConflictsInEntireGraph + " conflicts");
+		sampleWriter.newLine();
+
+		for (Vertex v : vertices) {
+
+			int conflicts = v.getNumConflicts();
+
+			if (conflicts > 0) {
+				for (int i = 0; i < v.getAllConflicts().size(); i++) {
+					sampleWriter.write(v.getId() + ":" + v.getColor() + "--> "
+							+ v.getAllConflicts().get(i).getId() + ":"
+							+ v.getAllConflicts().get(i).getColor());
+					sampleWriter.newLine();
 				}
 			}
+
+		} // end for
+
+	} 
+	// for printing solution
+	public void printSampleRun4() throws IOException {
+		sampleWriter
+		.write("----------------------------------------------------------------------------");
+		sampleWriter.newLine();
+		sampleWriter.newLine();
+		
+		sampleWriter
+		.write("*****************************************************************************");
+		sampleWriter.newLine();		
+		sampleWriter
+		.write("*****************************************************************************");
+		sampleWriter.newLine();
+		
+		if (!unsolvable) {
+			sampleWriter.write("Did not find a " + kColors
+							+ " coloring of graph in " + numIterations
+							+ " iterations.");
+			sampleWriter.newLine();
 			
+		} else {
+			sampleWriter.write("Found a " + kColors + " coloring of graph in "
+					+ numIterations + " iterations.");
+			
+			sampleWriter.newLine();
 		}
-		System.out.println();
-	} // end, can comment out after sample runs are ran
-	
+		
+		sampleWriter
+		.write("*****************************************************************************");		
+		sampleWriter.newLine();
+		sampleWriter
+		.write("*****************************************************************************");
+		sampleWriter.newLine();
+		
+		
+		sampleWriter.newLine();
+		sampleWriter.write("###############################");
+		sampleWriter.newLine();
+		sampleWriter.write("Final Graph Coloring");
+		sampleWriter.newLine();		
+		sampleWriter.newLine();				 
+		setCurGraph(vertices);
+		printGandCOut(sampleWriter);
+		sampleWriter.newLine();		
+		sampleWriter.write("###############################");		
+
+	} 
+
 }

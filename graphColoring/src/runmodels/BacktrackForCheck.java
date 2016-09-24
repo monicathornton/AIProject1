@@ -12,17 +12,28 @@ public class BacktrackForCheck extends AbstractAlgorithm {
 	public BacktrackForCheck(ArrayList<Vertex> vertices) {
 		System.out.println("Running the Backtracking algorithm with forward checking");
 		this.current = vertices;
-		this.curVertex = current.get(0);
+        setCurGraph(current);
+        this.curVertex = current.get(0);
 		this.numNodes = vertices.size();
+
+        System.out.println("Initial Graph");
+        printGandC();
 
         for (Vertex v : vertices){
             v.createUsableColors(numColors);  // set number of colors available
         }
 		algorithm(0);
-		if (unsolvable){
-			System.out.println("This graph is unsolvable!");
-		}
-		System.out.println("Done!");
+        if (unsolvable){
+            System.out
+                    .println("\nDid not find a " + numColors
+                            + " coloring of graph");
+        }
+        else {
+            System.out.println("Found a " + numColors + " coloring of graph");
+        }
+        System.out.println("Backtracking with Forward Checking has finished running");
+        System.out.println("Final Graph");
+        printGandC();
 	}
 
 	@Override
@@ -63,9 +74,11 @@ public class BacktrackForCheck extends AbstractAlgorithm {
 	    if (unsolvable){return;}
         if (curVertex.getAllDeleted()){unsolvable = true; return;}  //Hack
         curVertex.setColor(curVertex.usableColors.get(0));  //first available color
+        System.out.println("Forward Checking on Vertex " + curVertex.getId() + ":" + curVertex.getCurrentColor());
         for (Vertex nei : curVertex.neighbors){         //delete all conflicting colors in neighbors
             if (nei.getId() > curVertex.getId()) {      //only look forward!
                 nei.deleteColor(curVertex.getColor());
+                System.out.println("After forward check on neighbor " + nei.getId() + ":" + nei.printColors());
                 if (nei.getAllDeleted()){
                     backtrackColor();
                 }
@@ -74,6 +87,8 @@ public class BacktrackForCheck extends AbstractAlgorithm {
     }
 
     public void backtrackColor(){
+        System.out.println("Backtracking a color on Vertex " + curVertex.getId());
+
         curVertex.deleteColor(curVertex.getColor());  // delete unusable color
         if (curVertex.getId() == 0 && curVertex.getAllDeleted()){
             unsolvable = true;
@@ -86,6 +101,7 @@ public class BacktrackForCheck extends AbstractAlgorithm {
         }
         curVertex.setColor(-1);                        //reset color
         if (curVertex.getAllDeleted()){
+            System.out.println("Backtracking a level on Vertex " + curVertex.getId());
             curVertex = current.get(current.indexOf(curVertex) - 1); //backtrack one vertex
             backtrackColor();
             chooseColor();

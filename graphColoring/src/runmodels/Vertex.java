@@ -1,11 +1,13 @@
 package runmodels;
 
 
+
 /*
  * A class to create the vertices for a graph coloring problem. 
  */
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Vertex extends AbstractVertex {
 	// unique identifier associated with each node
@@ -20,7 +22,8 @@ public class Vertex extends AbstractVertex {
 	
 	// the color associated with each node, a value of -1 means that the node has no color
 	private int color;
-	
+
+	private HashMap<Integer, String> colorMap = new HashMap<>();
 	// list of all neighbors for each node
 	ArrayList<Vertex> neighbors = new ArrayList<Vertex>();
 	ArrayList<Arc> inArcs = new ArrayList<>();
@@ -41,6 +44,10 @@ public class Vertex extends AbstractVertex {
 		this.xLoc = xLoc;
 		this.yLoc = yLoc;
 		this.color = color;
+		colorMap.put(0, "RED");
+		colorMap.put(1, "GREEN");
+		colorMap.put(2, "BLUE");
+		colorMap.put(3, "YELLOW");
 	}
 
 
@@ -151,7 +158,38 @@ public class Vertex extends AbstractVertex {
 		}
 		return numConflicts;
 	}
-	
+
+	// check for the vertices that conflict with this vertex
+	public ArrayList<Vertex> getAllConflicts(){
+		ArrayList<Vertex> conflictsForThisNode = new ArrayList<Vertex>();
+
+		for (Vertex nei : neighbors) {
+			if (this.color == nei.color){
+				conflictsForThisNode.add(nei);
+			}
+		}
+		return conflictsForThisNode;
+	}
+
+	// get a pretty string to print currently usable colors
+	public String printColors(){
+		String result = "";
+		result += "{";
+		for (Integer color : usableColors){
+			if (null != colorMap.get(color)){
+				result += colorMap.get(color);
+				if(color != colorMap.size() -1 ){
+					result += ",";
+				}
+			}
+		}
+		result += "}";
+		return result;
+	}
+
+	public String getCurrentColor(){
+		return colorMap.get(getColor());
+	}
 	
 
     public ArrayList<Vertex> cloneList(ArrayList<Vertex> vList) {

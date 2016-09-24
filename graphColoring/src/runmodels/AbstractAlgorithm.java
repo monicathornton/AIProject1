@@ -1,5 +1,8 @@
 package runmodels;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public abstract class AbstractAlgorithm {
@@ -19,6 +22,8 @@ public abstract class AbstractAlgorithm {
 	protected ArrayList<Integer> conflictHistory;//Tracks conflicts/blank values at each iteration
 	protected ArrayList<Vertex> curGraph;
 	
+	BufferedWriter writer = null;
+		
 	public ArrayList<Integer> runAlgo(){ //Template Method demands I write an algorithm skellington: Maybe override for GA?
 		ArrayList<Vertex> conflicts = findConflicts(curGraph);
 		while(curIterations < maxIterations){
@@ -78,6 +83,51 @@ public abstract class AbstractAlgorithm {
 		}
 		
 	}
+	
+		
+	public void printGandCOut(BufferedWriter writer) throws IOException{
+		//prints graph and coloring to outputFile
+		try 
+		{
+			FileWriter fileWriter = new FileWriter(
+					"../graphColoring/sampleRuns/SampleRuns_MinConflicts_" + curGraph.size() + ".txt", true);
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		//print coloring first
+		writer.write("Printing current coloring of graph");
+		writer.newLine(); 
+		
+		for(Vertex v : curGraph){
+		
+			writer.write("Vertex: " + v.getId() + ", Color:" + v.getColor());
+			writer.newLine();
+		}
+		int count = 0;
+		
+		writer.newLine();
+		writer.write("Printing ALL edges in graph (A->B and B->A)");
+		writer.newLine();
+		
+		for(int i = 0; i < curGraph.size(); i++){
+			for(int j = 0; j < curGraph.get(i).neighbors.size(); j++){
+				
+				writer.write((curGraph.get(i).getId() + " -> " + curGraph.get(i).neighbors.get(j).getId() + ", "));
+				count++;
+				if(count == 10){
+					writer.newLine();
+					count = 0;
+				}
+			}
+			
+		}
+		
+		writer.newLine();
+	}
+	
+	
 	public int getCurIterations() {
 		return curIterations;
 	}

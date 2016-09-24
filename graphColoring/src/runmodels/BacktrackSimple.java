@@ -1,26 +1,53 @@
 package runmodels;
 
-import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
+//import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
 import runmodels.Node;
 import runmodels.Tree;
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class BacktrackSimple extends AbstractAlgorithm {
     ArrayList<Vertex> current; //vertices as currently colored
     Tree states; //tree of states, where each state depends on color of vertices
-    int numColors = 3;  //total number of colors allowed
+    int numColors = 4;  //total number of colors allowed
     Vertex curVertex; //cur vertex to color
     int numNodes;  //total number of vertices to color
     boolean unsolvable = false;
 	
-	public BacktrackSimple(ArrayList<Vertex> vertices) {
-		System.out.println("Running the Simple Backtracking algorithm");
+	// File writer that writes out the sample run information (if needed)
+	BufferedWriter sampleWriter = null;
+
+	// allows user to indicate whether or not this is a sample run (for output
+	// purposes)
+	boolean sampleRun = true;
+    
+	public BacktrackSimple(ArrayList<Vertex> vertices) throws IOException {
+
         this.current = vertices;
 //        this.states = new Tree();
         this.curVertex = current.get(0);
         this.numNodes = vertices.size();
 
+        
+		try {
+			FileWriter fileWriter = new FileWriter(
+					"../graphColoring/sampleRuns/SampleRuns_Backtracking_"
+							+ vertices.size() + ".txt");
+			sampleWriter = new BufferedWriter(fileWriter);
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+        
+		if (sampleRun == true) {
+			printSampleRun1();
+		}
+
+       
         try {
             actualAlgorithm();
         }
@@ -31,11 +58,19 @@ public class BacktrackSimple extends AbstractAlgorithm {
             System.out.println("This graph is unsolvable!");
         }
         System.out.println("Done!");
+        
+        sampleWriter.close();
     }
 
 	@Override
 	protected int algorithm(int curV) {
-		actualAlgorithm();
+		try {
+			actualAlgorithm();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		return 0;
 	}
 
@@ -51,8 +86,17 @@ public class BacktrackSimple extends AbstractAlgorithm {
 		
 	}
 
-	private void actualAlgorithm() {
+	private void actualAlgorithm() throws IOException {
 
+		if (sampleRun == true) {
+			try {
+				printSampleRun2();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
             while (true) {
                 chooseColorStupid();  //choose first available color
 //            states.add(current); //add state to tree
@@ -64,10 +108,17 @@ public class BacktrackSimple extends AbstractAlgorithm {
                     break;
                 }
             }
+            
+            printSampleRun5();
     }
 
-    private void chooseColorStupid(){
+    private void chooseColorStupid() throws IOException{
         if (curVertex.getAllDeleted()) {
+        	
+        	if (sampleRun == true) {
+        		printSampleRun4();
+        	}
+        	
             backtrackLevel();
         }
         else if (curVertex.usableColors.size() == 0) {
@@ -83,12 +134,18 @@ public class BacktrackSimple extends AbstractAlgorithm {
         }
     }
 
-    private void backtrackColor(Vertex conflict){
+    private void backtrackColor(Vertex conflict) throws IOException{
         curVertex.deleteColor(conflict.getColor());  //delete conflicting color from possible choices
+    	
+        if (sampleRun == true) {
+            printSampleRun3();    		
+    	}
+        
         chooseColorStupid();   //call again
     }
 
-    private void backtrackLevel(){
+    private void backtrackLevel() throws IOException{
+    	
         if (curVertex.getId() == 1){
             unsolvable = true;
             return;
@@ -106,4 +163,129 @@ public class BacktrackSimple extends AbstractAlgorithm {
 
         actualAlgorithm(); //start over from here
     }
+    
+	// for printing sample runs
+	public void printSampleRun1() throws IOException {
+
+		sampleWriter
+				.write("*******************************************************************************************");
+		sampleWriter.newLine();
+		sampleWriter
+				.write("*******************************************************************************************");
+		sampleWriter.newLine();
+		sampleWriter
+				.write("Simple Backtracking algorithm to "
+						+ numColors
+						+ " color graph with "
+						+ numNodes
+						+ " vertices");
+		
+		sampleWriter.newLine();
+		sampleWriter
+				.write("*******************************************************************************************");
+		sampleWriter.newLine();
+		sampleWriter
+				.write("*******************************************************************************************");
+		sampleWriter.newLine();
+
+	}
+    
+	// for printing color backtracking info
+	public void printSampleRun2() throws IOException {
+
+		// for sample run
+		sampleWriter.newLine();
+		sampleWriter.write("###############################");
+		sampleWriter.newLine();
+		sampleWriter.write("Initial Graph");
+		sampleWriter.newLine();
+		sampleWriter.newLine();
+		
+		setCurGraph(current);
+		printGandCOut(sampleWriter);
+
+		sampleWriter.write("###############################");
+		sampleWriter.newLine();
+		sampleWriter.newLine();
+		
+		sampleWriter
+		.write("----------------------------------------------------------------------------");
+		sampleWriter.newLine();
+	}
+	
+	// for printing level backtracking info
+	public void printSampleRun3() throws IOException {
+
+		// for sample run
+		sampleWriter.write("Backtracking a color on Vertex " + curVertex.getId() + " after conflict with Vertex " + curVertex.checkConflicts().getId());
+		sampleWriter.newLine();
+		sampleWriter.write("-------Remaining colors for Vertex " + curVertex.getId() + ": " + curVertex.usableColors);
+		sampleWriter.newLine();
+	}
+	
+
+	// for printing initial graph
+	public void printSampleRun4() throws IOException {
+
+		// for sample run
+		sampleWriter.write("Backtracking a level on Vertex " + curVertex.getId() + " after conflict with Vertex " + curVertex.checkConflicts().getId());
+		sampleWriter.newLine();
+		
+	}
+	
+	// for printing color backtracking info
+	public void printSampleRun5() throws IOException {
+		
+		sampleWriter
+		.write("----------------------------------------------------------------------------");
+		sampleWriter.newLine();
+		sampleWriter.newLine();		
+				
+		sampleWriter
+		.write("*****************************************************************************");
+		sampleWriter.newLine();		
+		sampleWriter
+		.write("*****************************************************************************");
+		sampleWriter.newLine();
+		
+		if (unsolvable) {
+			sampleWriter.write("Did not find a " + numColors
+							+ " coloring of graph with backtracking");
+			sampleWriter.newLine();
+			
+		} else {
+			sampleWriter.write("Found a " + numColors + " coloring of graph with backtracking.");
+			sampleWriter.newLine();
+		}
+		
+		sampleWriter
+		.write("*****************************************************************************");
+		sampleWriter.newLine();		
+		sampleWriter
+		.write("*****************************************************************************");
+		sampleWriter.newLine();
+		
+		
+		// for sample run
+		sampleWriter.newLine();
+		sampleWriter.write("###############################");
+		sampleWriter.newLine();
+		sampleWriter.write("Final Graph");
+		sampleWriter.newLine();
+		sampleWriter.newLine();
+		
+		setCurGraph(current);
+		printGandCOut(sampleWriter);
+
+		sampleWriter.write("###############################");
+		sampleWriter.newLine();
+		sampleWriter.newLine();
+
+	}
+	
+
+	
+	
+
+    
 }

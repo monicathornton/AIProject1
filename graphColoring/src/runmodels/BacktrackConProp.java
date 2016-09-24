@@ -9,19 +9,30 @@ public class BacktrackConProp extends AbstractAlgorithm { //May want to make thi
 	int numNodes;  //total number of vertices to color
 	boolean unsolvable = false;
 
+
 	public BacktrackConProp(ArrayList<Vertex> vertices) {
-		System.out.println("Running the Simple Backtracking algorithm with constraint propagation (MAC)");
+        System.out.println("Running the backtracking algorithm with MAC to " + numColors + " color graph with " + vertices.size() + " vertices");
 		this.current = vertices;
-		this.curVertex = current.get(0);
+        setCurGraph(current);
+        this.curVertex = current.get(0);
 		this.numNodes = vertices.size();
+        System.out.println("Initial Graph");
+        printGandC();
 
         preProcess(); //create arcs and set number of usable colors
 
 		algorithm(0);
 		if (unsolvable){
-			System.out.println("This graph is unsolvable!");
+            System.out
+                    .println("\nDid not find a " + numColors
+                            + " coloring of graph");
 		}
-		System.out.println("Done!");
+		else {
+            System.out.println("\nFound a " + numColors + " coloring of graph");
+        }
+        System.out.println("Backtracking with MAC has finished running");
+        System.out.println("Final Graph");
+        printGandC();
 	}
 
 	@Override
@@ -71,6 +82,10 @@ public class BacktrackConProp extends AbstractAlgorithm { //May want to make thi
 	}
 
 	public void chooseColor(){
+	    if(curVertex.getAllDeleted()){
+            unsolvable = true; //hack
+            return;
+        }
         curVertex.setColor(curVertex.usableColors.get(0)); // first available color
         applyArc();
     }
@@ -78,6 +93,7 @@ public class BacktrackConProp extends AbstractAlgorithm { //May want to make thi
     public void applyArc(){
         for (Arc arc : curVertex.outArcs){
             if (arc.getTail().getNeighbors().contains(curVertex)){
+                System.out.println("Enforcing consistency between " + arc.getStart().getId() + ":" + arc.getStart().printColors() + " and " + arc.getTail().getId() +  ":" +arc.getTail().printColors());
                 arc.getTail().deleteColor(curVertex.getColor());
                 if (arc.getTail().getAllDeleted()){
                     backtrackColor();
@@ -93,6 +109,7 @@ public class BacktrackConProp extends AbstractAlgorithm { //May want to make thi
             if (arc.getTail().getNeighbors().contains(arc.getStart()) && arc.getTail().usableColors.size() == 1) { //neighbors
                 if (arc.getStart().getColor() == -1) {  //only prune unassigned colors
                     arc.getStart().deleteColor(arc.getTail().usableColors.get(0));
+                    System.out.println("Enforcing consistency between " + arc.getStart().getId() + ":" + arc.getStart().printColors() + " and " + arc.getTail().getId() + ":" + arc.getTail().printColors());
                     if (arc.getStart().getAllDeleted() && arc.getStart().getId() == 0){
                         unsolvable = true;
                         return;
@@ -107,6 +124,7 @@ public class BacktrackConProp extends AbstractAlgorithm { //May want to make thi
     }
 
     public void backtrackColor(){
+        System.out.println("Backtracking a color on Vertex " + curVertex.getId());
         resetConsistency();
         curVertex.deleteColor(curVertex.getColor());
         if (curVertex.getAllDeleted() && curVertex.getId() == 0){
@@ -131,12 +149,17 @@ public class BacktrackConProp extends AbstractAlgorithm { //May want to make thi
     }
 
     public void backtrackLevel(){
+        System.out.println("Backtracking a level on Vertex " + curVertex.getId());
         curVertex.setColor(-1);
         curVertex = current.get(current.indexOf(curVertex) -1);
         resetConsistency();
         curVertex.deleteColor(curVertex.getColor());
         if (curVertex.getAllDeleted() && curVertex.getId() == 0){
             unsolvable = true;
+            return;
+        }
+        else if(curVertex.getAllDeleted()){
+            unsolvable = true; //hack
             return;
         }
         curVertex.setColor(curVertex.usableColors.get(0));

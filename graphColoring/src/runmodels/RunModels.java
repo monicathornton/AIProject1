@@ -71,9 +71,7 @@ public class RunModels {
 			System.out.println("If you need to run the graph generator,please uncomment it.");
 		} else if (choice.equals("1")) {
 
-			for (int i = 0; i < 5; i++) {
 				MinConflicts mc = new MinConflicts(vertices);				
-			}
 
 		} else if (choice.equals("2")) {
 
