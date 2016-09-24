@@ -1,0 +1,79 @@
+*******************************************************************************************
+*******************************************************************************************
+Simple Backtracking algorithm to 4 color graph with 10 vertices
+*******************************************************************************************
+*******************************************************************************************
+
+###############################
+Initial Graph
+
+Printing current coloring of graph
+Vertex: 0, Color:-1
+Vertex: 1, Color:-1
+Vertex: 2, Color:-1
+Vertex: 3, Color:-1
+Vertex: 4, Color:-1
+Vertex: 5, Color:-1
+Vertex: 6, Color:-1
+Vertex: 7, Color:-1
+Vertex: 8, Color:-1
+Vertex: 9, Color:-1
+
+Printing ALL edges in graph (A->B and B->A)
+0 -> 3, 1 -> 5, 1 -> 9, 1 -> 2, 1 -> 7, 2 -> 1, 2 -> 7, 3 -> 7, 3 -> 4, 3 -> 0, 
+3 -> 9, 4 -> 3, 4 -> 7, 4 -> 6, 4 -> 9, 5 -> 9, 5 -> 1, 5 -> 7, 6 -> 7, 6 -> 4, 
+6 -> 8, 6 -> 9, 7 -> 8, 7 -> 3, 7 -> 4, 7 -> 6, 7 -> 9, 7 -> 5, 7 -> 2, 7 -> 1, 
+8 -> 7, 8 -> 6, 8 -> 9, 9 -> 5, 9 -> 1, 9 -> 7, 9 -> 4, 9 -> 3, 9 -> 8, 9 -> 6, 
+
+###############################
+
+----------------------------------------------------------------------------
+Backtracking a color on Vertex 2 after conflict with Vertex 1
+-------Remaining colors for Vertex 2: [1, 2, 3]
+Backtracking a color on Vertex 3 after conflict with Vertex 0
+-------Remaining colors for Vertex 3: [1, 2, 3]
+Backtracking a color on Vertex 5 after conflict with Vertex 1
+-------Remaining colors for Vertex 5: [1, 2, 3]
+Backtracking a color on Vertex 6 after conflict with Vertex 4
+-------Remaining colors for Vertex 6: [1, 2, 3]
+Backtracking a color on Vertex 7 after conflict with Vertex 1
+-------Remaining colors for Vertex 7: [1, 2, 3]
+Backtracking a color on Vertex 7 after conflict with Vertex 2
+-------Remaining colors for Vertex 7: [2, 3]
+Backtracking a color on Vertex 9 after conflict with Vertex 8
+-------Remaining colors for Vertex 9: [1, 2, 3]
+Backtracking a color on Vertex 9 after conflict with Vertex 6
+-------Remaining colors for Vertex 9: [2, 3]
+Backtracking a color on Vertex 9 after conflict with Vertex 7
+-------Remaining colors for Vertex 9: [3]
+----------------------------------------------------------------------------
+
+*****************************************************************************
+*****************************************************************************
+Found a 4 coloring of graph with backtracking.
+*****************************************************************************
+*****************************************************************************
+
+###############################
+Final Graph
+
+Printing current coloring of graph
+Vertex: 0, Color:0
+Vertex: 1, Color:0
+Vertex: 2, Color:1
+Vertex: 3, Color:1
+Vertex: 4, Color:0
+Vertex: 5, Color:1
+Vertex: 6, Color:1
+Vertex: 7, Color:2
+Vertex: 8, Color:0
+Vertex: 9, Color:3
+
+Printing ALL edges in graph (A->B and B->A)
+0 -> 3, 1 -> 5, 1 -> 9, 1 -> 2, 1 -> 7, 2 -> 1, 2 -> 7, 3 -> 7, 3 -> 4, 3 -> 0, 
+3 -> 9, 4 -> 3, 4 -> 7, 4 -> 6, 4 -> 9, 5 -> 9, 5 -> 1, 5 -> 7, 6 -> 7, 6 -> 4, 
+6 -> 8, 6 -> 9, 7 -> 8, 7 -> 3, 7 -> 4, 7 -> 6, 7 -> 9, 7 -> 5, 7 -> 2, 7 -> 1, 
+8 -> 7, 8 -> 6, 8 -> 9, 9 -> 5, 9 -> 1, 9 -> 7, 9 -> 4, 9 -> 3, 9 -> 8, 9 -> 6, 
+
+###############################
+
