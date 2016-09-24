@@ -8,10 +8,11 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Collections;
 
 public class BacktrackSimple extends AbstractAlgorithm {
-    ArrayList<Vertex> current; //vertices as currently colored
+    List<Vertex> current; //vertices as currently colored
     Tree states; //tree of states, where each state depends on color of vertices
     int numColors = 4;  //total number of colors allowed
     Vertex curVertex; //cur vertex to color
@@ -24,7 +25,7 @@ public class BacktrackSimple extends AbstractAlgorithm {
 
 	// allows user to indicate whether or not this is a sample run (for output
 	// purposes)
-	boolean sampleRun = true;
+	boolean sampleRun = false;
     
 	public BacktrackSimple(ArrayList<Vertex> vertices) throws IOException {
 
@@ -167,7 +168,7 @@ public class BacktrackSimple extends AbstractAlgorithm {
 
     // sort vertices by number of neighbors, so colors are given to nodes with higher degree first
     public void sortByDegree(){
-		Collections.sort(current);
+		Collections.sort(current, new HIGH_DEGREE());
 	}
     
 	// for printing sample runs
@@ -207,7 +208,7 @@ public class BacktrackSimple extends AbstractAlgorithm {
 		sampleWriter.newLine();
 		sampleWriter.newLine();
 		
-		setCurGraph(current);
+		setCurGraph((ArrayList) current);
 		printGandCOut(sampleWriter);
 
 		sampleWriter.write("###############################");
@@ -280,7 +281,7 @@ public class BacktrackSimple extends AbstractAlgorithm {
 		sampleWriter.newLine();
 		sampleWriter.newLine();
 		
-		setCurGraph(current);
+		setCurGraph((ArrayList) current);
 		printGandCOut(sampleWriter);
 
 		sampleWriter.write("###############################");
