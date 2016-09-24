@@ -4,7 +4,7 @@
 \margl1440\margr1440\vieww10800\viewh8400\viewkind0
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
-\f0\fs24 \cf0 Running the backtracking algorithm with MAC to 3 color graph with 40 vertices\
+\f0\fs24 \cf0 Running the backtracking algorithm with MAC to 4 color graph with 40 vertices\
 Initial Graph\
 Printing coloring\
 Vertex: 0, Color:-1\
@@ -56,20 +56,82 @@ Printing graph\
 24 -> 33, 24 -> 15, 25 -> 6, 25 -> 19, 25 -> 16, 25 -> 22, 25 -> 31, 25 -> 32, 25 -> 26, 25 -> 37, 25 -> 4, 26 -> 25, 27 -> 24, 27 -> 15, 28 -> 2, \
 28 -> 11, 28 -> 37, 29 -> 15, 29 -> 12, 30 -> 10, 30 -> 15, 31 -> 37, 31 -> 25, 32 -> 37, 32 -> 25, 33 -> 24, 33 -> 15, 34 -> 22, 34 -> 7, 34 -> 5, \
 34 -> 12, 35 -> 3, 35 -> 6, 35 -> 37, 36 -> 38, 36 -> 15, 37 -> 32, 37 -> 6, 37 -> 31, 37 -> 28, 37 -> 25, 37 -> 3, 37 -> 2, 37 -> 35, 37 -> 11, \
-38 -> 18, 38 -> 39, 38 -> 36, 38 -> 15, 39 -> 38, 39 -> 15, Enforcing arc consistency\
-Enforcing arc consistency\
-Enforcing arc consistency\
-Enforcing arc consistency\
-Enforcing arc consistency\
-Enforcing arc consistency\
-Enforcing arc consistency\
-Backtracking a color\
-Enforcing arc consistency\
-Backtracking a color\
-Backtracking a level\
-Enforcing arc consistency\
+38 -> 18, 38 -> 39, 38 -> 36, 38 -> 15, 39 -> 38, 39 -> 15, Enforcing consistency between 0:\{RED,GREEN,BLUE,YELLOW\} and 12:\{RED,GREEN,BLUE,YELLOW\}\
+Enforcing consistency between 1:\{RED,GREEN,BLUE,YELLOW\} and 8:\{RED,GREEN,BLUE,YELLOW\}\
+Enforcing consistency between 1:\{RED,GREEN,BLUE,YELLOW\} and 12:\{GREEN,BLUE,YELLOW\}\
+Enforcing consistency between 2:\{RED,GREEN,BLUE,YELLOW\} and 28:\{RED,GREEN,BLUE,YELLOW\}\
+Enforcing consistency between 2:\{RED,GREEN,BLUE,YELLOW\} and 37:\{RED,GREEN,BLUE,YELLOW\}\
+Enforcing consistency between 3:\{RED,GREEN,BLUE,YELLOW\} and 6:\{RED,GREEN,BLUE,YELLOW\}\
+Enforcing consistency between 3:\{RED,GREEN,BLUE,YELLOW\} and 7:\{RED,GREEN,BLUE,YELLOW\}\
+Enforcing consistency between 3:\{RED,GREEN,BLUE,YELLOW\} and 11:\{RED,GREEN,BLUE,YELLOW\}\
+Enforcing consistency between 3:\{RED,GREEN,BLUE,YELLOW\} and 35:\{RED,GREEN,BLUE,YELLOW\}\
+Enforcing consistency between 3:\{RED,GREEN,BLUE,YELLOW\} and 37:\{GREEN,BLUE,YELLOW\}\
+Enforcing consistency between 4:\{RED,GREEN,BLUE,YELLOW\} and 25:\{RED,GREEN,BLUE,YELLOW\}\
+Enforcing consistency between 5:\{RED,GREEN,BLUE,YELLOW\} and 15:\{RED,GREEN,BLUE,YELLOW\}\
+Enforcing consistency between 5:\{RED,GREEN,BLUE,YELLOW\} and 34:\{RED,GREEN,BLUE,YELLOW\}\
+Enforcing consistency between 6:\{GREEN,BLUE,YELLOW\} and 25:\{GREEN,BLUE,YELLOW\}\
+Enforcing consistency between 6:\{GREEN,BLUE,YELLOW\} and 35:\{GREEN,BLUE,YELLOW\}\
+Enforcing consistency between 6:\{GREEN,BLUE,YELLOW\} and 37:\{GREEN,BLUE,YELLOW\}\
+Enforcing consistency between 7:\{GREEN,BLUE,YELLOW\} and 12:\{GREEN,BLUE,YELLOW\}\
+Enforcing consistency between 7:\{GREEN,BLUE,YELLOW\} and 34:\{GREEN,BLUE,YELLOW\}\
+Enforcing consistency between 8:\{GREEN,BLUE,YELLOW\} and 12:\{BLUE,YELLOW\}\
+Enforcing consistency between 9:\{RED,GREEN,BLUE,YELLOW\} and 15:\{GREEN,BLUE,YELLOW\}\
+Enforcing consistency between 10:\{RED,GREEN,BLUE,YELLOW\} and 15:\{GREEN,BLUE,YELLOW\}\
+Enforcing consistency between 10:\{RED,GREEN,BLUE,YELLOW\} and 18:\{RED,GREEN,BLUE,YELLOW\}\
+Enforcing consistency between 10:\{RED,GREEN,BLUE,YELLOW\} and 30:\{RED,GREEN,BLUE,YELLOW\}\
+Enforcing consistency between 11:\{GREEN,BLUE,YELLOW\} and 28:\{GREEN,BLUE,YELLOW\}\
+Enforcing consistency between 11:\{GREEN,BLUE,YELLOW\} and 37:\{BLUE,YELLOW\}\
+Enforcing consistency between 12:\{BLUE,YELLOW\} and 13:\{RED,GREEN,BLUE,YELLOW\}\
+Enforcing consistency between 12:\{BLUE,YELLOW\} and 15:\{GREEN,BLUE,YELLOW\}\
+Enforcing consistency between 12:\{BLUE,YELLOW\} and 17:\{RED,GREEN,BLUE,YELLOW\}\
+Enforcing consistency between 12:\{BLUE,YELLOW\} and 20:\{RED,GREEN,BLUE,YELLOW\}\
+Enforcing consistency between 12:\{BLUE,YELLOW\} and 21:\{RED,GREEN,BLUE,YELLOW\}\
+Enforcing consistency between 12:\{BLUE,YELLOW\} and 23:\{RED,GREEN,BLUE,YELLOW\}\
+Enforcing consistency between 12:\{BLUE,YELLOW\} and 24:\{RED,GREEN,BLUE,YELLOW\}\
+Enforcing consistency between 12:\{BLUE,YELLOW\} and 29:\{RED,GREEN,BLUE,YELLOW\}\
+Enforcing consistency between 12:\{BLUE,YELLOW\} and 34:\{BLUE,YELLOW\}\
+Enforcing consistency between 22:\{RED,GREEN,BLUE,\} and 34:\{YELLOW\}\
+Enforcing consistency between 13:\{RED,GREEN,YELLOW\} and 21:\{RED,GREEN,YELLOW\}\
+Enforcing consistency between 14:\{RED,GREEN,BLUE,YELLOW\} and 15:\{GREEN,YELLOW\}\
+Enforcing consistency between 15:\{GREEN,YELLOW\} and 18:\{GREEN,BLUE,YELLOW\}\
+Enforcing consistency between 15:\{GREEN,YELLOW\} and 24:\{RED,GREEN,YELLOW\}\
+Enforcing consistency between 15:\{GREEN,YELLOW\} and 27:\{RED,GREEN,BLUE,YELLOW\}\
+Enforcing consistency between 15:\{GREEN,YELLOW\} and 29:\{RED,GREEN,YELLOW\}\
+Enforcing consistency between 15:\{GREEN,YELLOW\} and 30:\{GREEN,BLUE,YELLOW\}\
+Enforcing consistency between 15:\{GREEN,YELLOW\} and 33:\{RED,GREEN,BLUE,YELLOW\}\
+Enforcing consistency between 15:\{GREEN,YELLOW\} and 36:\{RED,GREEN,BLUE,YELLOW\}\
+Enforcing consistency between 15:\{GREEN,YELLOW\} and 38:\{RED,GREEN,BLUE,YELLOW\}\
+Enforcing consistency between 15:\{GREEN,YELLOW\} and 39:\{RED,GREEN,BLUE,YELLOW\}\
+Enforcing consistency between 16:\{RED,GREEN,BLUE,YELLOW\} and 25:\{BLUE,YELLOW\}\
+Enforcing consistency between 18:\{BLUE,YELLOW\} and 38:\{RED,BLUE,YELLOW\}\
+Enforcing consistency between 19:\{RED,GREEN,BLUE,YELLOW\} and 25:\{BLUE,YELLOW\}\
+Enforcing consistency between 22:\{RED,GREEN,BLUE,\} and 23:\{RED,GREEN,YELLOW\}\
+Enforcing consistency between 22:\{RED,GREEN,BLUE,\} and 25:\{BLUE,YELLOW\}\
+Enforcing consistency between 22:\{RED,GREEN,BLUE,\} and 34:\{YELLOW\}\
+Enforcing consistency between 24:\{RED,YELLOW\} and 27:\{RED,BLUE,YELLOW\}\
+Enforcing consistency between 24:\{RED,YELLOW\} and 33:\{RED,BLUE,YELLOW\}\
+Enforcing consistency between 25:\{BLUE,YELLOW\} and 26:\{RED,GREEN,BLUE,YELLOW\}\
+Enforcing consistency between 25:\{BLUE,YELLOW\} and 31:\{RED,GREEN,BLUE,YELLOW\}\
+Enforcing consistency between 25:\{BLUE,YELLOW\} and 32:\{RED,GREEN,BLUE,YELLOW\}\
+Enforcing consistency between 25:\{BLUE,YELLOW\} and 37:\{BLUE,YELLOW\}\
+Enforcing consistency between 28:\{BLUE,\} and 37:\{YELLOW\}\
+Enforcing consistency between 31:\{RED,GREEN,\} and 37:\{YELLOW\}\
+Enforcing consistency between 32:\{RED,GREEN,\} and 37:\{YELLOW\}\
+Enforcing consistency between 35:\{BLUE,\} and 37:\{YELLOW\}\
+Enforcing consistency between 28:\{BLUE,\} and 37:\{YELLOW\}\
+Enforcing consistency between 31:\{RED,GREEN,\} and 37:\{YELLOW\}\
+Enforcing consistency between 32:\{RED,GREEN,\} and 37:\{YELLOW\}\
+Enforcing consistency between 35:\{BLUE,\} and 37:\{YELLOW\}\
+Enforcing consistency between 31:\{RED,GREEN,\} and 37:\{YELLOW\}\
+Enforcing consistency between 32:\{RED,GREEN,\} and 37:\{YELLOW\}\
+Enforcing consistency between 35:\{BLUE,\} and 37:\{YELLOW\}\
+Enforcing consistency between 32:\{RED,GREEN,\} and 37:\{YELLOW\}\
+Enforcing consistency between 35:\{BLUE,\} and 37:\{YELLOW\}\
+Enforcing consistency between 35:\{BLUE,\} and 37:\{YELLOW\}\
+Enforcing consistency between 36:\{RED,BLUE,YELLOW\} and 38:\{RED,YELLOW\}\
+Enforcing consistency between 38:\{YELLOW\} and 39:\{RED,BLUE,YELLOW\}\
 \
-Did not find a 3 coloring of graph\
+Found a 4 coloring of graph\
 Backtracking with MAC has finished running\
 Final Graph\
 Printing coloring\
@@ -78,41 +140,41 @@ Vertex: 1, Color:0\
 Vertex: 2, Color:0\
 Vertex: 3, Color:0\
 Vertex: 4, Color:0\
-Vertex: 5, Color:1\
-Vertex: 6, Color:-1\
-Vertex: 7, Color:-1\
-Vertex: 8, Color:-1\
-Vertex: 9, Color:-1\
-Vertex: 10, Color:-1\
-Vertex: 11, Color:-1\
-Vertex: 12, Color:-1\
-Vertex: 13, Color:-1\
-Vertex: 14, Color:-1\
-Vertex: 15, Color:-1\
-Vertex: 16, Color:-1\
-Vertex: 17, Color:-1\
-Vertex: 18, Color:-1\
-Vertex: 19, Color:-1\
-Vertex: 20, Color:-1\
-Vertex: 21, Color:-1\
-Vertex: 22, Color:-1\
-Vertex: 23, Color:-1\
-Vertex: 24, Color:-1\
-Vertex: 25, Color:-1\
-Vertex: 26, Color:-1\
-Vertex: 27, Color:-1\
-Vertex: 28, Color:-1\
-Vertex: 29, Color:-1\
-Vertex: 30, Color:-1\
-Vertex: 31, Color:-1\
-Vertex: 32, Color:-1\
-Vertex: 33, Color:-1\
-Vertex: 34, Color:-1\
-Vertex: 35, Color:-1\
-Vertex: 36, Color:-1\
-Vertex: 37, Color:-1\
-Vertex: 38, Color:-1\
-Vertex: 39, Color:-1\
+Vertex: 5, Color:0\
+Vertex: 6, Color:1\
+Vertex: 7, Color:1\
+Vertex: 8, Color:1\
+Vertex: 9, Color:0\
+Vertex: 10, Color:0\
+Vertex: 11, Color:1\
+Vertex: 12, Color:2\
+Vertex: 13, Color:0\
+Vertex: 14, Color:0\
+Vertex: 15, Color:1\
+Vertex: 16, Color:0\
+Vertex: 17, Color:0\
+Vertex: 18, Color:2\
+Vertex: 19, Color:0\
+Vertex: 20, Color:0\
+Vertex: 21, Color:1\
+Vertex: 22, Color:0\
+Vertex: 23, Color:1\
+Vertex: 24, Color:0\
+Vertex: 25, Color:2\
+Vertex: 26, Color:0\
+Vertex: 27, Color:2\
+Vertex: 28, Color:2\
+Vertex: 29, Color:0\
+Vertex: 30, Color:2\
+Vertex: 31, Color:0\
+Vertex: 32, Color:0\
+Vertex: 33, Color:2\
+Vertex: 34, Color:3\
+Vertex: 35, Color:2\
+Vertex: 36, Color:0\
+Vertex: 37, Color:3\
+Vertex: 38, Color:3\
+Vertex: 39, Color:0\
 Printing graph\
 0 -> 12, 1 -> 8, 1 -> 12, 2 -> 28, 2 -> 37, 3 -> 35, 3 -> 6, 3 -> 11, 3 -> 7, 3 -> 37, 4 -> 25, 5 -> 34, 5 -> 15, 6 -> 3, 6 -> 25, \
 6 -> 35, 6 -> 37, 7 -> 34, 7 -> 3, 7 -> 12, 8 -> 1, 8 -> 12, 9 -> 15, 10 -> 30, 10 -> 18, 10 -> 15, 11 -> 3, 11 -> 28, 11 -> 37, 12 -> 24, \
@@ -122,4 +184,5 @@ Printing graph\
 24 -> 33, 24 -> 15, 25 -> 6, 25 -> 19, 25 -> 16, 25 -> 22, 25 -> 31, 25 -> 32, 25 -> 26, 25 -> 37, 25 -> 4, 26 -> 25, 27 -> 24, 27 -> 15, 28 -> 2, \
 28 -> 11, 28 -> 37, 29 -> 15, 29 -> 12, 30 -> 10, 30 -> 15, 31 -> 37, 31 -> 25, 32 -> 37, 32 -> 25, 33 -> 24, 33 -> 15, 34 -> 22, 34 -> 7, 34 -> 5, \
 34 -> 12, 35 -> 3, 35 -> 6, 35 -> 37, 36 -> 38, 36 -> 15, 37 -> 32, 37 -> 6, 37 -> 31, 37 -> 28, 37 -> 25, 37 -> 3, 37 -> 2, 37 -> 35, 37 -> 11, \
-38 -> 18, 38 -> 39, 38 -> 36, 38 -> 15, 39 -> 38, 39 -> 15, }
+38 -> 18, 38 -> 39, 38 -> 36, 38 -> 15, 39 -> 38, 39 -> 15, \
+Process finished with exit code 0}

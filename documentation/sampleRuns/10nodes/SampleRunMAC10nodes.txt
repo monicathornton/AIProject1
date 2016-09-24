@@ -20,16 +20,27 @@ Vertex: 9, Color:-1\
 Printing graph\
 0 -> 3, 1 -> 5, 1 -> 9, 1 -> 2, 1 -> 7, 2 -> 1, 2 -> 7, 3 -> 7, 3 -> 4, 3 -> 0, 3 -> 9, 4 -> 3, 4 -> 7, 4 -> 6, 4 -> 9, \
 5 -> 9, 5 -> 1, 5 -> 7, 6 -> 7, 6 -> 4, 6 -> 8, 6 -> 9, 7 -> 8, 7 -> 3, 7 -> 4, 7 -> 6, 7 -> 9, 7 -> 5, 7 -> 2, 7 -> 1, \
-8 -> 7, 8 -> 6, 8 -> 9, 9 -> 5, 9 -> 1, 9 -> 7, 9 -> 4, 9 -> 3, 9 -> 8, 9 -> 6, Enforcing arc consistency\
-Enforcing arc consistency\
-Enforcing arc consistency\
-Enforcing arc consistency\
-Enforcing arc consistency\
-Enforcing arc consistency\
-Enforcing arc consistency\
-Enforcing arc consistency\
-Enforcing arc consistency\
-Enforcing arc consistency\
+8 -> 7, 8 -> 6, 8 -> 9, 9 -> 5, 9 -> 1, 9 -> 7, 9 -> 4, 9 -> 3, 9 -> 8, 9 -> 6, Enforcing consistency between 0:\{RED,GREEN,BLUE,YELLOW\} and 3:\{RED,GREEN,BLUE,YELLOW\}\
+Enforcing consistency between 1:\{RED,GREEN,BLUE,YELLOW\} and 2:\{RED,GREEN,BLUE,YELLOW\}\
+Enforcing consistency between 1:\{RED,GREEN,BLUE,YELLOW\} and 5:\{RED,GREEN,BLUE,YELLOW\}\
+Enforcing consistency between 1:\{RED,GREEN,BLUE,YELLOW\} and 7:\{RED,GREEN,BLUE,YELLOW\}\
+Enforcing consistency between 1:\{RED,GREEN,BLUE,YELLOW\} and 9:\{RED,GREEN,BLUE,YELLOW\}\
+Enforcing consistency between 2:\{GREEN,BLUE,YELLOW\} and 7:\{GREEN,BLUE,YELLOW\}\
+Enforcing consistency between 3:\{GREEN,BLUE,YELLOW\} and 4:\{RED,GREEN,BLUE,YELLOW\}\
+Enforcing consistency between 3:\{GREEN,BLUE,YELLOW\} and 7:\{BLUE,YELLOW\}\
+Enforcing consistency between 3:\{GREEN,BLUE,YELLOW\} and 9:\{GREEN,BLUE,YELLOW\}\
+Enforcing consistency between 4:\{RED,BLUE,YELLOW\} and 6:\{RED,GREEN,BLUE,YELLOW\}\
+Enforcing consistency between 4:\{RED,BLUE,YELLOW\} and 7:\{BLUE,YELLOW\}\
+Enforcing consistency between 4:\{RED,BLUE,YELLOW\} and 9:\{BLUE,YELLOW\}\
+Enforcing consistency between 5:\{GREEN,BLUE,YELLOW\} and 7:\{BLUE,YELLOW\}\
+Enforcing consistency between 5:\{GREEN,BLUE,YELLOW\} and 9:\{BLUE,YELLOW\}\
+Enforcing consistency between 6:\{GREEN,BLUE,YELLOW\} and 7:\{BLUE,YELLOW\}\
+Enforcing consistency between 6:\{GREEN,BLUE,YELLOW\} and 8:\{RED,GREEN,BLUE,YELLOW\}\
+Enforcing consistency between 6:\{GREEN,BLUE,YELLOW\} and 9:\{BLUE,YELLOW\}\
+Enforcing consistency between 7:\{BLUE,YELLOW\} and 8:\{RED,BLUE,YELLOW\}\
+Enforcing consistency between 7:\{BLUE,YELLOW\} and 9:\{BLUE,YELLOW\}\
+Enforcing consistency between 8:\{RED,\} and 9:\{YELLOW\}\
+Enforcing consistency between 8:\{RED,\} and 9:\{YELLOW\}\
 \
 Found a 4 coloring of graph\
 Backtracking with MAC has finished running\

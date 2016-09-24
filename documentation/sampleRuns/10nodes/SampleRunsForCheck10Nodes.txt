@@ -4,7 +4,7 @@
 \margl1440\margr1440\vieww10800\viewh8400\viewkind0
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
-\f0\fs24 \cf0 Running the Backtracking algorithm with forward checking\
+\f0\fs24 \cf0 Running the Backtracking algorithm with forward checking 3 color graph with 10 vertices\
 Initial Graph\
 Printing coloring\
 Vertex: 0, Color:-1\
@@ -20,29 +20,57 @@ Vertex: 9, Color:-1\
 Printing graph\
 0 -> 3, 1 -> 5, 1 -> 9, 1 -> 2, 1 -> 7, 2 -> 1, 2 -> 7, 3 -> 7, 3 -> 4, 3 -> 0, 3 -> 9, 4 -> 3, 4 -> 7, 4 -> 6, 4 -> 9, \
 5 -> 9, 5 -> 1, 5 -> 7, 6 -> 7, 6 -> 4, 6 -> 8, 6 -> 9, 7 -> 8, 7 -> 3, 7 -> 4, 7 -> 6, 7 -> 9, 7 -> 5, 7 -> 2, 7 -> 1, \
-8 -> 7, 8 -> 6, 8 -> 9, 9 -> 5, 9 -> 1, 9 -> 7, 9 -> 4, 9 -> 3, 9 -> 8, 9 -> 6, Forward Checking\
-Forward Checking\
-Forward Checking\
-Forward Checking\
-Forward Checking\
-Forward Checking\
-Forward Checking\
-Forward Checking\
-Backtracking a color\
-Backtracking a level\
-Backtracking a color\
-Forward Checking\
-Forward Checking\
-Backtracking a color\
-Backtracking a level\
-Backtracking a color\
-Backtracking a level\
-Backtracking a color\
-Forward Checking\
-Forward Checking\
+8 -> 7, 8 -> 6, 8 -> 9, 9 -> 5, 9 -> 1, 9 -> 7, 9 -> 4, 9 -> 3, 9 -> 8, 9 -> 6, Forward Checking on Vertex 0:RED\
+After forward check on neighbor 3:\{GREEN,BLUE,\}\
+Forward Checking on Vertex 1:RED\
+After forward check on neighbor 5:\{GREEN,BLUE,\}\
+After forward check on neighbor 9:\{GREEN,BLUE,\}\
+After forward check on neighbor 2:\{GREEN,BLUE,\}\
+After forward check on neighbor 7:\{GREEN,BLUE,\}\
+Forward Checking on Vertex 2:GREEN\
+After forward check on neighbor 7:\{BLUE,\}\
+Forward Checking on Vertex 3:GREEN\
+After forward check on neighbor 7:\{BLUE,\}\
+After forward check on neighbor 4:\{RED,BLUE,\}\
+After forward check on neighbor 9:\{BLUE,\}\
+Forward Checking on Vertex 4:RED\
+After forward check on neighbor 7:\{BLUE,\}\
+After forward check on neighbor 6:\{GREEN,BLUE,\}\
+After forward check on neighbor 9:\{BLUE,\}\
+Forward Checking on Vertex 5:GREEN\
+After forward check on neighbor 9:\{BLUE,\}\
+After forward check on neighbor 7:\{BLUE,\}\
+Forward Checking on Vertex 6:GREEN\
+After forward check on neighbor 7:\{BLUE,\}\
+After forward check on neighbor 8:\{RED,BLUE,\}\
+After forward check on neighbor 9:\{BLUE,\}\
+Forward Checking on Vertex 7:BLUE\
+After forward check on neighbor 8:\{RED,\}\
+After forward check on neighbor 9:\{\}\
+Backtracking a color on Vertex 7\
+Backtracking a level on Vertex 7\
+Backtracking a color on Vertex 6\
+Forward Checking on Vertex 6:BLUE\
+After forward check on neighbor 7:\{GREEN,\}\
+After forward check on neighbor 8:\{RED,GREEN,\}\
+After forward check on neighbor 9:\{GREEN,\}\
+Forward Checking on Vertex 7:GREEN\
+After forward check on neighbor 8:\{RED,\}\
+After forward check on neighbor 9:\{\}\
+Backtracking a color on Vertex 7\
+Backtracking a level on Vertex 7\
+Backtracking a color on Vertex 6\
+Backtracking a level on Vertex 6\
+Backtracking a color on Vertex 5\
+Forward Checking on Vertex 5:BLUE\
+After forward check on neighbor 9:\{GREEN,GREEN,\}\
+After forward check on neighbor 7:\{GREEN,\}\
+Forward Checking on Vertex 5:BLUE\
+After forward check on neighbor 9:\{GREEN,GREEN,\}\
+After forward check on neighbor 7:\{GREEN,\}\
 \
 Did not find a 3 coloring of graph\
-Backtracking with MAC has finished running\
+Backtracking with Forward Checking has finished running\
 Final Graph\
 Printing coloring\
 Vertex: 0, Color:0\
