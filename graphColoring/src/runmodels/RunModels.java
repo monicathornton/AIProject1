@@ -49,8 +49,8 @@ public class RunModels {
 		choice = in.nextLine();
 
 		// change these to get the required graph from the input file
-		String folderName = "graphSize40";
-		String fileName = "graph40";
+		String folderName = "graphSize10";
+		String fileName = "graph10";
 		String versionName = "_v1.txt";
 //		String versionName = "_v2.txt";
 //		String versionName = "_v3.txt";
@@ -71,9 +71,7 @@ public class RunModels {
 			System.out.println("If you need to run the graph generator,please uncomment it.");
 		} else if (choice.equals("1")) {
 
-			for (int i = 0; i < 5; i++) {
 				MinConflicts mc = new MinConflicts(vertices);				
-			}
 
 		} else if (choice.equals("2")) {
 
