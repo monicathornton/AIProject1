@@ -31,7 +31,7 @@ public class BacktrackForCheck extends AbstractAlgorithm {
         else {
             System.out.println("Found a " + numColors + " coloring of graph");
         }
-        System.out.println("Backtracking with MAC has finished running");
+        System.out.println("Backtracking with Forward Checking has finished running");
         System.out.println("Final Graph");
         printGandC();
 	}
@@ -74,10 +74,11 @@ public class BacktrackForCheck extends AbstractAlgorithm {
 	    if (unsolvable){return;}
         if (curVertex.getAllDeleted()){unsolvable = true; return;}  //Hack
         curVertex.setColor(curVertex.usableColors.get(0));  //first available color
-        System.out.println("Forward Checking");
+        System.out.println("Forward Checking on Vertex " + curVertex.getId() + ":" + curVertex.getCurrentColor());
         for (Vertex nei : curVertex.neighbors){         //delete all conflicting colors in neighbors
             if (nei.getId() > curVertex.getId()) {      //only look forward!
                 nei.deleteColor(curVertex.getColor());
+                System.out.println("After forward check on neighbor " + nei.getId() + ":" + nei.printColors());
                 if (nei.getAllDeleted()){
                     backtrackColor();
                 }
@@ -86,7 +87,7 @@ public class BacktrackForCheck extends AbstractAlgorithm {
     }
 
     public void backtrackColor(){
-        System.out.println("Backtracking a color");
+        System.out.println("Backtracking a color on Vertex " + curVertex.getId());
 
         curVertex.deleteColor(curVertex.getColor());  // delete unusable color
         if (curVertex.getId() == 0 && curVertex.getAllDeleted()){
@@ -100,7 +101,7 @@ public class BacktrackForCheck extends AbstractAlgorithm {
         }
         curVertex.setColor(-1);                        //reset color
         if (curVertex.getAllDeleted()){
-            System.out.println("Backtracking a level");
+            System.out.println("Backtracking a level on Vertex " + curVertex.getId());
             curVertex = current.get(current.indexOf(curVertex) - 1); //backtrack one vertex
             backtrackColor();
             chooseColor();

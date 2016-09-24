@@ -159,6 +159,19 @@ public class Vertex extends AbstractVertex {
 		return numConflicts;
 	}
 
+	// check for the vertices that conflict with this vertex
+	public ArrayList<Vertex> getAllConflicts(){
+		ArrayList<Vertex> conflictsForThisNode = new ArrayList<Vertex>();
+
+		for (Vertex nei : neighbors) {
+			if (this.color == nei.color){
+				conflictsForThisNode.add(nei);
+			}
+		}
+		return conflictsForThisNode;
+	}
+
+	// get a pretty string to print currently usable colors
 	public String printColors(){
 		String result = "";
 		result += "{";
@@ -172,6 +185,10 @@ public class Vertex extends AbstractVertex {
 		}
 		result += "}";
 		return result;
+	}
+
+	public String getCurrentColor(){
+		return colorMap.get(getColor());
 	}
 	
 
