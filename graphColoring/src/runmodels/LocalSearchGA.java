@@ -24,43 +24,29 @@ public class LocalSearchGA extends AbstractAlgorithm {
 
 	// allows user to indicate whether or not this is a sample run (for output
 	// purposes)
-	boolean sampleRun = true;
+	boolean sampleRun = false;
 	
 	
 	public LocalSearchGA(ArrayList<Vertex> vertices) throws IOException {//initialize ALL the parameters and call runAlgo
+		algo = "GA";
 		curGraph = vertices;
 		numVertices = vertices.size();
 		for(int i = 0; i < numVertices; i++){
 			vertices.get(i).createUsableColors(colorlim);
 		}
+		
 		maxIterations = 10000;
-		mutRate = 0.2;
-		killRate = 0.6;
-		popSize = 100;
+		mutRate = 0.1;
+		killRate = 0.5;
+		popSize = 150;
 		fitConstant = -1;
 		poolSize = 2;
 		parentSize = 2;
-		colorlim = 4;
+		colorlim = 3;
 		conflictHistory = new ArrayList<Integer>();
 		
-
-		try {
-			FileWriter fileWriter = new FileWriter(
-					"../graphColoring/sampleRuns/SampleRunsGA_"
-							+ vertices.size() + "nodes.txt");
-			sampleWriter = new BufferedWriter(fileWriter);
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		runAlgo();
-		
-		
-		printSampleRun4();
-		
-		
-		sampleWriter.close();
+		ArrayList<Integer> iter = runAlgo();
+		printGandCResult(iter);
 	}
 	@Override
 	public ArrayList<Integer> runAlgo(){
@@ -410,7 +396,7 @@ public class LocalSearchGA extends AbstractAlgorithm {
 	
 	
 	// print finalGraph
-	public void printSampleRun4() throws IOException  {
+	public void printSampleRun4(ArrayList<Integer> conflictHistory) throws IOException  {
 		sampleWriter.newLine();
 		int numConflictsInEntireGraph = 0; 
 		
@@ -437,7 +423,9 @@ public class LocalSearchGA extends AbstractAlgorithm {
 		sampleWriter.newLine();			
 		sampleWriter
 		.write("*****************************************************************************");
-
+		for(int i = 0; i < conflictHistory.size(); i++){
+			sampleWriter.write(i + "," + conflictHistory.get(i));
+		}
 		
 	}
 	

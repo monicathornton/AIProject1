@@ -31,7 +31,12 @@ public class Vertex extends AbstractVertex implements Comparable<Vertex> {
 	ArrayList<Arc> inArcs = new ArrayList<>();
     ArrayList<Arc> outArcs = new ArrayList<>();
 	ArrayList<Integer> usableColors = new ArrayList<Integer>();
-
+	
+	// variables necessary for tabu list
+	ArrayList<Integer> tabuList = new ArrayList<Integer>();
+	int tabuClock = 0;
+	
+	
 	/**
 	 * 
 	 * @param name
@@ -76,6 +81,26 @@ public class Vertex extends AbstractVertex implements Comparable<Vertex> {
 		return color;
 	}
 
+	// set the color of the node
+	void setTabu(int newColor) {
+		tabuList.add(newColor);
+	}
+	
+	// gets the color of the node
+	ArrayList<Integer> getTabu() {
+		return tabuList;
+	}
+	
+	// set the color of the node
+	void setTabuClock(int numIterations) {
+		tabuClock = numIterations;
+	}
+	
+	// gets the color of the node
+	int getTabuClock() {
+		return tabuClock;
+	}
+	
 	@Override
 	// gets the node's unique id
 	int getId() {

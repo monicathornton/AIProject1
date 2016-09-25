@@ -22,7 +22,15 @@ public abstract class AbstractAlgorithm {
 	protected ArrayList<Integer> conflictHistory;//Tracks conflicts/blank values at each iteration
 	protected ArrayList<Vertex> curGraph;
 	
-	BufferedWriter writer = null;
+	BufferedWriter iterwriter = null;
+	BufferedWriter finalwriter = null;
+	String algo = "AbstractAlgorithm";
+	String version = "1";
+	//String version = "2";
+	//String version = "3";
+	//String version = "4";
+	//String version = "5";
+	String coloring = "3";
 		
 	public ArrayList<Integer> runAlgo(){ //Template Method demands I write an algorithm skellington: Maybe override for GA?
 		ArrayList<Vertex> conflicts = findConflicts(curGraph);
@@ -90,7 +98,7 @@ public abstract class AbstractAlgorithm {
 		try 
 		{
 			FileWriter fileWriter = new FileWriter(
-					"../graphColoring/sampleRuns/SampleRuns_MinConflicts_" + curGraph.size() + ".txt", true);
+					"../graphColoring/results/iter_" + algo + "_"+ curGraph.size() + ".txt", true);
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -125,6 +133,43 @@ public abstract class AbstractAlgorithm {
 		}
 		
 		writer.newLine();
+	}
+	
+	public void printGandCResult(ArrayList<Integer> iter) throws IOException{
+		//prints graph and coloring to outputFile
+		
+		try 
+		{
+			FileWriter fileWriter1 = new FileWriter(
+					"../graphColoring/results/iter_" + algo + "_"+ curGraph.size() + "_" + version+ ".txt");
+			iterwriter = new BufferedWriter(fileWriter1);
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		try 
+		{
+			FileWriter fileWriter2 = new FileWriter(
+					"../graphColoring/results/result_" + algo + ".txt", true);
+			finalwriter = new BufferedWriter(fileWriter2);
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		for(int i = 0; i < iter.size(); i++){
+			iterwriter.write(iter.get(i).toString());
+			iterwriter.newLine();
+		}
+		iterwriter.close();
+		
+		finalwriter.write(version + ",");
+		finalwriter.write(conflictHistory.get(conflictHistory.size()-1) + ",");
+		finalwriter.write(curGraph.size()+",");
+		finalwriter.write(coloring);
+		
+		finalwriter.newLine();
+		finalwriter.close();
 	}
 	
 	

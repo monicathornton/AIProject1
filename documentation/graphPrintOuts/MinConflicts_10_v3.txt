@@ -1,0 +1,24 @@
+Did not find a 3 coloring of graph in 10000 iterations.
+
+###############################
+Final Graph Coloring
+
+Printing current coloring of graph
+Vertex: 0, Color:2
+Vertex: 1, Color:2
+Vertex: 2, Color:1
+Vertex: 3, Color:0
+Vertex: 4, Color:2
+Vertex: 5, Color:0
+Vertex: 6, Color:2
+Vertex: 7, Color:2
+Vertex: 8, Color:1
+Vertex: 9, Color:2
+
+Printing ALL edges in graph (A->B and B->A)
+0 -> 3, 0 -> 5, 1 -> 5, 1 -> 4, 1 -> 2, 2 -> 5, 2 -> 6, 2 -> 3, 2 -> 4, 2 -> 9, 
+2 -> 1, 2 -> 8, 3 -> 8, 3 -> 0, 3 -> 9, 3 -> 2, 4 -> 6, 4 -> 1, 4 -> 8, 4 -> 5, 
+4 -> 2, 5 -> 1, 5 -> 2, 5 -> 4, 5 -> 7, 5 -> 0, 6 -> 8, 6 -> 4, 6 -> 2, 7 -> 5, 
+8 -> 6, 8 -> 9, 8 -> 4, 8 -> 3, 8 -> 2, 9 -> 8, 9 -> 3, 9 -> 2, 
+
+###############################
