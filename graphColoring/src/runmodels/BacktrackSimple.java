@@ -21,7 +21,8 @@ public class BacktrackSimple extends AbstractAlgorithm {
     Vertex curVertex; //cur vertex to color
     int numNodes;  //total number of vertices to color
     boolean unsolvable = false;
-	String heurType = "FEWEST_LEGAL"; //choices include None, HIGH_DEGREE, FEWEST_LEGAL, and LeastConflict
+	String heurType = "FEWEST_LEGAL"; //choices include NONE, HIGH_DEGREE, FEWEST_LEGAL, and LeastConflict
+    int nodesColored = 0;
 
 	// File writer that writes out the sample run information (if needed)
 	BufferedWriter sampleWriter = null;
@@ -124,7 +125,7 @@ public class BacktrackSimple extends AbstractAlgorithm {
                 chooseColorStupid();  //choose first available color
                 if (unsolvable) {
                     break;
-                } else if (curVertex.getId() != numNodes -1) {// check for all nodes colored
+                } else if (nodesColored != numNodes) {// check for all nodes colored
                     curVertex = current.get(current.indexOf(curVertex) + 1); //next vertex
                 } else {
                     break;
@@ -145,6 +146,7 @@ public class BacktrackSimple extends AbstractAlgorithm {
             return;
         }
         curVertex.setColor(curVertex.usableColors.get(0)); //set first color in list
+        nodesColored ++;
         Vertex conflict = curVertex.checkConflicts();  //check for a single conflicting neighboring color
         if (conflict != null){
             backtrackColor(conflict);
@@ -153,6 +155,7 @@ public class BacktrackSimple extends AbstractAlgorithm {
 
     private void backtrackColor(Vertex conflict) throws IOException{
         curVertex.deleteColor(conflict.getColor());  //delete conflicting color from possible choices
+        nodesColored--;
     	
         if (sampleRun == true) {
             printSampleRun3();    		
@@ -180,9 +183,11 @@ public class BacktrackSimple extends AbstractAlgorithm {
         }
         curNextI.deleteColor(curNextI.getColor()); // color won't work
         curNextI.setColor(-1);
+        nodesColored--;
 
         //reset curVertex
         curVertex.setColor(-1);
+        nodesColored--;
         curVertex.createUsableColors(numColors);
         curVertex.setAllDeleted();
 
