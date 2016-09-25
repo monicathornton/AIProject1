@@ -36,9 +36,8 @@ public class MinConflicts extends AbstractAlgorithm {
 
 	// variables necessary for the tabu list, which helps to direct the search
 	// to help avoid plateaus
-	int tabuListMaxSize = 2;
-	int tabuStaleTime = 1000;
-	
+	int tabuListMaxSize = 1;
+	int tabuStaleTime = 100;
 	
 	// A random number generator to stochastically get colors for vertices of
 	// graph
@@ -47,17 +46,25 @@ public class MinConflicts extends AbstractAlgorithm {
 	// File writer that writes out the sample run information (if needed)
 	BufferedWriter sampleWriter = null;
 
+	
+	
 	// allows user to indicate whether or not this is a sample run (for output
 	// purposes)
 	boolean sampleRun = false;
 
-	public MinConflicts(ArrayList<Vertex> vertices) throws IOException {
+	// allows user to indicate whether this is a fitness run (for output purposes)
+	boolean printFit = false;
+	
+	public MinConflicts(ArrayList<Vertex> vertices, int version) throws IOException {
 		this.vertices = vertices;
-
+		this.version = version;
+		algo = "MC";
+		
 		try {
 			FileWriter fileWriter = new FileWriter(
-					"../graphColoring/sampleRuns/SampleRuns_MinConflicts_"
-							+ vertices.size() + ".txt");
+					"../graphColoring/results/result_" + algo + ".txt", true);
+//			finalwriter = new BufferedWriter(fileWriter2);
+//			iterwriter = new BufferedWriter(fileWriter1);
 			sampleWriter = new BufferedWriter(fileWriter);
 
 		} catch (IOException e) {
@@ -88,7 +95,7 @@ public class MinConflicts extends AbstractAlgorithm {
 		}
 
 		System.out.println("MinConflicts has finished running");
-
+		printResults();
 		sampleWriter.close();
 
 	}
@@ -173,9 +180,27 @@ public class MinConflicts extends AbstractAlgorithm {
 			assignColor(randomVertWithConflict,
 					randomVertWithConflict.getColor());
 
+			if (printFit == true) {
+				try {
+					printFit();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}				
+			}
+
 			numIterations++;
 		} // end while -- we have either returned a solution or reached
 			// maxIterations
+
+		if (printFit==true) {
+			try {
+				printFit();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}			
+		}
 
 		return 0;
 	}
@@ -384,5 +409,24 @@ public class MinConflicts extends AbstractAlgorithm {
 		sampleWriter.write("###############################");		
 
 	} 
+	
+	
+	public void printFit() throws IOException {
+		sampleWriter.write("" + numConflictsInEntireGraph);
+		sampleWriter.newLine();
 
+		} // end for
+	
+
+	public void printResults() throws IOException {
+		sampleWriter.write(version + ",");
+		sampleWriter.write(numConflictsInEntireGraph + ",");
+		sampleWriter.write(vertices.size()+",");
+		sampleWriter.write(kColors + "");
+		sampleWriter.newLine();
+
+		} // end for
+	
+	
+	
 }

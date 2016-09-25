@@ -71,7 +71,51 @@ public class RunModels {
 			System.out.println("If you need to run the graph generator,please uncomment it.");
 		} else if (choice.equals("1")) {
 
-				MinConflicts mc = new MinConflicts(vertices);				
+//			int version = 1; 				
+//			
+//			for (int i = 0; i < 5; i++) {
+//				MinConflicts mc = new MinConflicts(vertices, version);				
+//			}		
+//			
+//			vertices.clear();
+//			
+//			versionName = "_v2.txt";
+//			int version = 2; 
+//			getGraphFromFile(folderName,fileName,versionName);
+//			
+//			for (int i = 0; i < 20; i++) {
+//				MinConflicts mc = new MinConflicts(vertices, version);				
+//			}
+			
+			vertices.clear();
+
+			versionName = "_v3.txt";
+			int version = 3; 
+			getGraphFromFile(folderName,fileName,versionName);
+			
+			for (int i = 0; i < 5; i++) {
+				MinConflicts mc = new MinConflicts(vertices, version);				
+			}
+
+//			
+//			versionName = "_v4.txt";
+//			version = 4; 
+//			getGraphFromFile(folderName,fileName,versionName);
+//			
+//			for (int i = 0; i < 5; i++) {
+//				MinConflicts mc = new MinConflicts(vertices, version);				
+//			}			
+
+			
+//			versionName = "_v5.txt";
+//			int version = 5; 
+//			getGraphFromFile(folderName,fileName,versionName);
+//			
+//			for (int i = 0; i < 5; i++) {
+//				MinConflicts mc = new MinConflicts(vertices, version);				
+//			}		
+			
+			
 
 		} else if (choice.equals("2")) {
 
