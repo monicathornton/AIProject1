@@ -51,11 +51,11 @@ public class RunModels {
 		// change these to get the required graph from the input file
 		String folderName = "graphSize10";
 		String fileName = "graph10";
-//		String versionName = "_v1.txt";
+		String versionName = "_v1.txt";
 //		String versionName = "_v2.txt";
 //		String versionName = "_v3.txt";
 //		String versionName = "_v4.txt";
-		String versionName = "_v5.txt";
+//		String versionName = "_v5.txt";
 		
 		
 		if (!choice.equals("gc")) {

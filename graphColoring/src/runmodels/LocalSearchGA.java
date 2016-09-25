@@ -51,17 +51,29 @@ public class LocalSearchGA extends AbstractAlgorithm {
 			population = new ArrayList<Chromosome>();
 			conflictHistory = new ArrayList<Integer>();
 			ArrayList<Integer> iter = runAlgo();
-			printGandCResult(iter);
+			//printGandCResult(iter);
+			BufferedWriter writer;
+			try 
+			{
+				FileWriter fileWriter = new FileWriter(
+						"../documentation/results/GAResults/graph_" + algo + "_"+ curGraph.size() +"_"+version+ ".txt", true);
+				writer = new BufferedWriter(fileWriter);
+				printGandCOut(writer);
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
 		}
-		colorlim = 4;
-		coloring = "4";
-		for(int i = 0; i < 5; i++){
-			curGraph = copyGraph(c).getGenes();
-			population = new ArrayList<Chromosome>();
-			conflictHistory = new ArrayList<Integer>();
-			ArrayList<Integer> iter = runAlgo();
-			printGandCResult(iter);
-		}
+//		colorlim = 4;
+//		coloring = "4";
+//		for(int i = 0; i < 5; i++){
+//			curGraph = copyGraph(c).getGenes();
+//			population = new ArrayList<Chromosome>();
+//			conflictHistory = new ArrayList<Integer>();
+//			ArrayList<Integer> iter = runAlgo();
+//			printGandCResult(iter);
+//		}
 	}
 	@Override
 	public ArrayList<Integer> runAlgo(){

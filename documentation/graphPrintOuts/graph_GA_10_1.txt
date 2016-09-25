@@ -1,0 +1,18 @@
+Printing current coloring of graph
+Vertex: 0, Color:2
+Vertex: 1, Color:1
+Vertex: 2, Color:0
+Vertex: 3, Color:0
+Vertex: 4, Color:1
+Vertex: 5, Color:0
+Vertex: 6, Color:0
+Vertex: 7, Color:2
+Vertex: 8, Color:1
+Vertex: 9, Color:2
+
+Printing ALL edges in graph (A->B and B->A)
+0 -> 3, 1 -> 5, 1 -> 9, 1 -> 2, 1 -> 7, 2 -> 1, 2 -> 7, 3 -> 7, 3 -> 4, 3 -> 0, 
+3 -> 9, 4 -> 3, 4 -> 7, 4 -> 6, 4 -> 9, 5 -> 9, 5 -> 1, 5 -> 7, 6 -> 7, 6 -> 4, 
+6 -> 8, 6 -> 9, 7 -> 8, 7 -> 3, 7 -> 4, 7 -> 6, 7 -> 9, 7 -> 5, 7 -> 2, 7 -> 1, 
+8 -> 7, 8 -> 6, 8 -> 9, 9 -> 5, 9 -> 1, 9 -> 7, 9 -> 4, 9 -> 3, 9 -> 8, 9 -> 6, 
+

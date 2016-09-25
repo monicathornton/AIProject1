@@ -25,11 +25,11 @@ public abstract class AbstractAlgorithm {
 	BufferedWriter iterwriter = null;
 	BufferedWriter finalwriter = null;
 	String algo = "AbstractAlgorithm";
-	//String version = "1";
+	String version = "1";
 	//String version = "2";
 	//String version = "3";
 	//String version = "4";
-	String version = "5";
+	//String version = "5";
 	String coloring = "4";
 		
 	public ArrayList<Integer> runAlgo(){ //Template Method demands I write an algorithm skellington: Maybe override for GA?
@@ -98,7 +98,9 @@ public abstract class AbstractAlgorithm {
 		try 
 		{
 			FileWriter fileWriter = new FileWriter(
-					"../graphColoring/results/iter_" + algo + "_"+ curGraph.size() + ".txt", true);
+					"../documentation/results/GAResults/graph_" + algo + "_"+ curGraph.size() +"_"+version+ ".txt");
+			writer = new BufferedWriter(fileWriter);
+			
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -133,6 +135,7 @@ public abstract class AbstractAlgorithm {
 		}
 		
 		writer.newLine();
+		writer.close();
 	}
 	
 	public void printGandCResult(ArrayList<Integer> iter) throws IOException{
