@@ -7,9 +7,11 @@ package runmodels;
  */
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Comparator;
 
-public class Vertex extends AbstractVertex {
+public class Vertex extends AbstractVertex implements Comparable<Vertex> {
 	// unique identifier associated with each node
 	private int id;
 	
@@ -204,4 +206,22 @@ public class Vertex extends AbstractVertex {
         }
         return clonedList;
     }
+
+
+	@Override
+    public int compareTo(Vertex v){
+    	int compareQuantity = v.getId();
+		return this.getId() - compareQuantity;
+	}
+
+	public Vertex getLastNeighbor(){
+		Collections.sort(neighbors);
+		for (int i = 0; i < neighbors.size(); i++){
+			if (neighbors.get(i).getId() > this.getId()){
+				return neighbors.get(i -1);
+			}
+		}
+		return neighbors.get(neighbors.size() -1);
+	}
+
 }

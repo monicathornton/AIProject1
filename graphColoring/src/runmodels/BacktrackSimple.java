@@ -4,6 +4,9 @@ package runmodels;
 import runmodels.Node;
 import runmodels.Tree;
 
+import org.apache.commons.collections.comparators.ComparatorChain;
+
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -14,11 +17,11 @@ import java.util.Collections;
 public class BacktrackSimple extends AbstractAlgorithm {
     List<Vertex> current; //vertices as currently colored
     Tree states; //tree of states, where each state depends on color of vertices
-    int numColors = 4;  //total number of colors allowed
+    int numColors = 3;  //total number of colors allowed
     Vertex curVertex; //cur vertex to color
     int numNodes;  //total number of vertices to color
     boolean unsolvable = false;
-	String heurType = "HighDegree"; //choices include None, HighDegree, LowColor, and LeastConflict
+	String heurType = "FEWEST_LEGAL"; //choices include None, HIGH_DEGREE, FEWEST_LEGAL, and LeastConflict
 
 	// File writer that writes out the sample run information (if needed)
 	BufferedWriter sampleWriter = null;
@@ -31,8 +34,12 @@ public class BacktrackSimple extends AbstractAlgorithm {
 
         this.current = vertices;
 
-		if (heurType.equals("HighDegree")){
-			sortByDegree();
+        for (Vertex v : vertices){
+            v.createUsableColors(numColors);  // set number of colors available
+        }
+
+		if (heurType.equals("HIGH_DEGREE")){
+			Collections.sort(current, new HIGH_DEGREE());
 		}
         this.curVertex = current.get(0);
         this.numNodes = vertices.size();
@@ -40,7 +47,7 @@ public class BacktrackSimple extends AbstractAlgorithm {
         
 		try {
 			FileWriter fileWriter = new FileWriter(
-					"../graphColoring/sampleRuns/SampleRuns_Backtracking_"
+					"graphColoring/sampleRuns/SampleRuns_Backtracking_"
 							+ vertices.size() + ".txt");
 			sampleWriter = new BufferedWriter(fileWriter);
 
@@ -103,6 +110,17 @@ public class BacktrackSimple extends AbstractAlgorithm {
 		}
 		
             while (true) {
+            	if (heurType.equals("FEWEST_LEGAL")){
+                    ComparatorChain chain = new ComparatorChain();
+                    chain.addComparator(new UNASSIGNED());
+                    chain.addComparator(new FEWEST_LEGAL());
+                    Collections.sort(current, chain);
+
+                    curVertex = current.get(0);
+                    if (curVertex.getColor() != -1){  //all nodes colored
+                        break;
+                    }
+			    }
                 chooseColorStupid();  //choose first available color
                 if (unsolvable) {
                     break;
@@ -122,9 +140,6 @@ public class BacktrackSimple extends AbstractAlgorithm {
         		printSampleRun4();
         	}
             backtrackLevel();
-        }
-        else if (curVertex.usableColors.size() == 0) {
-            curVertex.createUsableColors(numColors);  // set number of colors available
         }
         if (unsolvable){
             return;
@@ -152,8 +167,19 @@ public class BacktrackSimple extends AbstractAlgorithm {
             unsolvable = true;
             return;
         }
-        Vertex curNextI = current.get(curVertex.getId() -1);  //taking into account 0-based index. indexOf(curVertext may work now)
+        Vertex curNextI;
+        if (heurType.equals("FEWEST_LEGAL")){
+            if (curVertex.getId() == 0){
+                unsolvable = true;
+                return;
+            }
+            curNextI = curVertex.getLastNeighbor();
+        }
+        else {
+            curNextI = current.get(curVertex.getId() -1);  //taking into account 0-based index. indexOf(curVertext may work now)
+        }
         curNextI.deleteColor(curNextI.getColor()); // color won't work
+        curNextI.setColor(-1);
 
         //reset curVertex
         curVertex.setColor(-1);
@@ -165,12 +191,6 @@ public class BacktrackSimple extends AbstractAlgorithm {
         actualAlgorithm(); //start over from here
     }
 
-
-    // sort vertices by number of neighbors, so colors are given to nodes with higher degree first
-    public void sortByDegree(){
-		Collections.sort(current, new HIGH_DEGREE());
-	}
-    
 	// for printing sample runs
 	public void printSampleRun1() throws IOException {
 
