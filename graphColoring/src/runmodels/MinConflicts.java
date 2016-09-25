@@ -35,9 +35,9 @@ public class MinConflicts extends AbstractAlgorithm {
 	boolean unsolvable = false;
 
 	// variables necessary for the tabu list, which helps to direct the search
-	int tabuListMaxSize = 0;
-	int tabuStaleTime = 100;
-	ArrayList<Vertex> tabuList = new ArrayList<Vertex>();
+	// to help avoid plateaus
+	int tabuListMaxSize = 2;
+	int tabuStaleTime = 1000;
 	
 	
 	// A random number generator to stochastically get colors for vertices of
@@ -49,7 +49,7 @@ public class MinConflicts extends AbstractAlgorithm {
 
 	// allows user to indicate whether or not this is a sample run (for output
 	// purposes)
-	boolean sampleRun = true;
+	boolean sampleRun = false;
 
 	public MinConflicts(ArrayList<Vertex> vertices) throws IOException {
 		this.vertices = vertices;
@@ -112,8 +112,6 @@ public class MinConflicts extends AbstractAlgorithm {
 			}
 		}
 
-		// direct algorithm with tabu search to help avoid plateaus
-		tabuListMaxSize = vertices.size() / 10;
 
 		// while we have not yet reached the maximum number of steps to solve
 		// the problem, repeat
@@ -188,6 +186,7 @@ public class MinConflicts extends AbstractAlgorithm {
 		int minNumConflicts = Integer.MAX_VALUE;
 		int minConflictValue = -1;
 
+				
 		for (int colorIterator = 0; colorIterator < kColors; colorIterator++) {
 
 			// check each color to determine which results in the minimum number
@@ -225,8 +224,27 @@ public class MinConflicts extends AbstractAlgorithm {
 		} // end for -- check all of the possible colors to get the min conflict
 			// value
 
+		// check if tabuList value is stale
+		if (numIterations < selectedVertex.tabuClock + tabuStaleTime) {
+			selectedVertex.tabuList.clear();
+		}
+		
+		
+		// if color is in tabu list for this vertex, reassign to another color
+		if (selectedVertex.tabuList.contains(minConflictValue)) {
+			assignColor(selectedVertex, minConflictValue);
+		}
+		
 		// set value to the variable that minimizes the number of conflicts
 		selectedVertex.setColor(minConflictValue);
+		// adds this value to the tabu list, if not already there
+		if (!selectedVertex.tabuList.contains(minConflictValue)) {
+			// make sure tabu list is appropriate size
+			if (selectedVertex.tabuList.size() < tabuListMaxSize) {
+				selectedVertex.setTabu(minConflictValue);	
+				selectedVertex.setTabuClock(numIterations);	
+			}
+		}
 
 	}
 
