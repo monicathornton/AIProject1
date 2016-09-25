@@ -36,8 +36,10 @@ public class MinConflicts extends AbstractAlgorithm {
 
 	// variables necessary for the tabu list, which helps to direct the search
 	int tabuListMaxSize = 0;
+	int tabuStaleTime = 100;
 	ArrayList<Vertex> tabuList = new ArrayList<Vertex>();
-
+	
+	
 	// A random number generator to stochastically get colors for vertices of
 	// graph
 	Random rand = new Random();
@@ -87,17 +89,6 @@ public class MinConflicts extends AbstractAlgorithm {
 
 		System.out.println("MinConflicts has finished running");
 
-		// for Sample Run
-		// System.out.println("Final Graph");
-		// printGandC();
-
-		// print colors, for checking
-		// System.out.println("Colors :");
-		// for (int i = 0; i < vertices.size(); i++) {
-		// System.out.println("Vertex " + vertices.get(i).getId() + " : " +
-		// vertices.get(i).getColor());
-		// }
-
 		sampleWriter.close();
 
 	}
@@ -136,7 +127,6 @@ public class MinConflicts extends AbstractAlgorithm {
 
 			// go through entire graph looking for conflicts
 			for (Vertex v : vertices) {
-				if (!tabuList.contains(v)) {
 					// System.out.println("Vertex v is " + v.getId());
 					// check if current assignment results in any conflicts, if
 					// no conflicts, current is a
@@ -147,21 +137,11 @@ public class MinConflicts extends AbstractAlgorithm {
 					// conflictVerts
 					if (v.getNumConflicts() > 0) {
 						conflictVerts.add(v);
-					} else {
-						// there were no conflicts with this vertex, so
-						// candidate for tabu list
-						if (!tabuList.contains(v)) {
-							tabuList.add(v);
-						}
-					} // end else -- tabu list additions
+					} 
 
 					// System.out.println("num conflicts for " + v.getId() +
 					// " = " + v.getNumConflicts());
-				} // end if -- have picked a vertex not in the tabuList
 
-				if (tabuList.size() >= tabuListMaxSize) {
-					tabuList.remove(0);
-				}
 
 			} // end for -- have gone through each vertex checking for conflicts
 
