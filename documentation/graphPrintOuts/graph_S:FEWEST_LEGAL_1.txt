@@ -1,0 +1,15 @@
+Printing coloring
+Vertex: 0, Color:-1
+Vertex: 3, Color:-1
+Vertex: 4, Color:-1
+Vertex: 6, Color:-1
+Vertex: 7, Color:-1
+Vertex: 8, Color:-1
+Vertex: 9, Color:-1
+Vertex: 1, Color:0
+Vertex: 5, Color:1
+Vertex: 2, Color:1
+Printing graph
+0 -> 3, 3 -> 0, 3 -> 4, 3 -> 7, 3 -> 9, 4 -> 3, 4 -> 6, 4 -> 7, 4 -> 9, 6 -> 4, 6 -> 7, 6 -> 8, 6 -> 9, 7 -> 1, 7 -> 2,
+7 -> 3, 7 -> 4, 7 -> 5, 7 -> 6, 7 -> 8, 7 -> 9, 8 -> 6, 8 -> 7, 8 -> 9, 9 -> 1, 9 -> 3, 9 -> 4, 9 -> 5, 9 -> 6, 9 -> 7,
+9 -> 8, 1 -> 5, 1 -> 9, 1 -> 2, 1 -> 7, 5 -> 9, 5 -> 1, 5 -> 7, 2 -> 1, 2 -> 7,
