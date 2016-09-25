@@ -35,9 +35,10 @@ public class MinConflicts extends AbstractAlgorithm {
 	boolean unsolvable = false;
 
 	// variables necessary for the tabu list, which helps to direct the search
-	int tabuListMaxSize = 0;
-	ArrayList<Vertex> tabuList = new ArrayList<Vertex>();
-
+	// to help avoid plateaus
+	int tabuListMaxSize = 1;
+	int tabuStaleTime = 100;
+	
 	// A random number generator to stochastically get colors for vertices of
 	// graph
 	Random rand = new Random();
@@ -45,17 +46,25 @@ public class MinConflicts extends AbstractAlgorithm {
 	// File writer that writes out the sample run information (if needed)
 	BufferedWriter sampleWriter = null;
 
+	
+	
 	// allows user to indicate whether or not this is a sample run (for output
 	// purposes)
-	boolean sampleRun = true;
+	boolean sampleRun = false;
 
-	public MinConflicts(ArrayList<Vertex> vertices) throws IOException {
+	// allows user to indicate whether this is a fitness run (for output purposes)
+	boolean printFit = false;
+	
+	public MinConflicts(ArrayList<Vertex> vertices, int version) throws IOException {
 		this.vertices = vertices;
-
+		this.version = version;
+		algo = "MC";
+		
 		try {
 			FileWriter fileWriter = new FileWriter(
-					"../graphColoring/sampleRuns/SampleRuns_MinConflicts_"
-							+ vertices.size() + ".txt");
+					"../graphColoring/results/result_" + algo + ".txt", true);
+//			finalwriter = new BufferedWriter(fileWriter2);
+//			iterwriter = new BufferedWriter(fileWriter1);
 			sampleWriter = new BufferedWriter(fileWriter);
 
 		} catch (IOException e) {
@@ -86,18 +95,7 @@ public class MinConflicts extends AbstractAlgorithm {
 		}
 
 		System.out.println("MinConflicts has finished running");
-
-		// for Sample Run
-		// System.out.println("Final Graph");
-		// printGandC();
-
-		// print colors, for checking
-		// System.out.println("Colors :");
-		// for (int i = 0; i < vertices.size(); i++) {
-		// System.out.println("Vertex " + vertices.get(i).getId() + " : " +
-		// vertices.get(i).getColor());
-		// }
-
+		printResults();
 		sampleWriter.close();
 
 	}
@@ -121,8 +119,6 @@ public class MinConflicts extends AbstractAlgorithm {
 			}
 		}
 
-		// direct algorithm with tabu search to help avoid plateaus
-		tabuListMaxSize = vertices.size() / 10;
 
 		// while we have not yet reached the maximum number of steps to solve
 		// the problem, repeat
@@ -136,7 +132,6 @@ public class MinConflicts extends AbstractAlgorithm {
 
 			// go through entire graph looking for conflicts
 			for (Vertex v : vertices) {
-				if (!tabuList.contains(v)) {
 					// System.out.println("Vertex v is " + v.getId());
 					// check if current assignment results in any conflicts, if
 					// no conflicts, current is a
@@ -147,21 +142,11 @@ public class MinConflicts extends AbstractAlgorithm {
 					// conflictVerts
 					if (v.getNumConflicts() > 0) {
 						conflictVerts.add(v);
-					} else {
-						// there were no conflicts with this vertex, so
-						// candidate for tabu list
-						if (!tabuList.contains(v)) {
-							tabuList.add(v);
-						}
-					} // end else -- tabu list additions
+					} 
 
 					// System.out.println("num conflicts for " + v.getId() +
 					// " = " + v.getNumConflicts());
-				} // end if -- have picked a vertex not in the tabuList
 
-				if (tabuList.size() >= tabuListMaxSize) {
-					tabuList.remove(0);
-				}
 
 			} // end for -- have gone through each vertex checking for conflicts
 
@@ -195,9 +180,27 @@ public class MinConflicts extends AbstractAlgorithm {
 			assignColor(randomVertWithConflict,
 					randomVertWithConflict.getColor());
 
+			if (printFit == true) {
+				try {
+					printFit();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}				
+			}
+
 			numIterations++;
 		} // end while -- we have either returned a solution or reached
 			// maxIterations
+
+		if (printFit==true) {
+			try {
+				printFit();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}			
+		}
 
 		return 0;
 	}
@@ -208,6 +211,7 @@ public class MinConflicts extends AbstractAlgorithm {
 		int minNumConflicts = Integer.MAX_VALUE;
 		int minConflictValue = -1;
 
+				
 		for (int colorIterator = 0; colorIterator < kColors; colorIterator++) {
 
 			// check each color to determine which results in the minimum number
@@ -245,8 +249,27 @@ public class MinConflicts extends AbstractAlgorithm {
 		} // end for -- check all of the possible colors to get the min conflict
 			// value
 
+		// check if tabuList value is stale
+		if (numIterations < selectedVertex.tabuClock + tabuStaleTime) {
+			selectedVertex.tabuList.clear();
+		}
+		
+		
+		// if color is in tabu list for this vertex, reassign to another color
+		if (selectedVertex.tabuList.contains(minConflictValue)) {
+			assignColor(selectedVertex, minConflictValue);
+		}
+		
 		// set value to the variable that minimizes the number of conflicts
 		selectedVertex.setColor(minConflictValue);
+		// adds this value to the tabu list, if not already there
+		if (!selectedVertex.tabuList.contains(minConflictValue)) {
+			// make sure tabu list is appropriate size
+			if (selectedVertex.tabuList.size() < tabuListMaxSize) {
+				selectedVertex.setTabu(minConflictValue);	
+				selectedVertex.setTabuClock(numIterations);	
+			}
+		}
 
 	}
 
@@ -386,5 +409,24 @@ public class MinConflicts extends AbstractAlgorithm {
 		sampleWriter.write("###############################");		
 
 	} 
+	
+	
+	public void printFit() throws IOException {
+		sampleWriter.write("" + numConflictsInEntireGraph);
+		sampleWriter.newLine();
 
+		} // end for
+	
+
+	public void printResults() throws IOException {
+		sampleWriter.write(version + ",");
+		sampleWriter.write(numConflictsInEntireGraph + ",");
+		sampleWriter.write(vertices.size()+",");
+		sampleWriter.write(kColors + "");
+		sampleWriter.newLine();
+
+		} // end for
+	
+	
+	
 }

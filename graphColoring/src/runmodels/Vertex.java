@@ -7,9 +7,11 @@ package runmodels;
  */
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Comparator;
 
-public class Vertex extends AbstractVertex {
+public class Vertex extends AbstractVertex implements Comparable<Vertex> {
 	// unique identifier associated with each node
 	private int id;
 	
@@ -29,7 +31,12 @@ public class Vertex extends AbstractVertex {
 	ArrayList<Arc> inArcs = new ArrayList<>();
     ArrayList<Arc> outArcs = new ArrayList<>();
 	ArrayList<Integer> usableColors = new ArrayList<Integer>();
-
+	
+	// variables necessary for tabu list
+	ArrayList<Integer> tabuList = new ArrayList<Integer>();
+	int tabuClock = 0;
+	
+	
 	/**
 	 * 
 	 * @param name
@@ -74,6 +81,26 @@ public class Vertex extends AbstractVertex {
 		return color;
 	}
 
+	// set the color of the node
+	void setTabu(int newColor) {
+		tabuList.add(newColor);
+	}
+	
+	// gets the color of the node
+	ArrayList<Integer> getTabu() {
+		return tabuList;
+	}
+	
+	// set the color of the node
+	void setTabuClock(int numIterations) {
+		tabuClock = numIterations;
+	}
+	
+	// gets the color of the node
+	int getTabuClock() {
+		return tabuClock;
+	}
+	
 	@Override
 	// gets the node's unique id
 	int getId() {
@@ -204,4 +231,22 @@ public class Vertex extends AbstractVertex {
         }
         return clonedList;
     }
+
+
+	@Override
+    public int compareTo(Vertex v){
+    	int compareQuantity = v.getId();
+		return this.getId() - compareQuantity;
+	}
+
+	public Vertex getLastNeighbor(){
+		Collections.sort(neighbors);
+		for (int i = 0; i < neighbors.size(); i++){
+			if (neighbors.get(i).getId() > this.getId()){
+				return neighbors.get(i -1);
+			}
+		}
+		return neighbors.get(neighbors.size() -1);
+	}
+
 }
