@@ -30,6 +30,8 @@ public class LocalSearchGA extends AbstractAlgorithm {
 	public LocalSearchGA(ArrayList<Vertex> vertices) throws IOException {//initialize ALL the parameters and call runAlgo
 		algo = "GA";
 		curGraph = vertices;
+		Chromosome c = new Chromosome(vertices);
+		//ArrayList<Vertex> v = copyGraph(c).getGenes();
 		numVertices = vertices.size();
 		for(int i = 0; i < numVertices; i++){
 			vertices.get(i).createUsableColors(colorlim);
@@ -43,10 +45,23 @@ public class LocalSearchGA extends AbstractAlgorithm {
 		poolSize = 2;
 		parentSize = 2;
 		colorlim = 3;
-		conflictHistory = new ArrayList<Integer>();
-		
-		ArrayList<Integer> iter = runAlgo();
-		printGandCResult(iter);
+		coloring = "3";
+		for(int i = 0; i < 5; i++){
+			curGraph = copyGraph(c).getGenes();
+			population = new ArrayList<Chromosome>();
+			conflictHistory = new ArrayList<Integer>();
+			ArrayList<Integer> iter = runAlgo();
+			printGandCResult(iter);
+		}
+		colorlim = 4;
+		coloring = "4";
+		for(int i = 0; i < 5; i++){
+			curGraph = copyGraph(c).getGenes();
+			population = new ArrayList<Chromosome>();
+			conflictHistory = new ArrayList<Integer>();
+			ArrayList<Integer> iter = runAlgo();
+			printGandCResult(iter);
+		}
 	}
 	@Override
 	public ArrayList<Integer> runAlgo(){

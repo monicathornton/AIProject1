@@ -25,12 +25,12 @@ public abstract class AbstractAlgorithm {
 	BufferedWriter iterwriter = null;
 	BufferedWriter finalwriter = null;
 	String algo = "AbstractAlgorithm";
-	String version = "1";
+	//String version = "1";
 	//String version = "2";
 	//String version = "3";
 	//String version = "4";
-	//String version = "5";
-	String coloring = "3";
+	String version = "5";
+	String coloring = "4";
 		
 	public ArrayList<Integer> runAlgo(){ //Template Method demands I write an algorithm skellington: Maybe override for GA?
 		ArrayList<Vertex> conflicts = findConflicts(curGraph);
@@ -165,6 +165,7 @@ public abstract class AbstractAlgorithm {
 		
 		finalwriter.write(version + ",");
 		finalwriter.write(conflictHistory.get(conflictHistory.size()-1) + ",");
+		finalwriter.write(conflictHistory.size() + ",");
 		finalwriter.write(curGraph.size()+",");
 		finalwriter.write(coloring);
 		
